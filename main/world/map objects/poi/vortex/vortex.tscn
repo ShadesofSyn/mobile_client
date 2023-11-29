@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://hu0kbqkvutvk"]
+
+[ext_resource type="Shader" path="res://assets/resources/shader/arched_projectile_line_shadow.gdshader" id="1_4kphm"]
+[ext_resource type="Script" path="res://main/world/map objects/poi/vortex/vortex.gd" id="2_72qe1"]
+[ext_resource type="Texture2D" uid="uid://dripew0yx2hja" path="res://assets/interface/minimap/circle72.png" id="3_h35e8"]
+[ext_resource type="Texture2D" uid="uid://c5kpp1bm7g3f3" path="res://assets/tilesets/decoration/dark green/flag.png" id="4_l65kt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bc6el"]
+shader = ExtResource("1_4kphm")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/size = 0.92
+shader_parameter/squishness = Vector2(1, 1)
+shader_parameter/color1 = Color(1, 1, 1, 0)
+shader_parameter/color2 = Color(1, 1, 1, 0.494118)
+shader_parameter/color3 = Color(1, 1, 1, 0)
+shader_parameter/step1 = 0.345
+shader_parameter/step2 = 0.514
+shader_parameter/step3 = 0.516
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gncsh"]
+radius = 480.0
+
+[node name="vortex" type="Node2D"]
+script = ExtResource("2_72qe1")
+
+[node name="border" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bc6el")
+scale = Vector2(14, 14)
+texture = ExtResource("3_h35e8")
+
+[node name="flag" type="Sprite2D" parent="."]
+texture = ExtResource("4_l65kt")
+offset = Vector2(2, -98)
+
+[node name="red_team" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="red_team"]
+shape = SubResource("CircleShape2D_gncsh")
+
+[node name="blue_team" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blue_team"]
+shape = SubResource("CircleShape2D_gncsh")

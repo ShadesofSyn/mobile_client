@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs6ncy56q2n34"]
+
+[ext_resource type="Script" path="res://main/player/player_gui/player_gui.gd" id="1_2tmwi"]
+[ext_resource type="PackedScene" uid="uid://b1t7d2t2vf113" path="res://main/player/player_gui/joystick/joystick.tscn" id="2_o2cux"]
+[ext_resource type="PackedScene" uid="uid://coo8mtl2yimps" path="res://main/player/player_gui/minimap/minimap.tscn" id="3_x2cvh"]
+
+[node name="player_gui" type="CanvasLayer"]
+script = ExtResource("1_2tmwi")
+
+[node name="movement_joystick" parent="." instance=ExtResource("2_o2cux")]
+
+[node name="minimap" parent="." instance=ExtResource("3_x2cvh")]
+offset_left = 142.0
+offset_top = 144.0
+offset_right = 142.0
+offset_bottom = 144.0

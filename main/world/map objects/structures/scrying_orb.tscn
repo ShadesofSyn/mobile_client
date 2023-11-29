@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://j2d2tw1w6b4h"]
+
+[ext_resource type="Texture2D" uid="uid://cn1tai542pv3j" path="res://assets/tilesets/map objects/structures/scrying orb/18.png" id="1_w4yt5"]
+[ext_resource type="Texture2D" uid="uid://cyslkh70j0eo5" path="res://assets/tilesets/map objects/structures/scrying orb/15.png" id="2_btpdv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_myfw2"]
+radius = 56.0
+height = 172.0
+
+[node name="scrying orb" type="Node2D"]
+y_sort_enabled = true
+
+[node name="sprites" type="Node2D" parent="."]
+scale = Vector2(1.5, 1.5)
+
+[node name="18" type="Sprite2D" parent="sprites"]
+texture = ExtResource("1_w4yt5")
+offset = Vector2(4, -108)
+
+[node name="19" type="Sprite2D" parent="sprites"]
+texture = ExtResource("2_btpdv")
+offset = Vector2(1, -233)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_myfw2")

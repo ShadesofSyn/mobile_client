@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://du0nkcjkvegfa"]
+
+[ext_resource type="Script" path="res://main/world/map objects/obstacles/tall_grass/tall_grass.gd" id="1_fmsj8"]
+[ext_resource type="Texture2D" uid="uid://b8hjpvls2c7kf" path="res://assets/tilesets/map objects/obstacles/grass.png" id="2_dqk4a"]
+
+[node name="tall_grass" type="Node2D"]
+script = ExtResource("1_fmsj8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2.08165e-12, -26)
+scale = Vector2(4, 4)
+texture = ExtResource("2_dqk4a")

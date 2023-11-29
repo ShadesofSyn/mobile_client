@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp0mhhrdj15ta"]
+
+[ext_resource type="Texture2D" uid="uid://cuohkbt8mhqrn" path="res://assets/tilesets/map objects/structures/bio forge/10.png" id="1_rnwu7"]
+[ext_resource type="Texture2D" uid="uid://dmf5h6n758gc3" path="res://assets/tilesets/map objects/structures/bio forge/14.png" id="1_uc5h4"]
+[ext_resource type="Texture2D" uid="uid://cs87lbmeb1l2" path="res://assets/tilesets/map objects/structures/bio forge/11.png" id="3_wughb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pqsu2"]
+radius = 56.0
+height = 172.0
+
+[node name="bio forge" type="Node2D"]
+y_sort_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_pqsu2")
+
+[node name="sprites" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 25)
+scale = Vector2(1.5, 1.5)
+
+[node name="10" type="Sprite2D" parent="sprites"]
+position = Vector2(0, -1)
+texture = ExtResource("1_rnwu7")
+offset = Vector2(2.08165e-12, -71)
+
+[node name="14" type="Sprite2D" parent="sprites"]
+position = Vector2(0, -1)
+texture = ExtResource("1_uc5h4")
+offset = Vector2(7, -74)
+
+[node name="11" type="Sprite2D" parent="sprites"]
+texture = ExtResource("3_wughb")
+offset = Vector2(0, -46)
