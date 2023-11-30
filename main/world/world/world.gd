@@ -70,7 +70,7 @@ func set_lines() -> void:
 	get_node("objectives/objectives/5").position = Vector2(-hex_size/1.73,0)
 	get_node("objectives/objectives/6").position = Vector2(hex_size/1.73,0)
 
-func init_tall_grass():
+func init_tall_grass() -> void:
 	for loc in tall_grass_tiles.get_used_cells(0):
 		var grass = preload("res://main/world/map objects/obstacles/tall_grass/tall_grass.tscn").instantiate()
 		grass.position = loc*64 + Vector2i(32,32)
