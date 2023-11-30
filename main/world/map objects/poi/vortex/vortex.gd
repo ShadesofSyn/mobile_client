@@ -8,8 +8,8 @@ extends Node2D
 
 func _physics_process(delta):
 	$blue_team/CollisionShape2D.shape.set_deferred("radius",Server.world.size_of_vortex)
-	$border.scale.x = Server.world.size_of_vortex / 34.285
-	$border.scale.y = Server.world.size_of_vortex / 34.285
+	border.scale.x = Server.world.size_of_vortex / 34.285
+	border.scale.y = Server.world.size_of_vortex / 34.285
 	if $red_team.has_overlapping_bodies() and not $blue_team.has_overlapping_bodies():
 		set_red_team_state()
 	elif $blue_team.has_overlapping_bodies() and not $red_team.has_overlapping_bodies():
