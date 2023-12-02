@@ -3,10 +3,15 @@ extends Node
 var team_selected: int 
 var special_ability_selected: String 
 
+const MIN_PLACE_OBJECT_DISTANCE: float = 400
 
 const SPEED_OF_PAGE_CHANGE: float = 0.225
 const TIME_TO_SPAWN_ALLY: int = 10
 const INVISIBILITY_LENGTH: float = 5.0
+
+const DASH_LENGTH = 0.5
+const DASH_SPEED_INCREASE = 4.0
+const DASH_ACCEL_INCREASE = 6.0
 
 enum player_state {
 	IDLE,

@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://blbtdvqbdruni"]
+
+[ext_resource type="Script" path="res://main/player/player_gui/action_rewards/action_rewards.gd" id="1_fgu1b"]
+[ext_resource type="Theme" path="res://assets/resources/text/text theme bold.tres" id="2_4xuep"]
+[ext_resource type="Texture2D" uid="uid://ciycnoyhogwhr" path="res://assets/tilesets/map objects/structures/tower/structure.png" id="3_2jl3m"]
+[ext_resource type="Texture2D" uid="uid://cq8qoisx71q4g" path="res://assets/tilesets/map objects/structures/tower/top.png" id="4_xik26"]
+[ext_resource type="Texture2D" uid="uid://546h4x1rtc8n" path="res://assets/tilesets/map objects/structures/support/8.png" id="4_y4sjx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofdaf"]
+bg_color = Color(0.337255, 0.639216, 0.796078, 0.462745)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.160784, 0.219608, 1)
+corner_radius_top_left = 72
+corner_radius_top_right = 72
+corner_radius_bottom_right = 72
+corner_radius_bottom_left = 72
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hs50x"]
+bg_color = Color(0, 0.705882, 0.168627, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="action_rewards" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fgu1b")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -395.0
+offset_top = 12.0
+offset_right = -64.0
+offset_bottom = 61.0
+grow_horizontal = 0
+theme = ExtResource("2_4xuep")
+text = "Action Rewards:"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -207.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = 356.0
+grow_horizontal = 0
+theme_override_constants/separation = 12
+
+[node name="first" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(64, 140)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ofdaf")
+
+[node name="icon" type="Sprite2D" parent="VBoxContainer/first"]
+position = Vector2(77, 69)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_2jl3m")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/first/icon"]
+offset_left = -109.091
+offset_top = 38.1818
+offset_right = -69.0911
+offset_bottom = 78.1818
+scale = Vector2(1.5, 1.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_hs50x")
+
+[node name="Label" type="Label" parent="VBoxContainer/first/icon/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_top = -3.0
+offset_right = -14.0
+offset_bottom = 46.0
+grow_horizontal = 0
+theme = ExtResource("2_4xuep")
+text = "1"
+
+[node name="8" type="Sprite2D" parent="VBoxContainer/first"]
+visible = false
+position = Vector2(70, 32)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("4_xik26")
+
+[node name="second" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(64, 140)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ofdaf")
+
+[node name="8" type="Sprite2D" parent="VBoxContainer/second"]
+visible = false
+position = Vector2(78, 71)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_y4sjx")
+
+[connection signal="gui_input" from="VBoxContainer/first" to="." method="_on_first_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/second" to="." method="_on_second_gui_input"]

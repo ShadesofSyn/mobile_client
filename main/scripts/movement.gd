@@ -14,8 +14,18 @@ func move_player(delta) -> void:
 
 func apply_movement(input_vector,delta) -> void:
 	if not input_vector == Vector2.ZERO:
-		get_parent().velocity = get_parent().velocity.move_toward(input_vector * Server.world.player_max_speed,Server.world.player_acceleration*delta)
+		if get_parent().stats.dashing:
+			apply_dash_movement(input_vector,delta)
+		else:
+			apply_normal_movement(input_vector,delta)
 	
 func apply_friction(input_vector,delta) -> void:
 	if input_vector == Vector2.ZERO:
 		get_parent().velocity = get_parent().velocity.move_toward(Vector2.ZERO,Server.world.player_friction*delta)
+
+
+func apply_dash_movement(input_vector,delta) -> void:
+	get_parent().velocity = get_parent().velocity.move_toward(input_vector*Server.world.player_max_speed*Constants.DASH_SPEED_INCREASE,Server.world.player_acceleration*delta*Constants.DASH_ACCEL_INCREASE)
+	
+func apply_normal_movement(input_vector,delta) -> void:
+	get_parent().velocity = get_parent().velocity.move_toward(input_vector*Server.world.player_max_speed,Server.world.player_acceleration*delta)

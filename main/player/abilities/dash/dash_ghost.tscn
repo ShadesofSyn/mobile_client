@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu0kq8bb8ucwj"]
+
+[ext_resource type="Script" path="res://main/player/abilities/dash/dash_ghost.gd" id="1_45gfj"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="1_b1h46"]
+[ext_resource type="Texture2D" uid="uid://hf2cswjohvf" path="res://icon.svg" id="2_f8rim"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mk0d7"]
+shader = ExtResource("1_b1h46")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 1.0
+
+[node name="dash_ghost" type="Sprite2D"]
+material = SubResource("ShaderMaterial_mk0d7")
+texture = ExtResource("2_f8rim")
+script = ExtResource("1_45gfj")

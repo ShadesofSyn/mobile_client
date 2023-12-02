@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://csdvai7lpqmvw"]
+
+[ext_resource type="Texture2D" uid="uid://dn1c8rf8mtgal" path="res://assets/images/abilities/dash/dash dust.png" id="1_tgsn0"]
+[ext_resource type="Script" path="res://main/player/abilities/dash/dash.gd" id="1_w2cdg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8ccmj"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0b7jt"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="dash" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_w2cdg")
+
+[node name="particles" type="CPUParticles2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_8ccmj")
+emitting = false
+amount = 10
+lifetime = 1.2
+explosiveness = 0.4
+lifetime_randomness = 0.7
+texture = ExtResource("1_tgsn0")
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="burst" type="CPUParticles2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_0b7jt")
+emitting = false
+amount = 16
+lifetime = 1.5
+explosiveness = 0.95
+lifetime_randomness = 0.7
+texture = ExtResource("1_tgsn0")
+emission_shape = 1
+emission_sphere_radius = 20.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.03
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

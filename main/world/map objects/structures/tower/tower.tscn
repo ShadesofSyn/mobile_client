@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://np34agvgbjfj"]
+
+[ext_resource type="Script" path="res://main/world/map objects/structures/tower/tower.gd" id="1_gqymn"]
+[ext_resource type="Texture2D" uid="uid://wow70xj0mmu" path="res://assets/images/misc/green_square.png" id="2_0glua"]
+[ext_resource type="Texture2D" uid="uid://cq8qoisx71q4g" path="res://assets/tilesets/map objects/structures/tower/top.png" id="3_hyjfv"]
+[ext_resource type="Texture2D" uid="uid://ciycnoyhogwhr" path="res://assets/tilesets/map objects/structures/tower/structure.png" id="3_qsbxb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v15kx"]
+radius = 40.0
+height = 160.0
+
+[node name="tower" type="Node2D"]
+script = ExtResource("1_gqymn")
+
+[node name="indicator" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_0glua")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_v15kx")
+disabled = true
+
+[node name="sprites" type="Node2D" parent="."]
+scale = Vector2(1.2, 1.2)
+
+[node name="structure" type="Sprite2D" parent="sprites"]
+position = Vector2(10, -43)
+texture = ExtResource("3_qsbxb")
+
+[node name="turret" type="Sprite2D" parent="sprites"]
+position = Vector2(-4, -114)
+texture = ExtResource("3_hyjfv")

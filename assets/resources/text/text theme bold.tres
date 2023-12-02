@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ftxll3s0dfa3"]
+
+[ext_resource type="FontFile" uid="uid://b4ia1txl8ftbh" path="res://assets/font/Orbitron-Black.ttf" id="1_vb5sj"]
+
+[resource]
+default_font = ExtResource("1_vb5sj")
+default_font_size = 36
