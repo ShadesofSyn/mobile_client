@@ -41,4 +41,4 @@ func set_player_visible(_delta):
 	get_parent().sprite.modulate.a = lerp(get_parent().sprite.modulate.a,1.0,_delta*5)
 	
 func set_player_invisible(_delta):
-	get_parent().sprite.modulate.a = lerp(get_parent().sprite.modulate.a,0.5,_delta*5)
+	get_parent().sprite.modulate.a = lerp(get_parent().sprite.modulate.a,0.3,_delta*5)

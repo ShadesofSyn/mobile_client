@@ -1,13 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://db6h7t1gxk7po"]
+[gd_scene load_steps=10 format=3 uid="uid://db6h7t1gxk7po"]
 
 [ext_resource type="Script" path="res://main/player/player/player.gd" id="1_qwdvd"]
 [ext_resource type="Script" path="res://main/scripts/movement.gd" id="2_jtqnm"]
 [ext_resource type="Script" path="res://main/scripts/stats.gd" id="3_48j8u"]
 [ext_resource type="PackedScene" uid="uid://bs6ncy56q2n34" path="res://main/player/player_gui/player_gui.tscn" id="4_n30r5"]
-[ext_resource type="Texture2D" uid="uid://cjxts70hp02f6" path="res://assets/characters/fighter/idle/E/0.png" id="5_1rdnv"]
 [ext_resource type="Script" path="res://main/scripts/sprite.gd" id="5_ch612"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="5_uykyc"]
+[ext_resource type="Texture2D" uid="uid://bavkakuwiv236" path="res://assets/characters/valkyrie/attack idle/S/0001.png" id="6_u8ibi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dyptf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6pew"]
+shader = ExtResource("5_uykyc")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -29,9 +35,12 @@ shape = SubResource("CircleShape2D_dyptf")
 visible = false
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture_filter = 1
-scale = Vector2(3, 3)
-texture = ExtResource("5_1rdnv")
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_u6pew")
+position = Vector2(0, 3)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("6_u8ibi")
+offset = Vector2(4.16329e-12, -194)
 script = ExtResource("5_ch612")
 
 [node name="Timer" type="Timer" parent="sprite"]

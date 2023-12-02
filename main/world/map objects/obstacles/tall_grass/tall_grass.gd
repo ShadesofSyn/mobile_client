@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 
-var distance_to_hide_grass: float = 120.0
+var distance_to_hide_grass: float = 160.0
 
 
 func _process(delta):
