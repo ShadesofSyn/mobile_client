@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://clfj6twdwt2gu"]
+[gd_scene load_steps=21 format=3 uid="uid://clfj6twdwt2gu"]
 
 [ext_resource type="Script" path="res://main/world/world/world.gd" id="1_h5cps"]
 [ext_resource type="TileSet" uid="uid://b2kxg4xoqgam4" path="res://assets/resources/tres/land.tres" id="2_l5v7e"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bh6rmrvogoy2a" path="res://assets/tilesets/land/dark green.png" id="4_ekgmc"]
 [ext_resource type="PackedScene" uid="uid://db6h7t1gxk7po" path="res://main/player/player/player.tscn" id="5_mb3qv"]
 [ext_resource type="Texture2D" uid="uid://bruq1nq0cy01u" path="res://assets/tilesets/land/blue.png" id="6_1edh6"]
+[ext_resource type="Texture2D" uid="uid://c2f55t6pbcljm" path="res://assets/tilesets/map objects/obstacles/crate.png" id="6_8gqs1"]
 [ext_resource type="PackedScene" uid="uid://j2d2tw1w6b4h" path="res://main/world/map objects/structures/scrying_orb.tscn" id="6_ekg18"]
 [ext_resource type="Texture2D" uid="uid://pfsh2pw6ow7r" path="res://assets/tilesets/map objects/obstacles/barrel.png" id="6_xaqjc"]
 [ext_resource type="PackedScene" uid="uid://hu0kbqkvutvk" path="res://main/world/map objects/poi/vortex/vortex.tscn" id="9_xp85f"]
@@ -31,9 +32,19 @@ margins = Vector2i(8, 8)
 7:6/0/physics_layer_0/angular_velocity = 0.0
 7:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lhwbu"]
+texture = ExtResource("6_8gqs1")
+0:0/size_in_atlas = Vector2i(1, 2)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="TileSet" id="TileSet_m1mof"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_v2eom")
+sources/1 = SubResource("TileSetAtlasSource_lhwbu")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gta0f"]
 texture = ExtResource("6_1edh6")
@@ -75,6 +86,7 @@ y_sort_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="land" type="TileMap" parent="map"]
+visible = false
 z_index = -2
 tile_set = ExtResource("2_l5v7e")
 format = 2
@@ -127,7 +139,7 @@ scale = Vector2(5, 5)
 tile_set = SubResource("TileSet_m1mof")
 format = 2
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(983030, 458752, 6, 983031, 458752, 6, 983032, 458752, 6, 983033, 458752, 6, 1048569, 458752, 6, 1114105, 458752, 6, 1114104, 458752, 6, 720888, 458752, 6, 786424, 458752, 6, 851960, 458752, 6, 917496, 458752, 6, 786423, 458752, 6, 786425, 458752, 6, 1048567, 458752, 6, 1048566, 458752, 6, 655352, 458752, 6, 655353, 458752, 6, 655354, 458752, 6, 720890, 458752, 6, 786426, 458752, 6, 851961, 458752, 6, 917495, 458752, 6, 917494, 458752, 6, 655355, 458752, 6, 720891, 458752, 6, 983029, 458752, 6, 524282, 458752, 6, 589820, 458752, 6, 720889, 458752, 6, 589819, 458752, 6, 655356, 458752, 6, 720892, 458752, 6, 786427, 458752, 6, 851963, 458752, 6, 917498, 458752, 6, 917497, 458752, 6, 851958, 458752, 6, 851959, 458752, 6, 589818, 458752, 6, 524283, 458752, 6, 589817, 458752, 6, 1048568, 458752, 6, 1114103, 458752, 6, 851962, 458752, 6, 983034, 458752, 6, 1048570, 458752, 6, 786422, 458752, 6, 720887, 458752, 6, 524281, 458752, 6, 655351, 458752, 6, 589816, 458752, 6, 1048565, 458752, 6, 786428, 458752, 6, 917493, 458752, 6, 1114102, 458752, 6)
+layer_0/tile_data = PackedInt32Array(983030, 1, 0, 983031, 1, 0, 983032, 1, 0, 983033, 1, 0, 1048569, 1, 0, 1114104, 1, 0, 720888, 1, 0, 786424, 1, 0, 851960, 1, 0, 917496, 1, 0, 786423, 1, 0, 786425, 1, 0, 1048567, 1, 0, 1048566, 1, 0, 655352, 1, 0, 655353, 1, 0, 655354, 1, 0, 720890, 1, 0, 786426, 1, 0, 851961, 1, 0, 917495, 1, 0, 917494, 1, 0, 655355, 1, 0, 720891, 1, 0, 983029, 1, 0, 524282, 1, 0, 589820, 1, 0, 720889, 1, 0, 589819, 1, 0, 655356, 1, 0, 720892, 1, 0, 786427, 1, 0, 851963, 1, 0, 917498, 1, 0, 917497, 1, 0, 851958, 1, 0, 851959, 1, 0, 589818, 1, 0, 524283, 1, 0, 589817, 1, 0, 1048568, 1, 0, 1114103, 1, 0, 851962, 1, 0, 983034, 1, 0, 1048570, 1, 0, 786422, 1, 0, 720887, 1, 0, 524281, 1, 0, 655351, 1, 0, 589816, 1, 0, 1048565, 1, 0, 786428, 1, 0, 917493, 1, 0, 1114102, 1, 0)
 
 [node name="valid_tiles" type="TileMap" parent="map"]
 visible = false
