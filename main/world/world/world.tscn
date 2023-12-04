@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://clfj6twdwt2gu"]
+[gd_scene load_steps=20 format=3 uid="uid://clfj6twdwt2gu"]
 
 [ext_resource type="Script" path="res://main/world/world/world.gd" id="1_h5cps"]
 [ext_resource type="TileSet" uid="uid://b2kxg4xoqgam4" path="res://assets/resources/tres/land.tres" id="2_l5v7e"]
 [ext_resource type="TileSet" uid="uid://tgn7w0bhp1hy" path="res://assets/resources/tres/decoration.tres" id="3_jgj3w"]
 [ext_resource type="PackedScene" uid="uid://bjg71fas37wyh" path="res://main/world/map objects/spawn_area.tscn" id="3_l1toj"]
 [ext_resource type="Texture2D" uid="uid://bh6rmrvogoy2a" path="res://assets/tilesets/land/dark green.png" id="4_ekgmc"]
-[ext_resource type="PackedScene" uid="uid://db6h7t1gxk7po" path="res://main/player/player/player.tscn" id="5_mb3qv"]
 [ext_resource type="Texture2D" uid="uid://bruq1nq0cy01u" path="res://assets/tilesets/land/blue.png" id="6_1edh6"]
 [ext_resource type="Texture2D" uid="uid://c2f55t6pbcljm" path="res://assets/tilesets/map objects/obstacles/crate.png" id="6_8gqs1"]
 [ext_resource type="PackedScene" uid="uid://j2d2tw1w6b4h" path="res://main/world/map objects/structures/scrying_orb.tscn" id="6_ekg18"]
@@ -86,7 +85,6 @@ y_sort_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="land" type="TileMap" parent="map"]
-visible = false
 z_index = -2
 tile_set = ExtResource("2_l5v7e")
 format = 2
@@ -219,45 +217,32 @@ rotation = -1.5708
 [node name="6" parent="spawn_areas" instance=ExtResource("3_l1toj")]
 rotation = -0.523599
 
-[node name="player" parent="." instance=ExtResource("5_mb3qv")]
-position = Vector2(-4058, 2695)
-
 [node name="objectives" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="vortex" parent="objectives" instance=ExtResource("9_xp85f")]
 
 [node name="scrying_orbs" type="Node2D" parent="objectives"]
 
 [node name="1" parent="objectives/scrying_orbs" instance=ExtResource("6_ekg18")]
-position = Vector2(-1000, 2.08165e-12)
 
 [node name="2" parent="objectives/scrying_orbs" instance=ExtResource("6_ekg18")]
-position = Vector2(1046, -5)
-
-[node name="vortex" parent="objectives" instance=ExtResource("9_xp85f")]
-z_index = 0
-y_sort_enabled = true
 
 [node name="objectives" type="Node2D" parent="objectives"]
 modulate = Color(1.2, 1.2, 1.2, 1)
 y_sort_enabled = true
 
 [node name="1" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
-position = Vector2(-1593, 2760)
 
 [node name="2" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
-position = Vector2(1625, 2829)
 
 [node name="3" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
-position = Vector2(3102, 18)
 
 [node name="4" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
-position = Vector2(1515, -2229)
 
 [node name="5" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
-position = Vector2(-1519, -2262)
 
 [node name="6" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
-position = Vector2(-2856, -8)
 
 [node name="obstacles" type="Node2D" parent="."]
 y_sort_enabled = true

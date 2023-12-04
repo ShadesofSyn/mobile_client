@@ -26,8 +26,8 @@ const HEX_OFFSET: float = 0.866025
 
 
 func _ready():
-	redraw_map(null)
-	init_tall_grass()
+#	redraw_map(null)
+#	init_tall_grass()
 	init_walls()
 	Server.world = self
 

@@ -1,14 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://db6h7t1gxk7po"]
+[gd_scene load_steps=14 format=3 uid="uid://db6h7t1gxk7po"]
 
 [ext_resource type="Script" path="res://main/player/player/player.gd" id="1_qwdvd"]
-[ext_resource type="Script" path="res://main/scripts/movement.gd" id="2_jtqnm"]
-[ext_resource type="Script" path="res://main/scripts/stats.gd" id="3_48j8u"]
+[ext_resource type="Script" path="res://main/player/player/scripts/movement.gd" id="2_4t6da"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="3_767le"]
 [ext_resource type="PackedScene" uid="uid://bs6ncy56q2n34" path="res://main/player/player_gui/player_gui.tscn" id="4_n30r5"]
-[ext_resource type="Script" path="res://main/scripts/sprite.gd" id="5_ch612"]
+[ext_resource type="Script" path="res://main/player/player/hurtbox.gd" id="5_b7fml"]
 [ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="5_uykyc"]
+[ext_resource type="Texture2D" uid="uid://evv0ne15gfsq" path="res://assets/interface/health_bars/health_bar-04.png" id="6_syoyp"]
 [ext_resource type="Texture2D" uid="uid://bavkakuwiv236" path="res://assets/characters/valkyrie/attack idle/S/0001.png" id="6_u8ibi"]
+[ext_resource type="Texture2D" uid="uid://g8orb43rv6vd" path="res://assets/interface/health_bars/health_bar-05.png" id="7_ap32v"]
+[ext_resource type="Script" path="res://main/player/player/scripts/sprite.gd" id="7_k5p8e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dyptf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qyflm"]
+radius = 24.0
+height = 78.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u6pew"]
 shader = ExtResource("5_uykyc")
@@ -21,10 +28,10 @@ collision_layer = 3
 script = ExtResource("1_qwdvd")
 
 [node name="movement" type="Node" parent="."]
-script = ExtResource("2_jtqnm")
+script = ExtResource("2_4t6da")
 
-[node name="stats" type="Node" parent="."]
-script = ExtResource("3_48j8u")
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("3_767le")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dyptf")
@@ -34,6 +41,26 @@ shape = SubResource("CircleShape2D_dyptf")
 [node name="player_gui" parent="Camera2D" instance=ExtResource("4_n30r5")]
 visible = false
 
+[node name="hurtbox" type="Area2D" parent="."]
+position = Vector2(0, -28)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("5_b7fml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("CapsuleShape2D_qyflm")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="hurtbox"]
+offset_left = -79.0
+offset_top = -128.0
+offset_right = 549.0
+offset_bottom = -20.0
+scale = Vector2(0.25, 0.25)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("6_syoyp")
+texture_progress = ExtResource("7_ap32v")
+
 [node name="sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_u6pew")
@@ -41,10 +68,11 @@ position = Vector2(0, 3)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("6_u8ibi")
 offset = Vector2(4.16329e-12, -194)
-script = ExtResource("5_ch612")
+script = ExtResource("7_k5p8e")
 
 [node name="Timer" type="Timer" parent="sprite"]
 wait_time = 0.1
 autostart = true
 
+[connection signal="area_entered" from="hurtbox" to="hurtbox" method="_on_area_entered"]
 [connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]

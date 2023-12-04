@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://main/player/player_gui/action_buttons/special_ability.gd" id="5_vf5rb"]
 [ext_resource type="Texture2D" uid="uid://cpjkd5crry2li" path="res://assets/interface/buttons/aura.png" id="5_wugt2"]
 [ext_resource type="Texture2D" uid="uid://ogvxr3asi518" path="res://assets/interface/buttons/circle72.png" id="6_eqkrv"]
-[ext_resource type="Theme" path="res://assets/resources/text/text theme bold.tres" id="6_xb8tf"]
+[ext_resource type="Theme" uid="uid://dbalkluvqmaae" path="res://assets/resources/text/text theme bold.tres" id="6_xb8tf"]
 [ext_resource type="Script" path="res://main/player/player_gui/action_buttons/cooldown.gd" id="7_x0136"]
 [ext_resource type="Texture2D" uid="uid://d4l5mqk1w1y4a" path="res://assets/interface/buttons/riposte.png" id="10_0dxil"]
 [ext_resource type="Script" path="res://main/player/player_gui/action_buttons/ultra_attack.gd" id="10_5btfc"]

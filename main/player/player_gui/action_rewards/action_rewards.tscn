@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://blbtdvqbdruni"]
+[gd_scene load_steps=7 format=3 uid="uid://blbtdvqbdruni"]
 
 [ext_resource type="Script" path="res://main/player/player_gui/action_rewards/action_rewards.gd" id="1_fgu1b"]
-[ext_resource type="Theme" path="res://assets/resources/text/text theme bold.tres" id="2_4xuep"]
+[ext_resource type="Theme" uid="uid://dbalkluvqmaae" path="res://assets/resources/text/text theme bold.tres" id="2_4xuep"]
 [ext_resource type="Texture2D" uid="uid://ciycnoyhogwhr" path="res://assets/tilesets/map objects/structures/tower/structure.png" id="3_2jl3m"]
-[ext_resource type="Texture2D" uid="uid://cq8qoisx71q4g" path="res://assets/tilesets/map objects/structures/tower/top.png" id="4_xik26"]
 [ext_resource type="Texture2D" uid="uid://546h4x1rtc8n" path="res://assets/tilesets/map objects/structures/support/8.png" id="4_y4sjx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofdaf"]
@@ -89,12 +88,6 @@ offset_bottom = 46.0
 grow_horizontal = 0
 theme = ExtResource("2_4xuep")
 text = "1"
-
-[node name="8" type="Sprite2D" parent="VBoxContainer/first"]
-visible = false
-position = Vector2(70, 32)
-scale = Vector2(0.55, 0.55)
-texture = ExtResource("4_xik26")
 
 [node name="second" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(64, 140)

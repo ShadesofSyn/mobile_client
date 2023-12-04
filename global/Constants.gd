@@ -62,82 +62,127 @@ var character_data = {
 			"cooldown": 10
 		}
 	},
-	
-}}
-
-
-var characters = {
-	"BASHER": {
-		"class": "BRAWLER",
-		"description": "A single-target swordsman with moderate speed and health.",
-		"attributes": {
-		  "HEALTH": 150,
-		  "ENERGY": 15,
-		  "DPS": 35,
-		  "ERange": 3,
-		  "DDR": 0.15,
-		  "ERS": 2.5
+	"technomancer": {
+		"class": "Unknown",
+		"description": "Placeholder description for Technomancer.",
+		"baseStats": {
+			"healthPoints": 330,
+			"basicAttackDamage": 42,
+			"attackSpeed": 1.0,
+			"movementSpeed": 13,
+			"attackRange": 8
+		},
+		"chargedAttack": {
+			"description": "Triggers every 6th hit, dealing double damage.",
+			"damage": 84
+		},
+		"ultimate": {
+			"name": "Placeholder Ultimate Name",
+			"type": "Placeholder Type",
+			"description": "Placeholder description for the Ultimate Ability.",
+			"totalDamage": 300,
+			"damagePerAction": 100.0,  ## Individual damage per action
+			"range": 10,
+			"cooldown": 9
 		}
 	},
-	"BRUISER": {
-		"class": "JUGGERNAUT",
-		"description": "A robust character with slow speed and moderate damage.",
-		"attributes": {
-		  "HEALTH": 300,
-		  "ENERGY": 20,
-		  "DPS": 30,
-		  "ERange": 1.5,
-		  "DDR": 0.25,
-		  "ERS": 1.5
-		}
-	 },
-	"CYPHER" : {
-		"class": "TECHNOMANCER",
-		"description": "Coming soon...",
-		"attributes": {
-		  "HEALTH": 100,
-		  "ENERGY": 35,
-		  "DPS": 40,
-		  "ERange": 8,
-		  "DDR": 0.1,
-		  "ERS": 4
-		}
-	},
-	"ROGUE" : {
-		"class": "INFILTRATOR",
-		"description": "Coming soon...",
-		"attributes": {
-		  "HEALTH": 100,
-		  "ENERGY": 25,
-		  "DPS": 60,
-		  "ERange": 1,
-		  "DDR": 0.35,
-		  "ERS": 3
+	"magmaul": {
+		"class": "Unknown",
+		"description": "Placeholder description for Magmaul.",
+		"baseStats": {
+			"healthPoints": 800,
+			"basicAttackDamage": 25,
+			"attackSpeed": 1.2,
+			"movementSpeed": 9,
+			"attackRange": 2
+		},
+	"chargedAttack": {
+		"description": "Triggers every 6th hit, dealing double damage.",
+		"damage": 50
+		},
+	"ultimate": {
+		"name": "Placeholder Ultimate Name",
+		"type": "Placeholder Type",
+		"description": "Placeholder description for the Ultimate Ability.",
+		"totalDamage": 180,
+		"damagePerAction": 60.0,  ## Assuming the total damage is split into 3 actions
+		"range": 4,
+		"cooldown": 12
 		}
 	},
-	"HEALER" : {
-		"class": "NANOMEDIC",
-		"description": "A non-lethal soldier that heals troops within its radius.",
-		"attributes": {
-		  "HEALTH": 250,
-		  "ENERGY": 50,
-		  "DPS": 15,
-		  "ERange": 6,
-		  "DDR": 0.1,
-		  "ERS": 5
+	"steelthorn": {
+		"class": "Unknown",
+		"description": "Placeholder description for Steelthorn.",
+		"baseStats": {
+			"healthPoints": 700,
+			"basicAttackDamage": 25,
+			"attackSpeed": 1.0,
+			"movementSpeed": 11,
+			"attackRange": 3
+		},
+		"chargedAttack": {
+			"description": "Triggers every 6th hit, dealing double damage.",
+			"damage": 50
+		},
+		"ultimate": {
+			"name": "Placeholder Ultimate Name",
+			"type": "Defense",
+			"description": "Blocks a percentage of incoming damage for 3 seconds.",
+			"damageBlock": "60.0%",
+			"duration": 3,  ## Duration in seconds
+			"range": 6,
+			"cooldown": 9
+		},
+	},
+	"canix": {
+		"class": "Unknown",
+		"description": "Placeholder description for Canix.",
+		"baseStats": {
+			"healthPoints": 360,
+			"basicAttackDamage": 30,
+			"attackSpeed": 0.7,
+			"movementSpeed": 16,
+			"attackRange": 3
+		},
+		"chargedAttack": {
+			"description": "Triggers every 6th hit, dealing double damage.",
+			"damage": 60
+		},
+		"ultimate": {
+			"name": "Placeholder Ultimate Name",
+			"type": "Action",
+			"description": "Two-action attack: First, lunges forward and bites an enemy causing 100 damage. Second, drags the enemy back to the starting point causing 50 damage.",
+			"actionOneDamage": 100,
+			"actionTwoDamage": 50,
+			"totalDamage": 150,  ## Total damage combining both actions
+			"range": 6,
+			"cooldown": 11
 		}
 	},
-	"MARKSMAN" : {
-		"class": "SNIPER",
-		"description": "A ranged shooter with low health.",
-		"attributes": {
-		  "HEALTH": 175,
-		  "ENERGY": 20,
-		  "DPS": 50,
-		  "ERange": 10,
-		  "DDR": 0.05,
-		  "ERS": 3
+	"mariselle": {
+		"class": "Unknown",
+		"description": "Placeholder description for Mariselle.",
+		"baseStats": {
+			"healthPoints": 420,
+			"basicAttackDamage": 27,
+			"attackSpeed": 0.9,
+			"movementSpeed": 13,
+			"attackRange": 6
+		},
+		"chargedAttack": {
+			"description": "Triggers every 6th hit, dealing double damage.",
+			"damage": 54
+		},
+		"ultimate": {
+			"name": "Placeholder Ultimate Name",
+			"type": "Support",
+			"description": "Heals all friendlies within range for 26% of their total health, occurring over three actions.",
+			"healPercentagePerAction": 26,
+			"totalHealPercentage": 78,
+			"range": 8,
+			"cooldown": 8
 		}
 	}
-}
+}}
+
 

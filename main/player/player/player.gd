@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 @onready var sprite: Sprite2D = $sprite
-@onready var stats: Node = $stats
+@onready var stats: Node = $character_stats
 @onready var joystick = $Camera2D/player_gui/movement_joystick
 @onready var player_gui = $Camera2D/player_gui
 
@@ -10,8 +10,6 @@ extends CharacterBody2D
 func _ready():
 	Server.player_node = self
 
-func _physics_process(delta):
-	$Camera2D.zoom = Server.world.cam_zoom
 
 
 func use_special_ability() -> void:

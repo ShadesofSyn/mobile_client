@@ -47,6 +47,3 @@ z_index = -1
 material = SubResource("ShaderMaterial_bc6el")
 scale = Vector2(14, 14)
 texture = ExtResource("3_h35e8")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
