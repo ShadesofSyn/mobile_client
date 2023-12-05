@@ -21,17 +21,6 @@ const directions = [
 		"NW"]
 
 
-#const directions = [  
-#		"N", 
-#		"NNE", "NE", "NEE",
-#		"E", 
-#		"SEE", "SE", "SSE",
-#		"S",
-#		"SSW", "SW", "SWW",
-#		"W",
-#		"NWW", "NW", "NNW"]
-
-
 func _process(delta):
 	set_sprite_direction(delta)
 	set_sprite_state()
@@ -39,37 +28,37 @@ func _process(delta):
 
 
 func set_sprite_state() -> void:
-	if get_parent().stats.destroyed or get_parent().stats.STATE == Constants.player_state.ATTACK:
+	if get_parent().character_stats.destroyed or get_parent().character_stats.STATE == Constants.player_state.ATTACK:
 		return
 	if get_parent().joystick.output == Vector2.ZERO:
-		if not get_parent().stats.STATE == Constants.player_state.IDLE:
+		if not get_parent().character_stats.STATE == Constants.player_state.IDLE:
 			frame_index = 0
 			max_frame_index = 0
-			get_parent().stats.STATE = Constants.player_state.IDLE
+			get_parent().character_stats.STATE = Constants.player_state.IDLE
 	else:
-		if not get_parent().stats.STATE == Constants.player_state.WALK:
+		if not get_parent().character_stats.STATE == Constants.player_state.WALK:
 			frame_index = 0
 			max_frame_index = 3
-			get_parent().stats.STATE = Constants.player_state.WALK
+			get_parent().character_stats.STATE = Constants.player_state.WALK
 
 
 func attack():
 	attacking = true
 	frame_index = 0
 	max_frame_index = 4
-	get_parent().stats.STATE = Constants.player_state.ATTACK
+	get_parent().character_stats.STATE = Constants.player_state.ATTACK
 #	position.y += 9
 	await get_tree().create_timer(0.2).timeout
-	if get_parent().stats.destroyed:
+	if get_parent().character_stats.destroyed:
 		attacking = false
 		return
 #	spawn_hammer_projectile()
 	await get_tree().create_timer(0.2).timeout
 #	position.y += -9
 	attacking = false
-	if get_parent().stats.destroyed:
+	if get_parent().character_stats.destroyed:
 		return
-	get_parent().stats.STATE = Constants.player_state.WALK
+	get_parent().character_stats.STATE = Constants.player_state.WALK
 
 
 
@@ -81,9 +70,9 @@ func attack():
 
 
 func set_sprite_direction(delta) -> void:
-	if get_parent().stats.destroyed:
+	if get_parent().character_stats.destroyed:
 		return
-	if not get_parent().stats.STATE == Constants.player_state.ATTACK:
+	if not get_parent().character_stats.STATE == Constants.player_state.ATTACK:
 		set_sprite_direction_movement_mode(delta)
 	else:
 		set_direction_attack_mode()
@@ -101,9 +90,9 @@ func set_direction_attack_mode():
 func set_sprite_direction_movement_mode(delta) -> void:
 	var joystick_vector = get_parent().joystick.output
 	if joystick_vector == Vector2.ZERO:
-		get_parent().stats.STATE = Constants.player_state.IDLE
+		get_parent().character_stats.STATE = Constants.player_state.IDLE
 		return
-	get_parent().stats.STATE = Constants.player_state.WALK
+	get_parent().character_stats.STATE = Constants.player_state.WALK
 	var angle = rad_to_deg(Vector2(1,0).angle_to(joystick_vector))+90
 	if angle < 0:
 		angle = angle + 360
@@ -116,14 +105,14 @@ func set_sprite_direction_movement_mode(delta) -> void:
 
 
 func set_sprite_texture(): 
-	match get_parent().stats.STATE:
+	match get_parent().character_stats.STATE:
 		Constants.player_state.IDLE:
 			frame_index = 0
 			max_frame_index = 0
-			self.texture = load("res://assets/characters/"+get_parent().stats.character_name+"/walk/"+direction+"/000"+ str(frame_index+1) +".png")
+			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/walk/"+direction+"/000"+ str(frame_index+1) +".png")
 		Constants.player_state.WALK:
 			max_frame_index = 3
-			self.texture = load("res://assets/characters/"+get_parent().stats.character_name+"/walk/"+direction+"/000"+ str(frame_index+1) +".png") #load("res://assets/characters/fighter/walk/"+direction+"/"+ str(frame_index) +".png")
+			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/walk/"+direction+"/000"+ str(frame_index+1) +".png") #load("res://assets/characters/fighter/walk/"+direction+"/"+ str(frame_index) +".png")
 		Constants.player_state.ATTACK:
 			max_frame_index = 4
 			self.texture = load("res://assets/characters/valkyrie/attack idle/"+direction+"/000"+ str(frame_index+1) +".png")
@@ -133,7 +122,7 @@ func set_sprite_texture():
 
 
 func _on_timer_timeout():
-	if get_parent().stats.STATE == Constants.player_state.DEATH and frame_index == max_frame_index:
+	if get_parent().character_stats.STATE == Constants.player_state.DEATH and frame_index == max_frame_index:
 		return
 	frame_index += 1
 	if frame_index > max_frame_index:
@@ -141,18 +130,18 @@ func _on_timer_timeout():
 
 
 func destroy():
-	if not get_parent().stats.destroyed:
-		get_parent().stats.destroyed = true
+	if not get_parent().character_stats.destroyed:
+		get_parent().character_stats.destroyed = true
 		material.set_shader_parameter("flash_modifier", 0)
 		await get_tree().process_frame
-		get_parent().stats.STATE = get_parent().stats.DEATH
+		get_parent().character_stats.STATE = get_parent().character_stats.DEATH
 		frame_index = 0
 		await get_tree().create_timer(2.0).timeout
 		respawn()
 
 
 func respawn():
-	get_parent().stats.STATE = get_parent().stats.IDLE
+	get_parent().character_stats.STATE = Constants.player_state.IDLE
 	get_parent().position = get_parent().spawn_position
 	get_parent().destroyed = false
 	get_node("../hurtbox").health = get_node("../hurtbox").max_health

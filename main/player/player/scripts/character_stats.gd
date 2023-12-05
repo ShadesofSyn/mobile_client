@@ -1,26 +1,22 @@
 extends Node
 
-var character_name: String = "player"
+var character_name: String = "valkyrie"
 var team_color: String = "blue"
 
 var destroyed: bool = false
 var dashing: bool = false
 var invisible: bool = false
-#
-#@export var max_speed: float = 200.0
-#@export var acceleration: float = 750.0
-#@export var friction: float = 650.0
 
+@export var max_speed: float = 250.0
+@export var acceleration: float = 2000.0
+@export var friction: float = 850.0
 
 
 var STATE = Constants.player_state.IDLE
 
-#func _ready():
-#	await get_tree().process_frame
-#	if team_color == "red":
-#		get_node("../").set_collision_layer(1+4+32)
-#	else:
-#		get_node("../").set_collision_layer(2+4+32)
+func _ready():
+	await get_tree().process_frame
+	get_node("../").set_collision_layer(Util.return_hurtbox_layer(team_color))
 
 
 func _process(delta):

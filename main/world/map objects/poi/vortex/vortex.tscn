@@ -30,14 +30,14 @@ offset = Vector2(2, -98)
 
 [node name="red_team" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="red_team"]
 shape = SubResource("CircleShape2D_gncsh")
 
 [node name="blue_team" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blue_team"]
 shape = SubResource("CircleShape2D_gncsh")
@@ -47,3 +47,8 @@ z_index = -1
 material = SubResource("ShaderMaterial_bc6el")
 scale = Vector2(14, 14)
 texture = ExtResource("3_h35e8")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

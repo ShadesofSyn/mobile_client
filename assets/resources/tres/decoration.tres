@@ -6,7 +6,8 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wuv1g"]
 texture = ExtResource("1_6s81e")
-texture_region_size = Vector2i(232, 301)
+texture_region_size = Vector2i(193, 188)
+0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cl76w"]
 texture = ExtResource("2_mbymo")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://clfj6twdwt2gu"]
+[gd_scene load_steps=21 format=3 uid="uid://clfj6twdwt2gu"]
 
 [ext_resource type="Script" path="res://main/world/world/world.gd" id="1_h5cps"]
 [ext_resource type="TileSet" uid="uid://b2kxg4xoqgam4" path="res://assets/resources/tres/land.tres" id="2_l5v7e"]
 [ext_resource type="TileSet" uid="uid://tgn7w0bhp1hy" path="res://assets/resources/tres/decoration.tres" id="3_jgj3w"]
 [ext_resource type="PackedScene" uid="uid://bjg71fas37wyh" path="res://main/world/map objects/spawn_area.tscn" id="3_l1toj"]
 [ext_resource type="Texture2D" uid="uid://bh6rmrvogoy2a" path="res://assets/tilesets/land/dark green.png" id="4_ekgmc"]
+[ext_resource type="PackedScene" uid="uid://db6h7t1gxk7po" path="res://main/player/player/player.tscn" id="5_mb3qv"]
 [ext_resource type="Texture2D" uid="uid://bruq1nq0cy01u" path="res://assets/tilesets/land/blue.png" id="6_1edh6"]
 [ext_resource type="Texture2D" uid="uid://c2f55t6pbcljm" path="res://assets/tilesets/map objects/obstacles/crate.png" id="6_8gqs1"]
 [ext_resource type="PackedScene" uid="uid://j2d2tw1w6b4h" path="res://main/world/map objects/structures/scrying_orb.tscn" id="6_ekg18"]
@@ -72,7 +73,8 @@ scrying_orb_distance_to_center = 2000.0
 metadata/_edit_lock_ = true
 
 [node name="boundary" type="StaticBody2D" parent="."]
-visible = false
+collision_layer = 8
+collision_mask = 0
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boundary"]
@@ -250,8 +252,14 @@ y_sort_enabled = true
 [node name="towers" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="player" parent="." instance=ExtResource("5_mb3qv")]
+position = Vector2(-237, 290)
+
 [node name="projectiles" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ut6ba")
+
+[node name="ads" type="Node2D" parent="."]
+y_sort_enabled = true

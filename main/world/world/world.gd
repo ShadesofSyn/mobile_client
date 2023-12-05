@@ -9,16 +9,8 @@ extends Node2D
 @export var spawn_area_radius: float = 640
 @export var redraw: bool : set = redraw_map
 
-@export var valkyrie: bool = true
-
 @export var size_of_vortex: float = 480
 @export var scrying_orb_distance_to_center: float = 1000
-
-@export var cam_zoom: Vector2 = Vector2(1,1)
-
-@export var player_max_speed: float = 250.0
-@export var player_acceleration: float = 2000.0
-@export var player_friction: float = 850.0
 
 const HEX_OFFSET: float = 0.866025
 
@@ -26,8 +18,8 @@ const HEX_OFFSET: float = 0.866025
 
 
 func _ready():
-#	redraw_map(null)
-#	init_tall_grass()
+	redraw_map(null)
+	init_tall_grass()
 	init_walls()
 	Server.world = self
 
@@ -35,11 +27,6 @@ func _ready():
 
 
 func redraw_map(value = null) -> void:
-	if valkyrie:
-		Server.player_node.stats.character_name = "valkyrie"
-	else:
-		Server.player_node.stats.character_name = "technomancer"
-	
 	set_size_of_polygon()
 	set_lines()
 	set_spawn_area_points_and_size()
@@ -75,8 +62,6 @@ func set_lines() -> void:
 	get_node("lines/quad_lines/3").position = Vector2(-hex_size*HEX_OFFSET,hex_size/2)
 	for i in range(3):
 		get_node("lines/quad_lines/"+str(i+1)).points = [Vector2(0,0),Vector2(0,hex_size/pow(3, 1/2.0))]
-	print(hex_size/pow(3, 1/2.0))
-	print(hex_size/pow(3, 1/2.0))
 	get_node("objectives/objectives/1").position = Vector2(-hex_size/3.46,hex_size/2)
 	get_node("objectives/objectives/2").position = Vector2(hex_size/3.46,hex_size/2)
 	get_node("objectives/objectives/3").position = Vector2(-hex_size/3.46,-hex_size/2)

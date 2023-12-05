@@ -1,49 +1,79 @@
 extends Node
 
-var team_selected: int 
-var special_ability_selected: String 
+### Collision data -> 
+# Blue team is player 1 -> hurtbox layer 1
+# Red team is player 2 -> hurtbox layer 2
+# White team are third party enemies -> hurtbox layer 3
 
-const MIN_PLACE_OBJECT_DISTANCE: float = 400
+const BLUE_TEAM_HURTBOX_LAYER: int = 1
+const RED_TEAM_HURTBOX_LAYER: int = 2
+const WHITE_TEAM_HURTBOX_LAYER: int = 4 # layer 3 ( bit value is 2, 2^2 = 4)
 
-const SPEED_OF_PAGE_CHANGE: float = 0.225
-const TIME_TO_SPAWN_ALLY: int = 10
+
+### Map data
+const VORTEX_RADIUS: float = 480.0
+
+
+
+### Special abilities -> 
+# Evade
+const DASH_LENGTH: float = 0.5
+const DASH_SPEED_INCREASE: float = 4.0
+const DASH_ACCEL_INCREASE: float = 8.0
+
+# War Cry, extra damage dealt
+const WAR_CRY_DAMAGE_BOOST: float = 0.25
+
+# Amplify - objective boost, chance to earn double favor
+const AMPLIFY_CHANCE: float = 10.0
+
+# Cloaking
 const INVISIBILITY_LENGTH: float = 5.0
 
-const DASH_LENGTH = 0.5
-const DASH_SPEED_INCREASE = 4.0
-const DASH_ACCEL_INCREASE = 6.0
+# Rejuvenate
+const REJUVENATE_HEALTH_PERCENTAGE: float = 25.0
 
+# Dispel, clear negative fx 
+
+# Suppress (poison), slow damage + debuff 
+const SUPPRESS_LENGTH: float = 5.0
+const SUPPRESS_DAMAGE_PER_SECOND: float = 10.0
+const SUPPRESS_SPEED_DECREASE: float = 0.25
+
+
+
+# Player state constants
 enum player_state {
 	IDLE,
 	WALK,
 	ATTACK,
+	CHARGED_ATTACK,
+	ULTRA_ATTACK,
 	DEATH,
 }
+const MIN_PLACE_OBJECT_DISTANCE: float = 400 # Distance the character is allowed to place a strcuture relative to their position
 
-
-
-func return_damage_inflicted(hitbox_name:String,war_cry_active:bool,unstable_core_active:bool) -> int:
-	var damage = return_hitbox_damage(hitbox_name)
-	
-	if war_cry_active:
-		damage *= 1.2 # increase damage by 20%
-	
-	if unstable_core_active:
-		damage += 30.0  # increase damage by 30
-		
-	return damage
-
-
-func return_hitbox_damage(hitbox_name:String) -> int:
-	return 10
+var ad_data = {
+	"ghoul": {
+		"class": "ad",
+		"description": "A slow-moving swordsman.",
+		"baseStats": {
+			"health": 200,
+			"damage": 30,
+			"attackSpeed": 0.8,
+			"movementSpeed": 10,
+			"attackRange": 3
+		},
+	},
+}
 
 var character_data = {
 	"valkyrie": {
 		"class": "Warrior",
 		"description": "Melee swordsmith master, of an ancient race.",
-		"stats": {
+		"baseStats": {
 			"health": 350,
-			"basicAttackDamage": 30,
+			"damage": 30,
 			"attackSpeed": 0.8,
 			"movementSpeed": 14,
 			"attackRange": 3
@@ -66,8 +96,8 @@ var character_data = {
 		"class": "Unknown",
 		"description": "Placeholder description for Technomancer.",
 		"baseStats": {
-			"healthPoints": 330,
-			"basicAttackDamage": 42,
+			"health": 330,
+			"damage": 42,
 			"attackSpeed": 1.0,
 			"movementSpeed": 13,
 			"attackRange": 8
@@ -90,8 +120,8 @@ var character_data = {
 		"class": "Unknown",
 		"description": "Placeholder description for Magmaul.",
 		"baseStats": {
-			"healthPoints": 800,
-			"basicAttackDamage": 25,
+			"health": 800,
+			"damage": 25,
 			"attackSpeed": 1.2,
 			"movementSpeed": 9,
 			"attackRange": 2
@@ -114,8 +144,8 @@ var character_data = {
 		"class": "Unknown",
 		"description": "Placeholder description for Steelthorn.",
 		"baseStats": {
-			"healthPoints": 700,
-			"basicAttackDamage": 25,
+			"health": 700,
+			"damage": 25,
 			"attackSpeed": 1.0,
 			"movementSpeed": 11,
 			"attackRange": 3
@@ -138,8 +168,8 @@ var character_data = {
 		"class": "Unknown",
 		"description": "Placeholder description for Canix.",
 		"baseStats": {
-			"healthPoints": 360,
-			"basicAttackDamage": 30,
+			"health": 360,
+			"damage": 30,
 			"attackSpeed": 0.7,
 			"movementSpeed": 16,
 			"attackRange": 3
@@ -163,8 +193,8 @@ var character_data = {
 		"class": "Unknown",
 		"description": "Placeholder description for Mariselle.",
 		"baseStats": {
-			"healthPoints": 420,
-			"basicAttackDamage": 27,
+			"health": 420,
+			"damage": 27,
 			"attackSpeed": 0.9,
 			"movementSpeed": 13,
 			"attackRange": 6

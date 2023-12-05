@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfqaj6lx1m8av"]
+
+[ext_resource type="Script" path="res://main/player/player/scripts/hurtbox/hurtbox.gd" id="1_mosja"]
+[ext_resource type="Texture2D" uid="uid://evv0ne15gfsq" path="res://assets/interface/health_bars/health_bar-04.png" id="2_ux8gw"]
+[ext_resource type="Texture2D" uid="uid://g8orb43rv6vd" path="res://assets/interface/health_bars/health_bar-05.png" id="3_3aod0"]
+[ext_resource type="Theme" uid="uid://dbalkluvqmaae" path="res://assets/resources/text/text theme bold.tres" id="4_c5o0r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qyflm"]
+radius = 24.0
+height = 78.0
+
+[node name="hurtbox" type="Area2D"]
+position = Vector2(0, -28)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_mosja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qyflm")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -79.0
+offset_top = -114.0
+offset_right = 549.0
+offset_bottom = -5.99998
+scale = Vector2(0.25, 0.25)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_ux8gw")
+texture_progress = ExtResource("3_3aod0")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 0.286275, 0.380392, 1)
+texture_filter = 1
+offset_left = -79.0
+offset_top = -126.0
+offset_right = 118.0
+offset_bottom = -77.0
+scale = Vector2(0.8, 0.8)
+theme = ExtResource("4_c5o0r")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+text = "650"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
