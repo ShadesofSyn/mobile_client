@@ -11,7 +11,9 @@ const WHITE_TEAM_HURTBOX_LAYER: int = 4 # layer 3 ( bit value is 2, 2^2 = 4)
 
 
 ### Map data
-const VORTEX_RADIUS: float = 480.0
+const SIZE_OF_VORTEX: float = 600.0
+const SIZE_OF_SPAWN_AREA: float = 640.0
+const SIZE_OF_HEXAGON: float = 5500.0
 
 
 
@@ -51,11 +53,40 @@ enum player_state {
 	ULTRA_ATTACK,
 	DEATH,
 }
+# LOCKSTEP STATE
+enum ally_movement_state {
+	NORMAL,
+	LOCKSTEP
+}
 const MIN_PLACE_OBJECT_DISTANCE: float = 400 # Distance the character is allowed to place a strcuture relative to their position
+
+var structure_data = {
+	"tower": {
+		"class": "Unknown",
+		"description": "Allows you to erect a tower (in or out of battle - can kill objectives).",
+		"baseStats": {
+			"health": 200,
+			"damage": 30,
+			"attackSpeed": 0.8,
+			"movementSpeed": 10,
+			"attackRange": 3
+		},
+	},
+	"bio-forge": {
+		"class": "Unknown",
+		"description": "Produces minions to attack nearby enemies.",
+		"baseStats": {
+			"health": 200,
+			"attackSpeed": 0.8,
+			"movementSpeed": 10,
+			"attackRange": 3
+		},
+	},
+}
 
 var ad_data = {
 	"ghoul": {
-		"class": "ad",
+		"class": "Unknown",
 		"description": "A slow-moving swordsman.",
 		"baseStats": {
 			"health": 200,
@@ -68,30 +99,6 @@ var ad_data = {
 }
 
 var character_data = {
-	"valkyrie": {
-		"class": "Warrior",
-		"description": "Melee swordsmith master, of an ancient race.",
-		"baseStats": {
-			"health": 350,
-			"damage": 30,
-			"attackSpeed": 0.8,
-			"movementSpeed": 14,
-			"attackRange": 3
-		},
-		"abilities": {
-			"chargedAttack": {
-				"description": "Every 6th Basic Attack does +100% Basic Attack Damage",
-				"chargedAttackDamage": "Basic Damage + (Basic Damage*1.0)"
-			},
-		"ultimate": {
-			"name": "Bladefury",
-			"type": "Action",
-			"description": "Spin around 3 times dealing damage each rotation to anything within range",
-			"damagePerRotation": 60,
-			"range": 5,
-			"cooldown": 10
-		}
-	},
 	"technomancer": {
 		"class": "Unknown",
 		"description": "Placeholder description for Technomancer.",
@@ -212,7 +219,32 @@ var character_data = {
 			"range": 8,
 			"cooldown": 8
 		}
+	},
+	"valkyrie": {
+		"class": "Warrior",
+		"description": "Melee swordsmith master, of an ancient race.",
+		"baseStats": {
+			"health": 350,
+			"damage": 30,
+			"attackSpeed": 0.8,
+			"movementSpeed": 14,
+			"attackRange": 3
+		},
+		"abilities": {
+			"chargedAttack": {
+				"description": "Every 6th Basic Attack does +100% Basic Attack Damage",
+				"chargedAttackDamage": "Basic Damage + (Basic Damage*1.0)"
+			},
+		"ultimate": {
+			"name": "Bladefury",
+			"type": "Action",
+			"description": "Spin around 3 times dealing damage each rotation to anything within range",
+			"damagePerRotation": 60,
+			"range": 5,
+			"cooldown": 10
+		}
 	}
-}}
+	}
+}
 
 

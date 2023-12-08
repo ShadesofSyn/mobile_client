@@ -17,6 +17,7 @@ func set_hurtbox_stats() -> void:
 	progress_bar.max_value = Constants.character_data[get_parent().character_stats.character_name]["baseStats"]["health"]
 	current_health = progress_bar.max_value
 	progress_bar.value = progress_bar.max_value
+	$Label.text = str(progress_bar.value)
 
 
 func set_team_stats(_team_color) -> void:

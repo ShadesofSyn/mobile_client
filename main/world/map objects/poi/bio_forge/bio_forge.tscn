@@ -12,6 +12,8 @@ height = 218.0
 y_sort_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -20)
@@ -34,5 +36,6 @@ texture = ExtResource("1_uc5h4")
 offset = Vector2(7, -74)
 
 [node name="11" type="Sprite2D" parent="sprites"]
+position = Vector2(0, -0.666667)
 texture = ExtResource("3_wughb")
 offset = Vector2(0, -46)

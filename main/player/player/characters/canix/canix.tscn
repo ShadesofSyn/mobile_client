@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://bjjutapwvygej"]
+
+[ext_resource type="Script" path="res://main/player/player/scripts/movement.gd" id="1_prepg"]
+[ext_resource type="Script" path="res://main/player/player/characters/canix/canix.gd" id="1_tsib8"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="2_n5deo"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="4_sk43h"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="5_j5r1v"]
+[ext_resource type="Texture2D" uid="uid://cnrphe8k7nsk6" path="res://assets/characters/canix/walk/canix-walking-se-01.png" id="6_2asr0"]
+[ext_resource type="Script" path="res://main/player/player/scripts/sprite.gd" id="7_wrom3"]
+[ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="8_wlwpc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5jxgq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mqk7h"]
+shader = ExtResource("5_j5r1v")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n855i"]
+radius = 455.215
+
+[node name="canix" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_tsib8")
+
+[node name="movement" type="Node" parent="."]
+script = ExtResource("1_prepg")
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("2_n5deo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5jxgq")
+
+[node name="hurtbox" parent="." instance=ExtResource("4_sk43h")]
+position = Vector2(0, -23)
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(0, -6)
+
+[node name="TextureProgressBar" parent="hurtbox" index="1"]
+offset_top = -147.0
+offset_bottom = -38.9999
+
+[node name="Label" parent="hurtbox" index="2"]
+offset_top = -159.0
+offset_bottom = -110.0
+
+[node name="sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_mqk7h")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_2asr0")
+offset = Vector2(5.55106e-12, -108.333)
+script = ExtResource("7_wrom3")
+
+[node name="Timer" type="Timer" parent="sprite"]
+wait_time = 0.1
+autostart = true
+
+[node name="detect_enemy" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("8_wlwpc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+shape = SubResource("CircleShape2D_n855i")
+
+[connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
+
+[editable path="hurtbox"]

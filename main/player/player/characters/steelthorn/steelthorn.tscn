@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://d0lpr05wmyipm"]
+
+[ext_resource type="Script" path="res://main/player/player/scripts/movement.gd" id="1_1jshj"]
+[ext_resource type="Script" path="res://main/player/player/characters/steelthorn/steelthorn.gd" id="1_5gcrr"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="2_558m1"]
+[ext_resource type="PackedScene" uid="uid://bs6ncy56q2n34" path="res://main/player/player_gui/player_gui.tscn" id="3_ic164"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="4_wt8eq"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="5_wvqcf"]
+[ext_resource type="Script" path="res://main/player/player/scripts/sprite.gd" id="7_4nqyg"]
+[ext_resource type="Texture2D" uid="uid://cabiqmh6p32k8" path="res://assets/characters/steelthorn/attack/Steel-attack-s-01.png" id="7_xdrc0"]
+[ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="8_glty6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wur2g"]
+radius = 21.095
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wkent"]
+shader = ExtResource("5_wvqcf")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hb8v3"]
+radius = 455.215
+
+[node name="steelthorn" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_5gcrr")
+
+[node name="movement" type="Node" parent="."]
+script = ExtResource("1_1jshj")
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("2_558m1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wur2g")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="player_gui" parent="Camera2D" instance=ExtResource("3_ic164")]
+visible = false
+
+[node name="hurtbox" parent="." instance=ExtResource("4_wt8eq")]
+position = Vector2(0, -23)
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(0, -6)
+
+[node name="TextureProgressBar" parent="hurtbox" index="1"]
+offset_top = -161.0
+offset_bottom = -52.9999
+
+[node name="Label" parent="hurtbox" index="2"]
+offset_top = -173.0
+offset_bottom = -124.0
+
+[node name="sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_wkent")
+position = Vector2(0, 3)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_xdrc0")
+offset = Vector2(5.55106e-12, -111.666)
+script = ExtResource("7_4nqyg")
+
+[node name="Timer" type="Timer" parent="sprite"]
+wait_time = 0.1
+autostart = true
+
+[node name="detect_enemy" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("8_glty6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+shape = SubResource("CircleShape2D_hb8v3")
+
+[connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
+
+[editable path="hurtbox"]

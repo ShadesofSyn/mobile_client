@@ -1,37 +1,32 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1t7d2t2vf113"]
 
 [ext_resource type="Script" path="res://main/player/player_gui/joystick/joystick.gd" id="1_tegro"]
-[ext_resource type="Texture2D" uid="uid://bm30au8mjfc2f" path="res://assets/interface/joystick/joystick_base_outline.png" id="2_v7mxv"]
-[ext_resource type="Texture2D" uid="uid://dt13r06u87fib" path="res://assets/interface/joystick/joystick_tip_arrows.png" id="3_oa85t"]
+[ext_resource type="Texture2D" uid="uid://bpajm44gxh5l7" path="res://assets/interface/joystick/AIR_joystick_bg600.png" id="2_78rgx"]
+[ext_resource type="Texture2D" uid="uid://bd7427e4l77ra" path="res://assets/interface/joystick/AIR_joystick_stick320.png" id="3_4fq7f"]
 
 [node name="joystick" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 433.0
-offset_right = -829.0
+offset_top = 420.0
+offset_right = 712.0
+offset_bottom = 1010.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.4, 0.4)
 script = ExtResource("1_tegro")
 joystick_mode = 1
 
 [node name="base" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -234.5
-offset_top = -49.5
-offset_right = -34.5
-offset_bottom = 150.5
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(100, 100)
+offset_left = 907.5
+offset_top = 592.5
+offset_right = 1507.5
+offset_bottom = 1192.5
+pivot_offset = Vector2(300, 300)
 mouse_filter = 2
-texture = ExtResource("2_v7mxv")
+texture = ExtResource("2_78rgx")
 stretch_mode = 5
 
 [node name="tip" type="TextureRect" parent="base"]
@@ -49,4 +44,4 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(50, 50)
 mouse_filter = 2
-texture = ExtResource("3_oa85t")
+texture = ExtResource("3_4fq7f")

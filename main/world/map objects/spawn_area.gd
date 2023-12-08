@@ -3,7 +3,7 @@ extends Node2D
 
 func _draw():
 	var center = Vector2(0, 0)
-	var radius = get_node("/root/world").spawn_area_radius
+	var radius = Constants.SIZE_OF_SPAWN_AREA
 	var angle_from = (-2*PI) / 3 #-3*PI/4
 	var angle_to = 0
 	var color = Color(1.0, 1.0, 1.0)

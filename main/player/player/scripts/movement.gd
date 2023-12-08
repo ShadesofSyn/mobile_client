@@ -1,13 +1,22 @@
 extends Node
 
+var movement_type = Constants.ally_movement_state.NORMAL
 
 func _physics_process(delta):
-	move_player(delta)
-
-func move_player(delta) -> void:
 	if get_parent().character_stats.STATE == Constants.player_state.DEATH:
 		return
-	var input_vector = get_parent().joystick.posVector.normalized()
+	if get_parent().character_stats.is_ally:
+		move_ally(delta)
+	else:
+		move_player(delta)
+
+
+func move_ally(delta) -> void:
+	pass
+
+
+func move_player(delta) -> void:
+	var input_vector = get_parent().joystick.output.normalized()
 	apply_movement(input_vector,delta)
 	apply_friction(input_vector,delta)
 	get_parent().move_and_slide()

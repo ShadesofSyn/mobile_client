@@ -21,10 +21,11 @@ const directions = [
 		"NW"]
 
 
-func _process(delta):
-	set_sprite_direction(delta)
-	set_sprite_state()
-	set_sprite_texture()
+func _physics_process(delta):
+	if not get_parent().character_stats.is_ally:
+		set_sprite_direction(delta)
+		set_sprite_state()
+		set_sprite_texture()
 
 
 func set_sprite_state() -> void:
@@ -105,17 +106,18 @@ func set_sprite_direction_movement_mode(delta) -> void:
 
 
 func set_sprite_texture(): 
+	var abbreviated_character_name = Util.return_abbreviated_character_name(get_parent().character_stats.character_name)
 	match get_parent().character_stats.STATE:
 		Constants.player_state.IDLE:
 			frame_index = 0
 			max_frame_index = 0
-			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/walk/"+direction+"/000"+ str(frame_index+1) +".png")
+			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/walk/"+abbreviated_character_name+"-walking-"+direction.to_lower()+"-01.png")
 		Constants.player_state.WALK:
 			max_frame_index = 3
-			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/walk/"+direction+"/000"+ str(frame_index+1) +".png") #load("res://assets/characters/fighter/walk/"+direction+"/"+ str(frame_index) +".png")
+			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/walk/"+abbreviated_character_name+"-walking-"+direction.to_lower()+"-0"+str(frame_index+1)+".png") #load("res://assets/characters/fighter/walk/"+direction+"/"+ str(frame_index) +".png")
 		Constants.player_state.ATTACK:
-			max_frame_index = 4
-			self.texture = load("res://assets/characters/valkyrie/attack idle/"+direction+"/000"+ str(frame_index+1) +".png")
+			max_frame_index = 3
+			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/attack/"+abbreviated_character_name+"-attack-"+direction.to_lower()+"-0"+str(frame_index+1)+".png")
 #		Constants.player_state.DEATH:
 #			max_frame_index = 7
 #			self.texture = load("res://assets/characters/fighter/death/"+direction+"/"+ str(frame_index) +".png")

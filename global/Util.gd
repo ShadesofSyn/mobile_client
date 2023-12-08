@@ -53,6 +53,19 @@ func return_hitbox_layer(_team_color) -> int:
 
 
 
+func return_abbreviated_character_name(_char_name):
+	match _char_name:
+		"technomancer":
+			return "tech"
+		"valkyrie":
+			return "val"
+		"steelthorn":
+			return "Steel"
+		"magmaul":
+			return "Magmaul"
+		_:
+			return _char_name
+
 
 ### Validate and remove tile functions
 func validate_tiles(location,dimensions) -> bool:

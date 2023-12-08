@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://db6h7t1gxk7po"]
+
+[ext_resource type="Script" path="res://main/player/player/characters/valkyrie/valkyrie.gd" id="1_rs6o7"]
+[ext_resource type="Script" path="res://main/player/player/scripts/movement.gd" id="2_8f1hr"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="3_yaafu"]
+[ext_resource type="PackedScene" uid="uid://bs6ncy56q2n34" path="res://main/player/player_gui/player_gui.tscn" id="4_v0a0c"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="5_ytl33"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="6_mu3om"]
+[ext_resource type="Texture2D" uid="uid://qmbhg817rrud" path="res://assets/characters/valkyrie/walk/val-walking-s-03.png" id="7_gnmrx"]
+[ext_resource type="Script" path="res://main/player/player/scripts/sprite.gd" id="8_e4q05"]
+[ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="9_tlk4p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dyptf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6pew"]
+shader = ExtResource("6_mu3om")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5jtnj"]
+radius = 455.215
+
+[node name="valkyrie" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_rs6o7")
+
+[node name="movement" type="Node" parent="."]
+script = ExtResource("2_8f1hr")
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("3_yaafu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dyptf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="player_gui" parent="Camera2D" instance=ExtResource("4_v0a0c")]
+visible = false
+
+[node name="hurtbox" parent="." instance=ExtResource("5_ytl33")]
+position = Vector2(0, -23)
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(0, -6)
+
+[node name="TextureProgressBar" parent="hurtbox" index="1"]
+offset_left = -78.0
+offset_top = -154.0
+offset_right = 550.0
+offset_bottom = -46.0
+
+[node name="Label" parent="hurtbox" index="2"]
+offset_left = -78.0
+offset_top = -166.0
+offset_right = 119.0
+offset_bottom = -117.0
+
+[node name="sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_u6pew")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_gnmrx")
+offset = Vector2(0, -106.667)
+script = ExtResource("8_e4q05")
+
+[node name="Timer" type="Timer" parent="sprite"]
+wait_time = 0.1
+autostart = true
+
+[node name="detect_enemy" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("9_tlk4p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_5jtnj")
+
+[connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
+
+[editable path="hurtbox"]

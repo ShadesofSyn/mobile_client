@@ -21,10 +21,11 @@ shader_parameter/step2 = 0.514
 shader_parameter/step3 = 0.516
 
 [node name="vortex" type="Node2D"]
-z_index = -1
+y_sort_enabled = true
 script = ExtResource("2_72qe1")
 
 [node name="flag" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture = ExtResource("4_l65kt")
 offset = Vector2(2, -98)
 

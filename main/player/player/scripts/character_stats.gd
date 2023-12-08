@@ -2,10 +2,12 @@ extends Node
 
 var character_name: String = "valkyrie"
 var team_color: String = "blue"
+var is_ally: bool = false
 
 var destroyed: bool = false
 var dashing: bool = false
 var invisible: bool = false
+
 
 @export var max_speed: float = 250.0
 @export var acceleration: float = 2000.0
