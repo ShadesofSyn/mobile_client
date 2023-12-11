@@ -7,5 +7,5 @@ var team_selected: int
 var special_ability_selected: String 
 
 
-var left_team_favor: int = 56
-var right_team_favor: int = 47
+var left_team_favor: int = 560
+var right_team_favor: int = 470

@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://28nfv6d6y8vd"]
+
+[ext_resource type="Script" path="res://main/player/abilities/valkyrie/valkyrie_ultra.gd" id="1_geik4"]
+[ext_resource type="Texture2D" uid="uid://ogvxr3asi518" path="res://assets/interface/buttons/circle72.png" id="2_1pjhl"]
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="3_43rti"]
+[ext_resource type="Texture2D" uid="uid://coxf8wq63u2ag" path="res://assets/characters/valkyrie/ultra/val-ultra-01.png" id="4_54odl"]
+[ext_resource type="Texture2D" uid="uid://sos66wnj3dgj" path="res://assets/characters/valkyrie/ultra/val-ultra-02.png" id="5_qa06v"]
+[ext_resource type="Texture2D" uid="uid://yxf3n15d81n1" path="res://assets/characters/valkyrie/ultra/val-ultra-03.png" id="6_p01or"]
+[ext_resource type="Texture2D" uid="uid://cpp12ubxato3n" path="res://assets/characters/valkyrie/ultra/val-ultra-04.png" id="7_lvfmg"]
+[ext_resource type="Texture2D" uid="uid://yipy0ukblvu1" path="res://assets/characters/valkyrie/ultra/val-ultra-05.png" id="8_n062q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fx1p2"]
+radius = 18.1108
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c8k4v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_54odl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qa06v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_p01or")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lvfmg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_n062q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="valk_ultra" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_geik4")
+
+[node name="first" type="Sprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1pjhl")
+
+[node name="hitbox" type="Area2D" parent="first"]
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_43rti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="first/hitbox"]
+shape = SubResource("CircleShape2D_fx1p2")
+
+[node name="second" type="Sprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1pjhl")
+
+[node name="hitbox" type="Area2D" parent="second"]
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_43rti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="second/hitbox"]
+shape = SubResource("CircleShape2D_fx1p2")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_c8k4v")
+autoplay = "default"
+offset = Vector2(0, -116.667)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

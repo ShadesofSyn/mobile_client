@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://clfj6twdwt2gu"]
+[gd_scene load_steps=22 format=3 uid="uid://clfj6twdwt2gu"]
 
 [ext_resource type="Script" path="res://main/world/world/world.gd" id="1_h5cps"]
 [ext_resource type="TileSet" uid="uid://b2kxg4xoqgam4" path="res://assets/resources/tres/land.tres" id="2_l5v7e"]
@@ -11,9 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://pfsh2pw6ow7r" path="res://assets/tilesets/map objects/obstacles/barrel.png" id="6_xaqjc"]
 [ext_resource type="PackedScene" uid="uid://hu0kbqkvutvk" path="res://main/world/map objects/poi/vortex/vortex.tscn" id="9_xp85f"]
 [ext_resource type="PackedScene" uid="uid://bp0mhhrdj15ta" path="res://main/world/map objects/poi/bio_forge/bio_forge.tscn" id="10_1r7a2"]
-[ext_resource type="PackedScene" uid="uid://bjjutapwvygej" path="res://main/player/player/characters/canix/canix.tscn" id="12_dj33a"]
-[ext_resource type="PackedScene" uid="uid://db6h7t1gxk7po" path="res://main/player/player/characters/valkyrie/valkyrie.tscn" id="12_e0euj"]
-[ext_resource type="PackedScene" uid="uid://w0njfm7kqkxj" path="res://main/player/player/characters/magmaul/magmaul.tscn" id="12_yiand"]
+[ext_resource type="PackedScene" uid="uid://db6h7t1gxk7po" path="res://main/player/player/characters/scenes/valkyrie.tscn" id="12_03s2x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_htgnw"]
 texture = ExtResource("4_ekgmc")
@@ -161,7 +159,7 @@ scale = Vector2(5, 5)
 tile_set = SubResource("TileSet_m1mof")
 format = 2
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(983030, 1, 0, 983031, 1, 0, 983032, 1, 0, 983033, 1, 0, 1048569, 1, 0, 1114104, 1, 0, 720888, 1, 0, 786424, 1, 0, 851960, 1, 0, 917496, 1, 0, 786423, 1, 0, 786425, 1, 0, 1048567, 1, 0, 1048566, 1, 0, 655352, 1, 0, 655353, 1, 0, 655354, 1, 0, 720890, 1, 0, 786426, 1, 0, 851961, 1, 0, 917495, 1, 0, 917494, 1, 0, 655355, 1, 0, 720891, 1, 0, 983029, 1, 0, 524282, 1, 0, 589820, 1, 0, 720889, 1, 0, 589819, 1, 0, 655356, 1, 0, 720892, 1, 0, 786427, 1, 0, 851963, 1, 0, 917498, 1, 0, 917497, 1, 0, 851958, 1, 0, 851959, 1, 0, 589818, 1, 0, 524283, 1, 0, 589817, 1, 0, 1048568, 1, 0, 1114103, 1, 0, 851962, 1, 0, 983034, 1, 0, 1048570, 1, 0, 786422, 1, 0, 720887, 1, 0, 524281, 1, 0, 655351, 1, 0, 589816, 1, 0, 1048565, 1, 0, 786428, 1, 0, 917493, 1, 0, 1114102, 1, 0)
+layer_0/tile_data = PackedInt32Array(983030, 1, 0, 983031, 1, 0, 983032, 1, 0, 983033, 1, 0, 1048569, 1, 0, 1114104, 1, 0, 720888, 1, 0, 786424, 1, 0, 851960, 1, 0, 917496, 1, 0, 786423, 1, 0, 786425, 1, 0, 1048567, 1, 0, 1048566, 1, 0, 655352, 1, 0, 655353, 1, 0, 655354, 1, 0, 720890, 1, 0, 786426, 1, 0, 851961, 1, 0, 917495, 1, 0, 917494, 1, 0, 983029, 1, 0, 524282, 1, 0, 720889, 1, 0, 589819, 1, 0, 917497, 1, 0, 851958, 1, 0, 851959, 1, 0, 589818, 1, 0, 524283, 1, 0, 589817, 1, 0, 1048568, 1, 0, 1114103, 1, 0, 851962, 1, 0, 1048570, 1, 0, 786422, 1, 0, 720887, 1, 0, 524281, 1, 0, 655351, 1, 0, 589816, 1, 0, 1048565, 1, 0, 917493, 1, 0, 1114102, 1, 0, 655356, 1, 0, 720891, 1, 0, 786427, 1, 0, 917498, 1, 0, 983034, 1, 0, 983035, 1, 0, 917499, 1, 0, 851963, 1, 0, 655355, 1, 0, 720892, 1, 0)
 
 [node name="valid_tiles" type="TileMap" parent="map"]
 visible = false
@@ -257,15 +255,19 @@ modulate = Color(1.2, 1.2, 1.2, 1)
 y_sort_enabled = true
 
 [node name="1" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
-position = Vector2(1589, 2800)
+position = Vector2(2364, 16)
 
 [node name="2" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
+position = Vector2(1698, 2859)
 
 [node name="3" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
+visible = false
 
 [node name="4" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
+visible = false
 
 [node name="5" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
+visible = false
 
 [node name="6" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
 
@@ -288,11 +290,4 @@ y_sort_enabled = true
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_2tgxh")
 
-[node name="canix" parent="." instance=ExtResource("12_dj33a")]
-position = Vector2(1477, 2311)
-
-[node name="valkyrie" parent="." instance=ExtResource("12_e0euj")]
-position = Vector2(1933, 2436)
-
-[node name="magmaul" parent="." instance=ExtResource("12_yiand")]
-position = Vector2(2220, 2289)
+[node name="valkyrie" parent="." instance=ExtResource("12_03s2x")]

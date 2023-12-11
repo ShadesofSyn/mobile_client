@@ -23,6 +23,8 @@ func move_player(delta) -> void:
 
 func apply_movement(input_vector,delta) -> void:
 	if not input_vector == Vector2.ZERO:
+		print(input_vector)
+		get_parent().get_node("line_of_sight").look_at(input_vector)
 		if get_parent().character_stats.dashing:
 			apply_dash_movement(input_vector,delta)
 		else:

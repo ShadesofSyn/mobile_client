@@ -47,6 +47,7 @@ func set_empty_state() -> void:
 
 
 func _on_timer_timeout():
+	return
 	var favor = Server.player_node.player_gui.get_node("favor_bar")
 	if name == "hotzone" and $flag.modulate == Color("ffffff"):
 		favor.right_team_score += 1

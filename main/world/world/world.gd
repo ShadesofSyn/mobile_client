@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var projectiles = $projectiles
 @onready var valid_tiles:TileMap = $map/valid_tiles
 @onready var tall_grass_tiles: TileMap = $map/grass
 @onready var wall_tiles: TileMap = $map/walls
@@ -9,8 +10,6 @@ var hex_size: float = 5500
 var scrying_orb_distance_to_center: float = 1000
 
 #const HEX_OFFSET: float = 0.866025
-
-
 
 
 func _ready():
@@ -46,8 +45,8 @@ func set_size_of_polygon() -> void:
 	get_node("objectives/objectives/4").position = Vector2(hex_size/3.46,-hex_size/2)
 	get_node("objectives/objectives/5").position = Vector2(-hex_size/1.73,0)
 	get_node("objectives/objectives/6").position = Vector2(hex_size/1.73,0)
-#
-#
+
+
 #func set_lines() -> void:
 #	for i in range(6):
 #		get_node("lines/"+str(i+1)).points = [Vector2(0,hex_size),Vector2(0,0)]

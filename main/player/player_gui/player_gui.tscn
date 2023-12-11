@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://crqf0vpiv4af0" path="res://main/player/player_gui/action_buttons/action_buttons.tscn" id="4_ms13x"]
 [ext_resource type="PackedScene" uid="uid://chqtdg4hsf5qu" path="res://main/player/player_gui/favor_bar/favor_bar.tscn" id="5_w31u7"]
 [ext_resource type="PackedScene" uid="uid://blbtdvqbdruni" path="res://main/player/player_gui/action_rewards/action_rewards.tscn" id="6_bsrmv"]
-[ext_resource type="Theme" uid="uid://dbalkluvqmaae" path="res://assets/resources/text/text theme bold.tres" id="7_qyt2m"]
+[ext_resource type="PackedScene" uid="uid://b4ojpxo2gkniw" path="res://main/player/player_gui/active_team_boosts/active_team_boosts.tscn" id="7_vgens"]
 
 [node name="player_gui" type="CanvasLayer"]
 script = ExtResource("1_2tmwi")
@@ -28,22 +28,4 @@ offset_bottom = 144.0
 
 [node name="action_rewards" parent="." instance=ExtResource("6_bsrmv")]
 
-[node name="active_team_boosts" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="active_team_boosts"]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 269.0
-offset_right = 425.0
-offset_bottom = 318.0
-theme = ExtResource("7_qyt2m")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 4
-theme_override_constants/outline_size = 7
-text = "Active Team Boosts:"
+[node name="active_team_boosts" parent="." instance=ExtResource("7_vgens")]

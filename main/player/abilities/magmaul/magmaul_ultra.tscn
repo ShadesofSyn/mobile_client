@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://bg472xpdj86m8"]
+
+[ext_resource type="Script" path="res://main/player/abilities/magmaul/magmaul_ultra.gd" id="1_3ho3k"]
+[ext_resource type="Texture2D" uid="uid://duo0teyttn4v" path="res://assets/characters/magmaul/ultra/Magmaul-ultra-loop-01.png" id="1_t08f2"]
+[ext_resource type="Texture2D" uid="uid://ubws1ihpi7jk" path="res://assets/characters/magmaul/ultra/Magmaul-ultra-loop-02.png" id="2_3u23e"]
+[ext_resource type="Texture2D" uid="uid://bmydrbx64ai02" path="res://assets/characters/magmaul/ultra/Magmaul-ultra-loop-03.png" id="3_ibvkq"]
+[ext_resource type="Texture2D" uid="uid://d0dsab1ao2s45" path="res://assets/characters/magmaul/ultra/Magmaul-ultra-in-01.png" id="4_27g2w"]
+[ext_resource type="Texture2D" uid="uid://dky0hchod73u4" path="res://assets/characters/magmaul/ultra/Magmaul-ultra-in-02.png" id="5_ngy3d"]
+[ext_resource type="Texture2D" uid="uid://ba07655y5pb27" path="res://assets/characters/magmaul/ultra/Magmaul-ultra-in-03.png" id="6_8r1og"]
+[ext_resource type="Texture2D" uid="uid://b3nho8egch6lh" path="res://assets/characters/magmaul/ultra/Magmaul-ultra-in-04.png" id="7_tvdqe"]
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="9_ouevh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rey70"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_t08f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3u23e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ibvkq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_t08f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3u23e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ibvkq")
+}],
+"loop": false,
+"name": &"loop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_27g2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ngy3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8r1og")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tvdqe")
+}],
+"loop": false,
+"name": &"start",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_61hpq"]
+radius = 226.0
+height = 966.0
+
+[node name="magmaul_ultra" type="Node2D"]
+script = ExtResource("1_3ho3k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_rey70")
+animation = &"start"
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("9_ouevh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_61hpq")
+disabled = true

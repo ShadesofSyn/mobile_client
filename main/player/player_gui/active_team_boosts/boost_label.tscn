@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn73lwgnnlauj"]
+
+[ext_resource type="Theme" uid="uid://dbalkluvqmaae" path="res://assets/resources/text/text theme bold.tres" id="1_hkmyu"]
+[ext_resource type="Script" path="res://main/player/player_gui/active_team_boosts/boost_label.gd" id="2_4lev5"]
+
+[node name="Invisibility active" type="Label"]
+theme = ExtResource("1_hkmyu")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 7
+text = "Invisibility active - 10.0"
+script = ExtResource("2_4lev5")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -21,6 +21,10 @@ func return_damage_inflicted(hitbox_name:String,war_cry_active:bool,unstable_cor
 	return damage
 
 
+func return_percentage_health_increase(percentage_to_heal,max_health) -> int:
+	return max_health / percentage_to_heal
+
+
 func return_hitbox_damage(hitbox_name:String) -> int:
 	return 10
 
@@ -63,8 +67,47 @@ func return_abbreviated_character_name(_char_name):
 			return "Steel"
 		"magmaul":
 			return "Magmaul"
+		"mariselle":
+			return "Mari"
 		_:
 			return _char_name
+
+
+### Damage inflicted
+func return_health_change(hitbox_name) -> int:
+	return 0
+
+
+### Detect enemy nodes
+func get_nearest_target(_detect_enemy_node): 
+	var enemy_node
+	var max_distance_to_check = 100000.0
+	var _pos = _detect_enemy_node.global_position
+	var _enemy_nodes = _detect_enemy_node.get_overlapping_bodies()
+	if _enemy_nodes.size() == 0:
+		return null
+	else:
+		for node in _enemy_nodes:
+			var distance_to_enemy = _pos.distance_to(node.global_position)
+			if distance_to_enemy < max_distance_to_check:
+				max_distance_to_check = distance_to_enemy
+				enemy_node = node
+		return enemy_node
+
+func get_lowest_health_target(_detect_enemy_node):
+	var enemy_node
+	var max_health_to_check = 100000.0
+	var _pos = _detect_enemy_node.global_position
+	var _enemy_nodes = _detect_enemy_node.get_overlapping_bodies()
+	if _enemy_nodes.size() == 0:
+		return null
+	else:
+		for node in _enemy_nodes:
+			var health_of_enemy = node.get_node("hurtbox").health
+			if health_of_enemy < max_health_to_check:
+				max_health_to_check = health_of_enemy
+				enemy_node = node
+		return enemy_node
 
 
 ### Validate and remove tile functions

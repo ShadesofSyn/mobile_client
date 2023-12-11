@@ -232,7 +232,6 @@ func _update_joystick(touch_position: Vector2) -> void:
 
 
 func _physics_process(delta):
-	return
 	if name == "movement_joystick":
 		if not is_pressed:
 			output = get_input_vector()

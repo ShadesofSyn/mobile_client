@@ -6,8 +6,8 @@
 [ext_resource type="Theme" uid="uid://dbalkluvqmaae" path="res://assets/resources/text/text theme bold.tres" id="4_c5o0r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qyflm"]
-radius = 24.0
-height = 78.0
+radius = 30.0
+height = 72.0
 
 [node name="hurtbox" type="Area2D"]
 position = Vector2(0, -28)
@@ -18,13 +18,25 @@ script = ExtResource("1_mosja")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_qyflm")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_left = -79.0
-offset_top = -114.0
-offset_right = 549.0
-offset_bottom = -5.99998
+[node name="attack_progress_bar" type="TextureProgressBar" parent="."]
+modulate = Color(0, 0.388235, 0.980392, 1)
+offset_left = -77.0
+offset_top = -138.0
+offset_right = 539.0
+offset_bottom = -90.0
 scale = Vector2(0.25, 0.25)
-value = 50.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_ux8gw")
+texture_progress = ExtResource("3_3aod0")
+
+[node name="health_progress_bar" type="TextureProgressBar" parent="."]
+offset_left = -79.0
+offset_top = -165.0
+offset_right = 549.0
+offset_bottom = -56.9999
+scale = Vector2(0.25, 0.25)
+value = 100.0
 nine_patch_stretch = true
 texture_under = ExtResource("2_ux8gw")
 texture_progress = ExtResource("3_3aod0")
@@ -33,9 +45,9 @@ texture_progress = ExtResource("3_3aod0")
 modulate = Color(1, 0.286275, 0.380392, 1)
 texture_filter = 1
 offset_left = -79.0
-offset_top = -126.0
+offset_top = -177.0
 offset_right = 118.0
-offset_bottom = -77.0
+offset_bottom = -128.0
 scale = Vector2(0.8, 0.8)
 theme = ExtResource("4_c5o0r")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

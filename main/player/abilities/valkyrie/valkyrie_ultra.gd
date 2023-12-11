@@ -2,7 +2,7 @@ extends Node2D
 
 var d := 0.0
 var orbit_speed = 5
-var orbit_radius = 1500
+var orbit_radius = 400
 
 var got_to_start_point: bool = false
 
@@ -33,8 +33,9 @@ func _physics_process(delta):
 	
 	d += delta
 	var target = Vector2(sin(d*orbit_speed)*orbit_radius,cos(d*orbit_speed)*orbit_radius)
-	$first.position = lerp(position,target,delta*5.0)
-	$second.position = lerp(position,-target,delta*5.0)
+	$first.position = lerp($first.position,target,delta*2.0)
+	$second.position = lerp($second.position,-target,delta*2.0)
+
 
 func destroy() -> void:
 	if not destroyed:

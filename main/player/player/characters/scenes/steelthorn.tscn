@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://ckbv2d6w2salq"]
+
+[ext_resource type="Script" path="res://main/player/player/scripts/movement.gd" id="1_t1dco"]
+[ext_resource type="Script" path="res://main/player/player/characters/character.gd" id="1_y3uy6"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="2_gb01w"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="3_dfdeh"]
+[ext_resource type="Texture2D" uid="uid://cd76he11fu2ln" path="res://assets/characters/steelthorn/walk/Steel-walking-s-01.png" id="5_hq6da"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="5_wvqcf"]
+[ext_resource type="Script" path="res://main/player/player/scripts/sprite.gd" id="6_jp7ag"]
+[ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="7_c1wd7"]
+[ext_resource type="PackedScene" uid="uid://bs6ncy56q2n34" path="res://main/player/player_gui/player_gui.tscn" id="8_2o5au"]
+[ext_resource type="Script" path="res://main/player/player/scripts/line_of_sight.gd" id="10_41ge8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0f3jy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kq0x"]
+shader = ExtResource("5_wvqcf")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a1y66"]
+radius = 455.215
+
+[node name="steelthorn" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_y3uy6")
+
+[node name="movement" type="Node" parent="."]
+script = ExtResource("1_t1dco")
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("2_gb01w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0f3jy")
+
+[node name="sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_2kq0x")
+position = Vector2(0, -65)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_hq6da")
+script = ExtResource("6_jp7ag")
+
+[node name="Timer" type="Timer" parent="sprite"]
+wait_time = 0.1
+autostart = true
+
+[node name="detect_enemy" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("7_c1wd7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+shape = SubResource("CircleShape2D_a1y66")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="player_gui" parent="Camera2D" instance=ExtResource("8_2o5au")]
+
+[node name="hurtbox" parent="." instance=ExtResource("3_dfdeh")]
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(0, -19)
+
+[node name="TextureProgressBar" parent="hurtbox" index="1"]
+offset_top = -163.0
+offset_bottom = -55.0
+
+[node name="Label" parent="hurtbox" index="2"]
+offset_top = -175.0
+offset_bottom = -126.0
+
+[node name="line_of_sight" type="Node2D" parent="."]
+position = Vector2(-1.90707e-07, -16)
+script = ExtResource("10_41ge8")
+
+[node name="Marker2D" type="Marker2D" parent="line_of_sight"]
+position = Vector2(65, 0)
+
+[connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
+
+[editable path="hurtbox"]

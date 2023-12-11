@@ -2,7 +2,7 @@ extends Sprite2D
 
 var direction = "S"
 
-
+var attack_cooldown_active: bool = false
 var attacking: bool = false
 var frame_index: int = 0
 var max_frame_index: int = 0
@@ -19,6 +19,9 @@ const directions = [
 		"SW",
 		"W",
 		"NW"]
+
+func _ready():
+	$Timer.start(0.125)
 
 
 func _physics_process(delta):
@@ -44,23 +47,31 @@ func set_sprite_state() -> void:
 
 
 func attack():
-	attacking = true
-	frame_index = 0
-	max_frame_index = 4
-	get_parent().character_stats.STATE = Constants.player_state.ATTACK
-#	position.y += 9
-	await get_tree().create_timer(0.2).timeout
-	if get_parent().character_stats.destroyed:
+	if not attack_cooldown_active:
+		attacking = true
+		frame_index = 0
+		max_frame_index = 4
+		start_cooldown()
+		get_parent().character_stats.STATE = Constants.player_state.ATTACK
+		get_parent().basic_attack()
+		await get_tree().create_timer(0.5).timeout
 		attacking = false
-		return
-#	spawn_hammer_projectile()
-	await get_tree().create_timer(0.2).timeout
-#	position.y += -9
-	attacking = false
-	if get_parent().character_stats.destroyed:
-		return
-	get_parent().character_stats.STATE = Constants.player_state.WALK
+		if get_parent().character_stats.destroyed:
+			return
+		get_parent().character_stats.STATE = Constants.player_state.WALK
 
+
+func start_cooldown() -> void:
+	attack_cooldown_active = true
+	var char_name = get_parent().character_stats.character_name
+	var cooldown_length = Constants.character_data[char_name]["baseStats"]["attackSpeed"]
+	var pg_bar = get_parent().get_node("hurtbox/attack_progress_bar")
+	pg_bar.value = 0
+	var tween = get_tree().create_tween()
+	tween.tween_property(pg_bar,"value",100,cooldown_length)
+	await tween.finished
+	attack_cooldown_active = false
+	
 
 
 #func spawn_hammer_projectile():
@@ -110,10 +121,12 @@ func set_sprite_texture():
 	match get_parent().character_stats.STATE:
 		Constants.player_state.IDLE:
 			frame_index = 0
-			max_frame_index = 0
 			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/walk/"+abbreviated_character_name+"-walking-"+direction.to_lower()+"-01.png")
 		Constants.player_state.WALK:
-			max_frame_index = 3
+			if not get_parent().character_stats.character_name == "mariselle":
+				max_frame_index = 3
+			else:
+				max_frame_index = 7
 			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/walk/"+abbreviated_character_name+"-walking-"+direction.to_lower()+"-0"+str(frame_index+1)+".png") #load("res://assets/characters/fighter/walk/"+direction+"/"+ str(frame_index) +".png")
 		Constants.player_state.ATTACK:
 			max_frame_index = 3

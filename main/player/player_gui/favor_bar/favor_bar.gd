@@ -8,7 +8,7 @@ extends Control
 @onready var right_team_score_label = $right_team_rect/icon/score_label
 @onready var right_line = $right_team_rect/line
 
-const MAX_TEAM_SCORE: float = 100
+const MAX_TEAM_SCORE: float = 1000
 const ICON_TRAVEL_DISTANCE: float = 264
 
 

@@ -64,6 +64,7 @@ offset_left = 263.0
 offset_right = 263.0
 
 [node name="diamond" type="ColorRect" parent="left_team_rect/icon"]
+layout_mode = 0
 offset_left = 28.0
 offset_top = 12.0
 offset_right = 68.0
@@ -73,11 +74,12 @@ color = Color(0.141176, 0.290196, 0.690196, 1)
 
 [node name="score_label" type="Label" parent="left_team_rect/icon"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 6.0
 offset_top = 22.0
-offset_right = 78.0
-offset_bottom = 84.0
-scale = Vector2(0.6, 0.6)
+offset_right = 121.0
+offset_bottom = 110.0
+scale = Vector2(0.4, 0.4)
 theme = ExtResource("2_ed8c0")
 text = "0"
 horizontal_alignment = 1
@@ -113,9 +115,9 @@ texture_filter = 1
 layout_mode = 0
 offset_left = 6.0
 offset_top = 22.0
-offset_right = 78.0
-offset_bottom = 84.0
-scale = Vector2(0.6, 0.6)
+offset_right = 114.0
+offset_bottom = 115.0
+scale = Vector2(0.4, 0.4)
 theme = ExtResource("2_ed8c0")
 text = "99	"
 horizontal_alignment = 1

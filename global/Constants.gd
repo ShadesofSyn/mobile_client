@@ -43,6 +43,10 @@ const SUPPRESS_DAMAGE_PER_SECOND: float = 10.0
 const SUPPRESS_SPEED_DECREASE: float = 0.25
 
 
+### Ultra abilities
+const MARISELLE_ULTRA: float = 5.0
+
+
 
 # Player state constants
 enum player_state {

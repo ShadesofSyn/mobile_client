@@ -1,6 +1,38 @@
 extends Node
 
 
-func init_valk_ultra() -> void:
-	var ult = preload("res://main/player/abilities/valkyrie/valk_ultra.tscn").instantiate()
+### Basic attacks
+func init_technomancer_basic(team_color,velocity,spawn_pt) -> void:
+	var proj = preload("res://main/player/abilities/technomancer/technomancer_basic.tscn").instantiate()
+	proj.position = spawn_pt
+	proj.velocity = velocity
+	proj.team_color = team_color
+	Server.world.projectiles.call_deferred("add_child",proj)
+
+
+func init_mariselle_basic(team_color,velocity,spawn_pt) -> void:
+	var proj = preload("res://main/player/abilities/mariselle/mariselle_projectile.tscn").instantiate()
+	proj.position = spawn_pt
+	proj.velocity = velocity
+	proj.team_color = team_color
+	Server.world.projectiles.call_deferred("add_child",proj)
+
+
+### Ultra attacks
+func init_valkyrie_ultra(team_color) -> void:
+	var ult = preload("res://main/player/abilities/valkyrie/valkyrie_ultra.tscn").instantiate()
 	Server.player_node.call_deferred("add_child",ult)
+
+
+func init_mariselle_ultra(_pos,team_color) -> void:
+	var ult = preload("res://main/player/abilities/mariselle/mariselle_ultra.tscn").instantiate()
+	ult.team_color = team_color
+	ult.position = _pos
+	Server.world.projectiles.call_deferred("add_child",ult)
+
+
+func init_magmaul_ultra(_pos,team_color) -> void:
+	var ult = preload("res://main/player/abilities/magmaul/magmaul_ultra.tscn").instantiate()
+	ult.team_color = team_color
+	ult.position = _pos
+	Server.world.projectiles.call_deferred("add_child",ult)

@@ -23,6 +23,7 @@ func play_dash() -> void:
 	
 	
 func set_player_whitened() -> void:
+	get_parent().sprite.material.call_deferred("set_shader_parameter","flash_color",Color("ffffff"))
 	get_parent().sprite.material.call_deferred("set_shader_parameter", "flash_modifier", 0.7)
 	await get_tree().create_timer(0.5).timeout
 	get_parent().sprite.material.call_deferred("set_shader_parameter", "flash_modifier", 0.0)
@@ -35,6 +36,6 @@ func _on_timer_timeout():
 	ghost.hframes = sprite.hframes
 	ghost.frame = sprite.frame
 	ghost.scale = sprite.scale
-	ghost.position = sprite.position
+	ghost.position = sprite.position 
 	Server.world.get_node("projectiles").call_deferred("add_child", ghost)
 

@@ -100,6 +100,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ultra_attack2" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 392.0
 offset_top = 202.0
@@ -155,6 +156,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ultra_attack3" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 536.0
 offset_top = 100.0
