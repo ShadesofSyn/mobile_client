@@ -21,7 +21,7 @@ func _ready():
 	get_node("../").set_collision_layer(Util.return_hurtbox_layer(team_color))
 
 
-func _process(delta):
+func _physics_process(delta):
 	if Server.world:
 		if in_tall_grass_square():
 			set_player_invisible(delta)

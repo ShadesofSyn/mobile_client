@@ -6,10 +6,15 @@ extends CharacterBody2D
 @onready var joystick = $Camera2D/player_gui/movement_joystick
 @onready var player_gui = $Camera2D/player_gui
 
+var lockstep_active = false
 
 func _ready():
-	Server.player_node = self
 	character_stats.character_name = name
+	if not name == "valkyrie" and not name == "technomancer":
+		character_stats.is_ally = true
+		$Camera2D.call_deferred("queue_free")
+	else:
+		Server.player_node = self
 
 
 func use_special_ability() -> void:

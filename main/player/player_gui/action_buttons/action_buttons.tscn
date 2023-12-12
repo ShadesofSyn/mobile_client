@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://crqf0vpiv4af0"]
+[gd_scene load_steps=16 format=3 uid="uid://crqf0vpiv4af0"]
 
 [ext_resource type="Texture2D" uid="uid://bix47772xyi41" path="res://assets/interface/buttons/attack button.png" id="1_me5m3"]
 [ext_resource type="Script" path="res://main/player/player_gui/action_buttons/action_buttons.gd" id="1_ny5gg"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dfa7h1e1jnrx3" path="res://assets/interface/buttons/werewolf.png" id="12_cmdq8"]
 [ext_resource type="Texture2D" uid="uid://2n2pccugpoyb" path="res://assets/interface/buttons/footsteps.png" id="12_epsuq"]
 [ext_resource type="Texture2D" uid="uid://bw6befen2ip84" path="res://assets/interface/buttons/bully-minion.png" id="13_33oh7"]
+[ext_resource type="Script" path="res://main/player/player_gui/action_buttons/lockstep.gd" id="14_qg5qp"]
 
 [node name="action_buttons" type="Control"]
 layout_mode = 3
@@ -276,7 +277,7 @@ offset_bottom = 432.0
 scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(75, 75)
 texture = ExtResource("4_di6kh")
-script = ExtResource("10_5btfc")
+script = ExtResource("14_qg5qp")
 
 [node name="icon" type="TextureRect" parent="lockstep"]
 layout_mode = 0
@@ -287,38 +288,3 @@ offset_bottom = 326.0
 scale = Vector2(0.2, 0.2)
 pivot_offset = Vector2(256, 256)
 texture = ExtResource("12_epsuq")
-
-[node name="cooldown" type="Control" parent="lockstep"]
-anchors_preset = 0
-offset_right = 150.0
-offset_bottom = 150.0
-script = ExtResource("7_x0136")
-
-[node name="Timer" type="Timer" parent="lockstep/cooldown"]
-one_shot = true
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="lockstep/cooldown"]
-modulate = Color(0.262745, 0.262745, 0.262745, 0.823529)
-layout_mode = 0
-offset_right = 151.0
-offset_bottom = 151.0
-value = 100.0
-fill_mode = 4
-nine_patch_stretch = true
-texture_progress = ExtResource("6_eqkrv")
-
-[node name="Label" type="Label" parent="lockstep/cooldown"]
-modulate = Color(0.956863, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_xb8tf")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 48
-text = "10.0"
-horizontal_alignment = 1
-vertical_alignment = 1

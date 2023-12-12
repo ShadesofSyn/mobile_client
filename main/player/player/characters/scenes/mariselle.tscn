@@ -70,4 +70,7 @@ position = Vector2(35, 0)
 
 [node name="hurtbox" parent="." instance=ExtResource("3_tvwfm")]
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
 [connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]

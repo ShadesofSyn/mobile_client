@@ -7,7 +7,8 @@ var last_saved_angle: int = 0
 var frame_to_update: float = 0.0
 
 func _physics_process(delta):
-	set_los(delta)
+	if not get_parent().character_stats.is_ally:
+		set_los(delta)
 
 func set_los(delta) -> void:
 	var nearest_target = Util.get_nearest_target(get_node("../detect_enemy"))

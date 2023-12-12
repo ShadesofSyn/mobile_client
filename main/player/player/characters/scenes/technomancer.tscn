@@ -40,24 +40,6 @@ shape = SubResource("CircleShape2D_f01f4")
 [node name="player_gui" parent="Camera2D" instance=ExtResource("3_4qbha")]
 visible = false
 
-[node name="hurtbox" parent="." instance=ExtResource("4_pc0im")]
-position = Vector2(0, -23)
-
-[node name="CollisionShape2D" parent="hurtbox" index="0"]
-position = Vector2(0, -6)
-
-[node name="TextureProgressBar" parent="hurtbox" index="1"]
-offset_left = -78.0
-offset_top = -139.0
-offset_right = 550.0
-offset_bottom = -31.0
-
-[node name="Label" parent="hurtbox" index="2"]
-offset_left = -78.0
-offset_top = -151.0
-offset_right = 119.0
-offset_bottom = -102.0
-
 [node name="sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yrk13")
 position = Vector2(2.08165e-12, -50)
@@ -85,6 +67,20 @@ script = ExtResource("10_ykb25")
 
 [node name="Marker2D" type="Marker2D" parent="line_of_sight"]
 position = Vector2(35, 0)
+
+[node name="hurtbox" parent="." instance=ExtResource("4_pc0im")]
+
+[node name="attack_progress_bar" parent="hurtbox" index="1"]
+offset_top = -121.0
+offset_bottom = -73.0
+
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_top = -148.0
+offset_bottom = -39.9999
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_top = -160.0
+offset_bottom = -111.0
 
 [connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
 

@@ -29,12 +29,32 @@ func _physics_process(delta):
 		set_sprite_direction(delta)
 		set_sprite_state()
 		set_sprite_texture()
+	else:
+		set_direction_ally_mode(delta)
+		set_sprite_state()
+		set_sprite_texture()
+		
+func set_direction_ally_mode(delta) -> void:
+	var velocity = get_parent().velocity
+	if velocity == Vector2.ZERO:
+		get_parent().character_stats.STATE = Constants.player_state.IDLE
+		return
+	get_parent().character_stats.STATE = Constants.player_state.WALK
+	var angle = rad_to_deg(Vector2(1,0).angle_to(velocity))+90
+	if angle < 0:
+		angle = angle + 360
+	desired_direction_index = int((angle/45)+.5)
+	if desired_direction_index == 8:
+		desired_direction_index = 0
+	direction = directions[desired_direction_index]
 
 
 func set_sprite_state() -> void:
 	if get_parent().character_stats.destroyed or get_parent().character_stats.STATE == Constants.player_state.ATTACK:
 		return
-	if get_parent().joystick.output == Vector2.ZERO:
+#	if get_parent().joystick.output == Vector2.ZERO:
+	print(get_parent().velocity)
+	if get_parent().velocity == Vector2.ZERO:
 		if not get_parent().character_stats.STATE == Constants.player_state.IDLE:
 			frame_index = 0
 			max_frame_index = 0

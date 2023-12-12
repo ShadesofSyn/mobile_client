@@ -79,6 +79,9 @@ offset_bottom = -88.9999
 offset_top = -209.0
 offset_bottom = -160.0
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
 [connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
 
 [editable path="hurtbox"]
