@@ -16,6 +16,7 @@ func _ready():
 	set_spawn_area_points_and_size()
 	set_size_of_polygon()
 	init_tall_grass()
+	await get_tree().process_frame
 	Server.world = self
 
 

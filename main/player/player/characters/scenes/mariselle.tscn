@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://g872rpf7dlhi"]
+[gd_scene load_steps=15 format=3 uid="uid://g872rpf7dlhi"]
 
 [ext_resource type="Script" path="res://main/player/player/scripts/movement.gd" id="1_pqv16"]
 [ext_resource type="Script" path="res://main/player/player/characters/character.gd" id="1_xkxbi"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="7_383kw"]
 [ext_resource type="PackedScene" uid="uid://bs6ncy56q2n34" path="res://main/player/player_gui/player_gui.tscn" id="8_a8k27"]
 [ext_resource type="Script" path="res://main/player/player/scripts/line_of_sight.gd" id="10_b6x05"]
+[ext_resource type="PackedScene" uid="uid://dympouuep62iu" path="res://main/player/player/scripts/ally_navigation_agent/ally_navigation_agent.tscn" id="11_xesr1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vd3bd"]
 
@@ -31,6 +32,8 @@ script = ExtResource("1_pqv16")
 
 [node name="character_stats" type="Node" parent="."]
 script = ExtResource("2_5yf82")
+max_speed = 220.0
+friction = 1500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vd3bd")
@@ -70,7 +73,7 @@ position = Vector2(35, 0)
 
 [node name="hurtbox" parent="." instance=ExtResource("3_tvwfm")]
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
+[node name="ally_navigation_agent" parent="." instance=ExtResource("11_xesr1")]
+follow_position = Vector2(500, 200)
 
 [connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]

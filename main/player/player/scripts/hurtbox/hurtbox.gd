@@ -13,7 +13,10 @@ func _ready():
 
 
 func set_hurtbox_stats() -> void:
-	progress_bar.max_value = Constants.character_data[get_parent().character_stats.character_name]["baseStats"]["health"]
+	if get_parent().character_stats.TYPE == Constants.character_type.AD:
+		progress_bar.max_value = Constants.ad_data[get_parent().character_stats.character_name]["baseStats"]["health"]
+	else:
+		progress_bar.max_value = Constants.character_data[get_parent().character_stats.character_name]["baseStats"]["health"]
 	progress_bar.value = progress_bar.max_value
 	$Label.text = str(progress_bar.value)
 

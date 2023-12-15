@@ -25,15 +25,16 @@ func _ready():
 
 
 func _physics_process(delta):
-	if not get_parent().character_stats.is_ally:
+	if not get_parent().character_stats.TYPE == Constants.character_type.ALLY:
 		set_sprite_direction(delta)
-		set_sprite_state()
+#		set_sprite_state()
 		set_sprite_texture()
 	else:
 		set_direction_ally_mode(delta)
-		set_sprite_state()
+#		set_sprite_state()
 		set_sprite_texture()
-		
+
+
 func set_direction_ally_mode(delta) -> void:
 	var velocity = get_parent().velocity
 	if velocity == Vector2.ZERO:
@@ -52,8 +53,7 @@ func set_direction_ally_mode(delta) -> void:
 func set_sprite_state() -> void:
 	if get_parent().character_stats.destroyed or get_parent().character_stats.STATE == Constants.player_state.ATTACK:
 		return
-#	if get_parent().joystick.output == Vector2.ZERO:
-	print(get_parent().velocity)
+
 	if get_parent().velocity == Vector2.ZERO:
 		if not get_parent().character_stats.STATE == Constants.player_state.IDLE:
 			frame_index = 0
@@ -150,7 +150,10 @@ func set_sprite_texture():
 			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/walk/"+abbreviated_character_name+"-walking-"+direction.to_lower()+"-0"+str(frame_index+1)+".png") #load("res://assets/characters/fighter/walk/"+direction+"/"+ str(frame_index) +".png")
 		Constants.player_state.ATTACK:
 			max_frame_index = 3
-			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/attack/"+abbreviated_character_name+"-attack-"+direction.to_lower()+"-0"+str(frame_index+1)+".png")
+			if get_parent().velocity == Vector2.ZERO: # idle attack
+				self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/attack/"+abbreviated_character_name+"-attack-"+direction.to_lower()+"-0"+str(frame_index+1)+".png")
+			else:
+				self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/walking_attack/"+abbreviated_character_name+"-walking-attack-"+direction.to_lower()+"-0"+str(frame_index+1)+".png")
 #		Constants.player_state.DEATH:
 #			max_frame_index = 7
 #			self.texture = load("res://assets/characters/fighter/death/"+direction+"/"+ str(frame_index) +".png")

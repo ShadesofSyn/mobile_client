@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://clfj6twdwt2gu"]
+[gd_scene load_steps=25 format=3 uid="uid://clfj6twdwt2gu"]
 
 [ext_resource type="Script" path="res://main/world/world/world.gd" id="1_h5cps"]
 [ext_resource type="TileSet" uid="uid://b2kxg4xoqgam4" path="res://assets/resources/tres/land.tres" id="2_l5v7e"]
@@ -11,7 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://pfsh2pw6ow7r" path="res://assets/tilesets/map objects/obstacles/barrel.png" id="6_xaqjc"]
 [ext_resource type="PackedScene" uid="uid://hu0kbqkvutvk" path="res://main/world/map objects/poi/vortex/vortex.tscn" id="9_xp85f"]
 [ext_resource type="PackedScene" uid="uid://bp0mhhrdj15ta" path="res://main/world/map objects/poi/bio_forge/bio_forge.tscn" id="10_1r7a2"]
-[ext_resource type="PackedScene" uid="uid://w0njfm7kqkxj" path="res://main/player/player/characters/scenes/magmaul.tscn" id="13_33knr"]
+[ext_resource type="PackedScene" uid="uid://dvv48njinvfud" path="res://main/world/npcs/ghoul/ghoul.tscn" id="12_tm6la"]
+[ext_resource type="PackedScene" uid="uid://ckbv2d6w2salq" path="res://main/player/player/characters/scenes/steelthorn.tscn" id="14_2c15n"]
 [ext_resource type="PackedScene" uid="uid://g872rpf7dlhi" path="res://main/player/player/characters/scenes/mariselle.tscn" id="14_mpqb6"]
 [ext_resource type="PackedScene" uid="uid://1jniane4wwft" path="res://main/player/player/characters/scenes/technomancer.tscn" id="14_wnef0"]
 
@@ -59,6 +60,11 @@ texture_region_size = Vector2i(80, 80)
 tile_size = Vector2i(80, 80)
 sources/0 = SubResource("TileSetAtlasSource_gta0f")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_w65fp"]
+vertices = PackedVector2Array(2182, 972, 4245, 3449, 2078, 2010, 1581, 1544, 1577, 1428, -527, 3328, 1307, 2123, 1865, 2113, 2069, 2119, 1014, 1049, 1923, 973, 1382, 1424, 1011, 1175, 1384, 1546, 1854, 2016, 1298, 1973, 813, 1736, 811, 1624, 4136, -1245, 2178, 820, -712, -1219, 1922, 812, 1073, 2123, 1070, 1972, 797, 1040, 794, 1167, 623, 1616, 618, 1736)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 1), PackedInt32Array(9, 10, 0, 4, 11, 12), PackedInt32Array(13, 3, 2, 14, 15, 16, 17), PackedInt32Array(18, 1, 0, 19), PackedInt32Array(20, 18, 19, 21), PackedInt32Array(8, 2, 1), PackedInt32Array(22, 6, 5), PackedInt32Array(14, 7, 6, 15), PackedInt32Array(16, 15, 23), PackedInt32Array(20, 21, 10, 9, 24), PackedInt32Array(5, 20, 24, 25, 26), PackedInt32Array(25, 12, 11, 13, 17, 26), PackedInt32Array(5, 26, 27), PackedInt32Array(22, 5, 27, 16, 23)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-527, 3328, 4245, 3449, 4136, -1245, -712, -1219), PackedVector2Array(1070, 1972, 1073, 2123, 1307, 2123, 1298, 1973), PackedVector2Array(1854, 2016, 1865, 2113, 2069, 2119, 2078, 2010), PackedVector2Array(623, 1616, 618, 1736, 813, 1736, 811, 1624), PackedVector2Array(1382, 1424, 1384, 1546, 1581, 1544, 1577, 1428), PackedVector2Array(797, 1040, 794, 1167, 1011, 1175, 1014, 1049), PackedVector2Array(2178, 820, 2182, 972, 1923, 973, 1922, 812)])
+
 [sub_resource type="Environment" id="Environment_ut6ba"]
 background_mode = 3
 tonemap_mode = 3
@@ -69,11 +75,6 @@ glow_intensity = 1.76
 glow_strength = 1.17
 glow_blend_mode = 0
 glow_hdr_threshold = 0.9
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_w65fp"]
-vertices = PackedVector2Array(-312, 2609, 1307, 2123, 1865, 2113, 2069, 2119, 3016, 2604, 1014, 1049, 1949, 977, 2170, 978, 1577, 1428, 1382, 1424, 1011, 1175, 2078, 2010, 1581, 1544, 1384, 1546, 1854, 2016, 1298, 1973, 813, 1736, 811, 1624, 3021, -1169, 2164, 855, 1073, 2123, -330, -1093, 1944, 844, 1070, 1972, 797, 1040, 794, 1167, 623, 1616, 618, 1736)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 9, 10), PackedInt32Array(7, 4, 11, 12, 8), PackedInt32Array(13, 12, 11, 14, 15, 16, 17), PackedInt32Array(18, 4, 7, 19), PackedInt32Array(3, 11, 4), PackedInt32Array(20, 1, 0), PackedInt32Array(21, 18, 19, 22), PackedInt32Array(14, 2, 1, 15), PackedInt32Array(16, 15, 23), PackedInt32Array(21, 22, 6, 5, 24), PackedInt32Array(0, 21, 24, 25, 26), PackedInt32Array(25, 10, 9, 13, 17, 26), PackedInt32Array(0, 26, 27), PackedInt32Array(20, 0, 27, 16, 23)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-312, 2609, 3016, 2604, 3021, -1169, -330, -1093), PackedVector2Array(1070, 1972, 1073, 2123, 1307, 2123, 1298, 1973), PackedVector2Array(1854, 2016, 1865, 2113, 2069, 2119, 2078, 2010), PackedVector2Array(623, 1616, 618, 1736, 813, 1736, 811, 1624), PackedVector2Array(1382, 1424, 1384, 1546, 1581, 1544, 1577, 1428), PackedVector2Array(797, 1040, 794, 1167, 1011, 1175, 1014, 1049), PackedVector2Array(1944, 844, 1949, 977, 2170, 978, 2164, 855)])
 
 [node name="world" type="Node2D"]
 y_sort_enabled = true
@@ -280,24 +281,35 @@ y_sort_enabled = true
 [node name="projectiles" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ut6ba")
-
 [node name="ads" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="ghoul" parent="ads" instance=ExtResource("12_tm6la")]
+position = Vector2(2129, 2230)
+
+[node name="ghoul2" parent="ads" instance=ExtResource("12_tm6la")]
+position = Vector2(1166, 1365)
+
+[node name="ghoul3" parent="ads" instance=ExtResource("12_tm6la")]
+position = Vector2(2230, 1395)
+
+[node name="ghoul4" parent="ads" instance=ExtResource("12_tm6la")]
+position = Vector2(545, 2095)
 
 [node name="players" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="magmaul" parent="players" instance=ExtResource("13_33knr")]
-position = Vector2(1917, 1718)
-
 [node name="mariselle" parent="players" instance=ExtResource("14_mpqb6")]
-position = Vector2(769, 1888)
+position = Vector2(2225, 2055)
+
+[node name="steelthorn" parent="players" instance=ExtResource("14_2c15n")]
+position = Vector2(951, 1933)
 
 [node name="technomancer" parent="players" instance=ExtResource("14_wnef0")]
-position = Vector2(1419, 1735)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_w65fp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ut6ba")

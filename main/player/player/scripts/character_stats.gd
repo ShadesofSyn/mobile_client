@@ -2,7 +2,6 @@ extends Node
 
 var character_name: String = "valkyrie"
 var team_color: String = "blue"
-var is_ally: bool = false
 
 var destroyed: bool = false
 var dashing: bool = false
@@ -13,7 +12,7 @@ var invisible: bool = false
 @export var acceleration: float = 2000.0
 @export var friction: float = 850.0
 
-
+var TYPE = Constants.character_type.MAIN
 var STATE = Constants.player_state.IDLE
 
 func _ready():

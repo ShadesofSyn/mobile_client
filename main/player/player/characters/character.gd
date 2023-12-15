@@ -11,7 +11,7 @@ var lockstep_active = false
 func _ready():
 	character_stats.character_name = name
 	if not name == "valkyrie" and not name == "technomancer":
-		character_stats.is_ally = true
+		character_stats.TYPE = Constants.character_type.ALLY
 		$Camera2D.call_deferred("queue_free")
 	else:
 		Server.player_node = self
@@ -36,6 +36,8 @@ func basic_attack() -> void:
 			pass
 		"technomancer":
 			InstancedScenes.init_technomancer_basic(character_stats.team_color,($line_of_sight/Marker2D.global_position-$line_of_sight.global_position).normalized(),$line_of_sight/Marker2D.global_position)
+		"steelthorn":
+			InstancedScenes.init_steelthorn_basic(character_stats.team_color,($line_of_sight/Marker2D.global_position-$line_of_sight.global_position).normalized(),$line_of_sight/Marker2D.global_position)
 
 
 

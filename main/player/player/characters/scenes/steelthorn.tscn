@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckbv2d6w2salq"]
+[gd_scene load_steps=15 format=3 uid="uid://ckbv2d6w2salq"]
 
 [ext_resource type="Script" path="res://main/player/player/scripts/movement.gd" id="1_t1dco"]
 [ext_resource type="Script" path="res://main/player/player/characters/character.gd" id="1_y3uy6"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="7_c1wd7"]
 [ext_resource type="PackedScene" uid="uid://bs6ncy56q2n34" path="res://main/player/player_gui/player_gui.tscn" id="8_2o5au"]
 [ext_resource type="Script" path="res://main/player/player/scripts/line_of_sight.gd" id="10_41ge8"]
+[ext_resource type="PackedScene" uid="uid://dympouuep62iu" path="res://main/player/player/scripts/ally_navigation_agent/ally_navigation_agent.tscn" id="11_7jtr7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0f3jy"]
 
@@ -31,6 +32,7 @@ script = ExtResource("1_t1dco")
 
 [node name="character_stats" type="Node" parent="."]
 script = ExtResource("2_gb01w")
+max_speed = 180.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0f3jy")
@@ -48,6 +50,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="detect_enemy" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("7_c1wd7")
@@ -58,19 +61,7 @@ shape = SubResource("CircleShape2D_a1y66")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="player_gui" parent="Camera2D" instance=ExtResource("8_2o5au")]
-
-[node name="hurtbox" parent="." instance=ExtResource("3_dfdeh")]
-
-[node name="CollisionShape2D" parent="hurtbox" index="0"]
-position = Vector2(0, -19)
-
-[node name="TextureProgressBar" parent="hurtbox" index="1"]
-offset_top = -163.0
-offset_bottom = -55.0
-
-[node name="Label" parent="hurtbox" index="2"]
-offset_top = -175.0
-offset_bottom = -126.0
+visible = false
 
 [node name="line_of_sight" type="Node2D" parent="."]
 position = Vector2(-1.90707e-07, -16)
@@ -79,6 +70,9 @@ script = ExtResource("10_41ge8")
 [node name="Marker2D" type="Marker2D" parent="line_of_sight"]
 position = Vector2(65, 0)
 
-[connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
+[node name="ally_navigation_agent" parent="." instance=ExtResource("11_7jtr7")]
+follow_position = Vector2(-500, 200)
 
-[editable path="hurtbox"]
+[node name="hurtbox" parent="." instance=ExtResource("3_dfdeh")]
+
+[connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]

@@ -5,9 +5,11 @@ var movement_type = Constants.ally_movement_state.NORMAL
 func _physics_process(delta):
 	if get_parent().character_stats.STATE == Constants.player_state.DEATH:
 		return
-	if get_parent().character_stats.is_ally:
+
+	if get_parent().character_stats.TYPE == Constants.character_type.ALLY:
 		move_ally(delta)
-	else:
+
+	elif get_parent().character_stats.TYPE == Constants.character_type.MAIN:
 		move_player_from_joystick(delta)
 
 
@@ -15,8 +17,6 @@ func move_ally(delta) -> void:
 	var lockstep_mode = Server.player_node.player_gui.lockstep_pressed
 	if lockstep_mode:
 		move_player_from_joystick(delta)
-	else:
-		apply_friction(Vector2.ZERO,delta)
 
 
 func move_player_from_joystick(delta) -> void:

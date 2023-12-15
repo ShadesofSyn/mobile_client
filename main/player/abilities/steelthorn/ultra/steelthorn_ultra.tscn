@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdkwf6c5rdx8t"]
+
+[ext_resource type="Script" path="res://main/player/abilities/steelthorn/ultra/steelthorn_ultra.gd" id="1_xe1lw"]
+[ext_resource type="Texture2D" uid="uid://sk0py0ywpyoh" path="res://assets/characters/steelthorn/ultra/Steel-ultra-s-03.png" id="2_jpd6a"]
+
+[node name="steelthorn_ultra" type="Node2D"]
+script = ExtResource("1_xe1lw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -284)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_jpd6a")

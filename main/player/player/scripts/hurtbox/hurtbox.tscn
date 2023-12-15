@@ -19,6 +19,7 @@ script = ExtResource("1_mosja")
 shape = SubResource("CapsuleShape2D_qyflm")
 
 [node name="attack_progress_bar" type="TextureProgressBar" parent="."]
+visible = false
 modulate = Color(0, 0.388235, 0.980392, 1)
 offset_left = -77.0
 offset_top = -138.0
@@ -32,9 +33,9 @@ texture_progress = ExtResource("3_3aod0")
 
 [node name="health_progress_bar" type="TextureProgressBar" parent="."]
 offset_left = -79.0
-offset_top = -165.0
+offset_top = -153.0
 offset_right = 549.0
-offset_bottom = -56.9999
+offset_bottom = -44.9999
 scale = Vector2(0.25, 0.25)
 value = 100.0
 nine_patch_stretch = true
@@ -45,9 +46,9 @@ texture_progress = ExtResource("3_3aod0")
 modulate = Color(1, 0.286275, 0.380392, 1)
 texture_filter = 1
 offset_left = -79.0
-offset_top = -177.0
+offset_top = -165.0
 offset_right = 118.0
-offset_bottom = -128.0
+offset_bottom = -116.0
 scale = Vector2(0.8, 0.8)
 theme = ExtResource("4_c5o0r")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

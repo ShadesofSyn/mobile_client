@@ -19,7 +19,7 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0hu7q"]
-radius = 455.215
+radius = 528.034
 
 [node name="technomancer" type="CharacterBody2D"]
 collision_layer = 0
@@ -52,13 +52,11 @@ wait_time = 0.125
 autostart = true
 
 [node name="detect_enemy" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("8_sc2ks")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
-position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_0hu7q")
 
 [node name="line_of_sight" type="Node2D" parent="."]

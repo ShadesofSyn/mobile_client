@@ -78,6 +78,8 @@ func return_health_change(hitbox_name) -> int:
 	return 0
 
 
+
+
 ### Detect enemy nodes
 func get_nearest_target(_detect_enemy_node): 
 	var enemy_node
@@ -108,6 +110,14 @@ func get_lowest_health_target(_detect_enemy_node):
 				max_health_to_check = health_of_enemy
 				enemy_node = node
 		return enemy_node
+
+func return_random_idle_position(_spawn_pos) -> Vector2:
+	var random_vec = Vector2(randf_range(100,300),randf_range(100,300))
+	if chance(50):
+		random_vec.x *= -1
+	if chance(50):
+		random_vec.y *= -1
+	return random_vec + _spawn_pos
 
 
 ### Validate and remove tile functions

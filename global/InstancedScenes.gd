@@ -17,6 +17,12 @@ func init_mariselle_basic(team_color,velocity,spawn_pt) -> void:
 	proj.team_color = team_color
 	Server.world.projectiles.call_deferred("add_child",proj)
 
+func init_steelthorn_basic(team_color,velocity,spawn_pt) -> void:
+	var proj = preload("res://main/player/abilities/steelthorn/basic/steelthorn_basic.tscn").instantiate()
+	proj.position = spawn_pt
+	proj.velocity = velocity
+	proj.team_color = team_color
+	Server.world.projectiles.call_deferred("add_child",proj)
 
 ### Ultra attacks
 func init_valkyrie_ultra(team_color) -> void:

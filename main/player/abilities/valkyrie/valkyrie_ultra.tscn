@@ -40,6 +40,7 @@ y_sort_enabled = true
 script = ExtResource("1_geik4")
 
 [node name="first" type="Sprite2D" parent="."]
+visible = false
 y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_1pjhl")
@@ -54,6 +55,7 @@ script = ExtResource("3_43rti")
 shape = SubResource("CircleShape2D_fx1p2")
 
 [node name="second" type="Sprite2D" parent="."]
+visible = false
 y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_1pjhl")
