@@ -20,7 +20,7 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hb8v3"]
-radius = 455.215
+radius = 261.008
 
 [node name="magmaul" type="CharacterBody2D"]
 collision_layer = 0
@@ -82,7 +82,7 @@ offset_top = -209.0
 offset_bottom = -160.0
 
 [node name="ally_navigation_agent" parent="." instance=ExtResource("11_5xq23")]
-follow_position = Vector2(-500, 2.08165e-12)
+follow_position = Vector2(-100, 100)
 
 [connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
 

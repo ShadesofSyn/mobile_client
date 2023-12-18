@@ -13,11 +13,18 @@ var scrying_orb_distance_to_center: float = 1000
 
 
 func _ready():
+#	$players.queue_free()
 	set_spawn_area_points_and_size()
 	set_size_of_polygon()
 	init_tall_grass()
 	await get_tree().process_frame
 	Server.world = self
+#	for player in $players.get_children():
+#		if not player == Server.player_node:
+#			if not player == Server.ally_node1:
+#				player = Server.ally_node2
+#			else:
+#				player = Server.ally_node1
 
 
 func set_spawn_area_points_and_size() -> void:
@@ -38,6 +45,7 @@ func set_size_of_polygon() -> void:
 #	boundary_area.set_polygon(points)
 #	points.append(Vector2(0,hex_size))
 #	$lines/border.points = points
+	print(Vector2(hex_size/3.46,hex_size/2))
 	get_node("objectives/scrying_orbs/1").position.x = -scrying_orb_distance_to_center
 	get_node("objectives/scrying_orbs/2").position.x = scrying_orb_distance_to_center
 	get_node("objectives/objectives/1").position = Vector2(-hex_size/3.46,hex_size/2)

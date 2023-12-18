@@ -26,3 +26,5 @@ func calculate_path(target_pos):
 
 func _on_timer_timeout():
 	calculate_path(Server.player_node.global_position + follow_position)
+
+

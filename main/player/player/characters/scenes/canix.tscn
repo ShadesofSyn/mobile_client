@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bjjutapwvygej"]
+[gd_scene load_steps=15 format=3 uid="uid://bjjutapwvygej"]
 
 [ext_resource type="Script" path="res://main/player/player/characters/character.gd" id="1_yqtbi"]
 [ext_resource type="Script" path="res://main/player/player/scripts/movement.gd" id="2_qipv8"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="8_yia6t"]
 [ext_resource type="PackedScene" uid="uid://bs6ncy56q2n34" path="res://main/player/player_gui/player_gui.tscn" id="9_ij4hd"]
 [ext_resource type="Script" path="res://main/player/player/scripts/line_of_sight.gd" id="10_66bfv"]
+[ext_resource type="PackedScene" uid="uid://dympouuep62iu" path="res://main/player/player/scripts/ally_navigation_agent/ally_navigation_agent.tscn" id="11_6avgt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5jxgq"]
 
@@ -19,7 +20,7 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n855i"]
-radius = 455.215
+radius = 320.077
 
 [node name="canix" type="CharacterBody2D"]
 collision_layer = 0
@@ -68,5 +69,8 @@ script = ExtResource("10_66bfv")
 position = Vector2(35, 0)
 
 [node name="hurtbox" parent="." instance=ExtResource("4_e2ri2")]
+
+[node name="ally_navigation_agent" parent="." instance=ExtResource("11_6avgt")]
+follow_position = Vector2(-100, -100)
 
 [connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]

@@ -15,6 +15,7 @@
 texture = ExtResource("1_6s81e")
 texture_region_size = Vector2i(193, 188)
 0:0/0 = 0
+0:0/0/y_sort_origin = 60
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
@@ -31,7 +32,7 @@ texture_region_size = Vector2i(150, 225)
 texture = ExtResource("3_04wce")
 texture_region_size = Vector2i(232, 301)
 0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 96)
+0:0/0/texture_origin = Vector2i(0, 70)
 0:0/0/y_sort_origin = 96
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -87,6 +88,7 @@ texture_region_size = Vector2i(54, 61)
 texture = ExtResource("10_5n6yb")
 texture_region_size = Vector2i(133, 81)
 0:0/0 = 0
+0:0/0/z_index = -1
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 

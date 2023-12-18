@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://h4q0b014rugy"]
+
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="1_g3fkv"]
+[ext_resource type="Script" path="res://main/player/abilities/magmaul/magmaul_basic.gd" id="1_gitac"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aqka3"]
+radius = 50.0
+
+[sub_resource type="Animation" id="Animation_3fxbj"]
+resource_name = "anim"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitbox/CollisionShape2D:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10.0, 80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8qtm6"]
+_data = {
+"anim": SubResource("Animation_3fxbj")
+}
+
+[node name="magmaul_basic" type="Node2D"]
+script = ExtResource("1_gitac")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_g3fkv")
+hitbox_character_name = "magmaul"
+hitbox_attack_type = "basic"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_aqka3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8qtm6")
+}

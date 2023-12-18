@@ -13,11 +13,11 @@ var team_color: String
 var anchor_mode: bool = false
 
 var spawn_position: Vector2
-
+var attacking: bool = false
 
 func _ready():
 	spawn_position = position
-	character_stats.team_color = "white"
+	character_stats.team_color = "red"
 	character_stats.character_name = "ghoul"
 	character_stats.TYPE = Constants.character_type.AD
 	calculate_path()
@@ -26,7 +26,11 @@ func _ready():
 
 func _physics_process(delta):
 	if Server.world:
-		if navigation_agent.is_navigation_finished():
+		if attacking:
+			return
+#		if Util.get_nearest_target($detect_enemy):
+#			attack()
+		if navigation_agent.is_navigation_finished() or character_stats.destroyed:
 			velocity = velocity.move_toward(Vector2.ZERO,character_stats.friction*delta)
 		else:
 			set_direction()
@@ -38,9 +42,23 @@ func _physics_process(delta):
 		set_sprite_state()
 		move_and_slide()
 
+func attack():
+	if not attacking:
+		attacking = true
+		$AnimatedSprite2D.play("attack")
+		await $AnimatedSprite2D.animation_finished
+		$hitbox/CollisionShape2D.set_deferred("disabled",false)
+		await get_tree().create_timer(0.1).timeout
+		$hitbox/CollisionShape2D.set_deferred("disabled",true)
+		attacking = false
+
 
 func set_sprite_state():
-	if velocity == Vector2.ZERO:
+	if attacking:
+		return
+	if character_stats.destroyed:
+		$AnimatedSprite2D.play("death")
+	elif velocity == Vector2.ZERO:
 		$AnimatedSprite2D.play("idle")
 	else:
 		$AnimatedSprite2D.play("walk")
@@ -60,14 +78,12 @@ func destroy():
 	character_stats.destroyed = true
 	sprite.play("death")
 	await sprite.animation_finished
-	Util.add_item_drop_to_world(position+Vector2(randf_range(-16,16),randf_range(-16,16)))
 	call_deferred("queue_free")
 
 
 func _on_timer_timeout():
-	$ad_navigation_agent/Timer.start(randf_range(5,8))
+	$ad_navigation_agent/Timer.start(randf_range(0.15,1.0))
 	calculate_path()
-
 
 
 func calculate_path():
@@ -78,8 +94,13 @@ func calculate_path():
 	navigation_agent.set_target_position(target.global_position)
 
 
+func start_agro_mode():
+	character_stats.agro_mode = true
+	$agro_label/AnimationPlayer.play("animate")
 
+#
 func _on_timer_2_timeout():
+
 	if $hitbox/CollisionShape2D.disabled:
 		$hitbox/CollisionShape2D.set_deferred("disabled", false)
 	else:

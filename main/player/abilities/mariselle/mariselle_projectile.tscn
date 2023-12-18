@@ -8,16 +8,22 @@
 radius = 14.0357
 
 [node name="mariselle_projectile" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_kdqa2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
+texture_filter = 1
+position = Vector2(-38, -3)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_twi43")
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_f4oo5")
+hitbox_character_name = "mariselle"
+hitbox_attack_type = "basic"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_u2ft6")

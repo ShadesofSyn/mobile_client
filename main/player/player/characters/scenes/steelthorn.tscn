@@ -20,7 +20,7 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a1y66"]
-radius = 455.215
+radius = 445.01
 
 [node name="steelthorn" type="CharacterBody2D"]
 collision_layer = 0
@@ -32,12 +32,13 @@ script = ExtResource("1_t1dco")
 
 [node name="character_stats" type="Node" parent="."]
 script = ExtResource("2_gb01w")
-max_speed = 180.0
+max_speed = 170.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0f3jy")
 
 [node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(1.2, 1.2, 1.2, 1)
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_2kq0x")
 position = Vector2(0, -65)
@@ -50,7 +51,6 @@ wait_time = 0.1
 autostart = true
 
 [node name="detect_enemy" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("7_c1wd7")
@@ -64,14 +64,14 @@ shape = SubResource("CircleShape2D_a1y66")
 visible = false
 
 [node name="line_of_sight" type="Node2D" parent="."]
-position = Vector2(-1.90707e-07, -16)
+position = Vector2(-1.90707e-07, -41)
 script = ExtResource("10_41ge8")
 
 [node name="Marker2D" type="Marker2D" parent="line_of_sight"]
-position = Vector2(65, 0)
+position = Vector2(89, 0)
 
 [node name="ally_navigation_agent" parent="." instance=ExtResource("11_7jtr7")]
-follow_position = Vector2(-500, 200)
+follow_position = Vector2(-200, 200)
 
 [node name="hurtbox" parent="." instance=ExtResource("3_dfdeh")]
 

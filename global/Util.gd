@@ -74,9 +74,18 @@ func return_abbreviated_character_name(_char_name):
 
 
 ### Damage inflicted
-func return_health_change(hitbox_name) -> int:
-	return 0
+func return_health_change(character,type) -> int:
+	if character == "valkyrie" and type == "ultimate":
+		return -60
+	elif character == "ghoul":
+		return -30
+	return -Constants.character_data[character][type]["damage"]
 
+
+func destructable_projectile(character,type) -> bool:
+	if type == "ultimate" or character == "magmaul" or character == "valkyrie":
+		return false
+	return true
 
 
 

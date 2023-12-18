@@ -1,5 +1,7 @@
 extends Node
 
+const ATTACK_SPEED_RESTRUCTION = 0.8
+
 var movement_type = Constants.ally_movement_state.NORMAL
 
 func _physics_process(delta):
@@ -42,4 +44,7 @@ func apply_dash_movement(input_vector,delta) -> void:
 	get_parent().velocity = get_parent().velocity.move_toward(input_vector*get_parent().character_stats.max_speed*Constants.DASH_SPEED_INCREASE,get_parent().character_stats.acceleration*delta*Constants.DASH_ACCEL_INCREASE)
 	
 func apply_normal_movement(input_vector,delta) -> void:
-	get_parent().velocity = get_parent().velocity.move_toward(input_vector*get_parent().character_stats.max_speed,get_parent().character_stats.acceleration*delta)
+	if get_parent().sprite.attacking:
+		get_parent().velocity = get_parent().velocity.move_toward(input_vector*get_parent().character_stats.max_speed*ATTACK_SPEED_RESTRUCTION,get_parent().character_stats.acceleration*delta)
+	else:
+		get_parent().velocity = get_parent().velocity.move_toward(input_vector*get_parent().character_stats.max_speed,get_parent().character_stats.acceleration*delta)

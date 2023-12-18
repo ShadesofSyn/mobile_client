@@ -56,6 +56,7 @@ enum player_state {
 	IDLE,
 	WALK,
 	ATTACK,
+	WALKING_ATTACK,
 	CHARGED_ATTACK,
 	ULTRA_ATTACK,
 	DEATH,
@@ -71,7 +72,7 @@ var structure_data = {
 	"tower": {
 		"class": "Unknown",
 		"description": "Allows you to erect a tower (in or out of battle - can kill objectives).",
-		"baseStats": {
+		"basic": {
 			"health": 200,
 			"damage": 30,
 			"attackSpeed": 0.8,
@@ -82,7 +83,7 @@ var structure_data = {
 	"bio-forge": {
 		"class": "Unknown",
 		"description": "Produces minions to attack nearby enemies.",
-		"baseStats": {
+		"basic": {
 			"health": 200,
 			"attackSpeed": 0.8,
 			"movementSpeed": 10,
@@ -95,8 +96,8 @@ var ad_data = {
 	"ghoul": {
 		"class": "Unknown",
 		"description": "A slow-moving swordsman.",
-		"baseStats": {
-			"health": 200,
+		"basic": {
+			"health": 120,
 			"damage": 30,
 			"attackSpeed": 0.8,
 			"movementSpeed": 10,
@@ -106,10 +107,35 @@ var ad_data = {
 }
 
 var character_data = {
+	"valkyrie": {
+		"class": "Warrior",
+		"description": "Melee swordsmith master, of an ancient race.",
+		"basic": {
+			"health": 350,
+			"damage": 30,
+			"attackSpeed": 0.8,
+			"movementSpeed": 14,
+			"attackRange": 3
+		},
+		"abilities": {
+			"chargedAttack": {
+				"description": "Every 6th Basic Attack does +100% Basic Attack Damage",
+				"chargedAttackDamage": "Basic Damage + (Basic Damage*1.0)"
+			},
+		"ultimate": {
+			"name": "Bladefury",
+			"type": "Action",
+			"description": "Spin around 3 times dealing damage each rotation to anything within range",
+			"damage": 60,
+			"range": 5,
+			"cooldown": 10
+		}
+	}
+	},
 	"technomancer": {
 		"class": "Unknown",
 		"description": "Placeholder description for Technomancer.",
-		"baseStats": {
+		"basic": {
 			"health": 330,
 			"damage": 42,
 			"attackSpeed": 1.0,
@@ -133,7 +159,7 @@ var character_data = {
 	"magmaul": {
 		"class": "Unknown",
 		"description": "Placeholder description for Magmaul.",
-		"baseStats": {
+		"basic": {
 			"health": 800,
 			"damage": 25,
 			"attackSpeed": 1.2,
@@ -149,7 +175,7 @@ var character_data = {
 		"type": "Placeholder Type",
 		"description": "Placeholder description for the Ultimate Ability.",
 		"totalDamage": 180,
-		"damagePerAction": 60.0,  ## Assuming the total damage is split into 3 actions
+		"damage": 60.0,  ## Assuming the total damage is split into 3 actions
 		"range": 4,
 		"cooldown": 12
 		}
@@ -157,7 +183,7 @@ var character_data = {
 	"steelthorn": {
 		"class": "Unknown",
 		"description": "Placeholder description for Steelthorn.",
-		"baseStats": {
+		"basic": {
 			"health": 700,
 			"damage": 25,
 			"attackSpeed": 1.0,
@@ -181,7 +207,7 @@ var character_data = {
 	"canix": {
 		"class": "Unknown",
 		"description": "Placeholder description for Canix.",
-		"baseStats": {
+		"basic": {
 			"health": 360,
 			"damage": 30,
 			"attackSpeed": 0.7,
@@ -206,7 +232,7 @@ var character_data = {
 	"mariselle": {
 		"class": "Unknown",
 		"description": "Placeholder description for Mariselle.",
-		"baseStats": {
+		"basic": {
 			"health": 420,
 			"damage": 27,
 			"attackSpeed": 0.9,
@@ -227,31 +253,31 @@ var character_data = {
 			"cooldown": 8
 		}
 	},
-	"valkyrie": {
-		"class": "Warrior",
-		"description": "Melee swordsmith master, of an ancient race.",
-		"baseStats": {
-			"health": 350,
-			"damage": 30,
-			"attackSpeed": 0.8,
-			"movementSpeed": 14,
-			"attackRange": 3
-		},
-		"abilities": {
-			"chargedAttack": {
-				"description": "Every 6th Basic Attack does +100% Basic Attack Damage",
-				"chargedAttackDamage": "Basic Damage + (Basic Damage*1.0)"
-			},
-		"ultimate": {
-			"name": "Bladefury",
-			"type": "Action",
-			"description": "Spin around 3 times dealing damage each rotation to anything within range",
-			"damagePerRotation": 60,
-			"range": 5,
-			"cooldown": 10
-		}
-	}
-	}
+#	"valkyrie": {
+#		"class": "Warrior",
+#		"description": "Melee swordsmith master, of an ancient race.",
+#		"basic": {
+#			"health": 350,
+#			"damage": 30,
+#			"attackSpeed": 0.8,
+#			"movementSpeed": 14,
+#			"attackRange": 3
+#		},
+#		"abilities": {
+#			"chargedAttack": {
+#				"description": "Every 6th Basic Attack does +100% Basic Attack Damage",
+#				"chargedAttackDamage": "Basic Damage + (Basic Damage*1.0)"
+#			},
+#		"ultimate": {
+#			"name": "Bladefury",
+#			"type": "Action",
+#			"description": "Spin around 3 times dealing damage each rotation to anything within range",
+#			"damage": 60,
+#			"range": 5,
+#			"cooldown": 10
+#		}
+#	}
+#	}
 }
 
 

@@ -1,13 +1,13 @@
 extends TextureRect
 
-const dist_to_btn: float = 40.0
+const dist_to_btn: float = 0.0
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			if _is_point_inside_button_area(event.position) and not $cooldown.visible:
-				$cooldown.start(10)
-				Server.player_node.ultra_attack()
+				$cooldown.start(1)
+				ultra_attack()
 				play_button_pressed()
 
 
@@ -23,3 +23,15 @@ func play_button_pressed() -> void:
 	await get_tree().create_timer(0.3).timeout
 	var tween2 = get_tree().create_tween() 
 	tween2.tween_property(self,"scale",Vector2(1.0,1.0),0.1).set_ease(Tween.EASE_IN)
+
+
+func ultra_attack():
+	match name.right(1):
+		"1":
+			Server.player_node.ultra_attack()
+		"2":
+			Server.ally_node1.ultra_attack()
+		"3":
+			Server.ally_node2.ultra_attack()
+
+

@@ -14,9 +14,9 @@ script = ExtResource("1_2tmwi")
 [node name="movement_joystick" parent="." instance=ExtResource("2_o2cux")]
 offset_top = 444.0
 offset_right = -812.0
-slide_joystick_mode = true
 
 [node name="minimap" parent="." instance=ExtResource("3_x2cvh")]
+visible = false
 offset_left = 142.0
 offset_top = 144.0
 offset_right = 142.0
@@ -25,7 +25,10 @@ offset_bottom = 144.0
 [node name="action_buttons" parent="." instance=ExtResource("4_ms13x")]
 
 [node name="favor_bar" parent="." instance=ExtResource("5_w31u7")]
+visible = false
 
 [node name="action_rewards" parent="." instance=ExtResource("6_bsrmv")]
+visible = false
 
 [node name="active_team_boosts" parent="." instance=ExtResource("7_vgens")]
+visible = false

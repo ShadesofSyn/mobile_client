@@ -19,7 +19,7 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0hu7q"]
-radius = 528.034
+radius = 715.003
 
 [node name="technomancer" type="CharacterBody2D"]
 collision_layer = 0
@@ -41,6 +41,7 @@ shape = SubResource("CircleShape2D_f01f4")
 visible = false
 
 [node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(1.2, 1.2, 1.2, 1)
 material = SubResource("ShaderMaterial_yrk13")
 position = Vector2(2.08165e-12, -50)
 scale = Vector2(0.6, 0.6)
@@ -52,6 +53,7 @@ wait_time = 0.125
 autostart = true
 
 [node name="detect_enemy" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("8_sc2ks")
@@ -66,6 +68,13 @@ script = ExtResource("10_ykb25")
 [node name="Marker2D" type="Marker2D" parent="line_of_sight"]
 position = Vector2(35, 0)
 
+[node name="ColorRect" type="ColorRect" parent="line_of_sight"]
+visible = false
+offset_left = 18.0
+offset_top = -4.0
+offset_right = 52.0
+offset_bottom = 5.0
+
 [node name="hurtbox" parent="." instance=ExtResource("4_pc0im")]
 
 [node name="attack_progress_bar" parent="hurtbox" index="1"]
@@ -73,12 +82,16 @@ offset_top = -121.0
 offset_bottom = -73.0
 
 [node name="health_progress_bar" parent="hurtbox" index="2"]
-offset_top = -148.0
-offset_bottom = -39.9999
+offset_left = -68.0
+offset_top = -127.0
+offset_right = 560.0
+offset_bottom = -18.9999
 
 [node name="Label" parent="hurtbox" index="3"]
-offset_top = -160.0
-offset_bottom = -111.0
+offset_left = -79.0
+offset_top = -139.0
+offset_right = 118.0
+offset_bottom = -90.0
 
 [connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
 

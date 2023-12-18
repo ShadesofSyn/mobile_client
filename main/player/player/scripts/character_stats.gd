@@ -6,7 +6,7 @@ var team_color: String = "blue"
 var destroyed: bool = false
 var dashing: bool = false
 var invisible: bool = false
-
+var agro_mode: bool = false
 
 @export var max_speed: float = 250.0
 @export var acceleration: float = 2000.0

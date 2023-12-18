@@ -5,7 +5,6 @@ var team_color: String
 
 
 func _ready():
-	$hitbox.hitbox_name = "magmaul ultra"
 	set_hitbox_layer()
 	play_ultra()
 

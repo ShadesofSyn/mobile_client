@@ -20,7 +20,7 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ldu32"]
-radius = 455.215
+radius = 605.001
 
 [node name="mariselle" type="CharacterBody2D"]
 collision_layer = 0
@@ -39,6 +39,7 @@ friction = 1500.0
 shape = SubResource("CircleShape2D_vd3bd")
 
 [node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(1.2, 1.2, 1.2, 1)
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_1pm5y")
 position = Vector2(0, -60)
@@ -73,7 +74,17 @@ position = Vector2(35, 0)
 
 [node name="hurtbox" parent="." instance=ExtResource("3_tvwfm")]
 
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_top = -146.0
+offset_bottom = -37.9999
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_top = -162.0
+offset_bottom = -113.0
+
 [node name="ally_navigation_agent" parent="." instance=ExtResource("11_xesr1")]
-follow_position = Vector2(500, 200)
+follow_position = Vector2(200, 200)
 
 [connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
+
+[editable path="hurtbox"]

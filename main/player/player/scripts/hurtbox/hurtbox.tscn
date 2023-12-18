@@ -32,11 +32,11 @@ texture_under = ExtResource("2_ux8gw")
 texture_progress = ExtResource("3_3aod0")
 
 [node name="health_progress_bar" type="TextureProgressBar" parent="."]
-offset_left = -79.0
-offset_top = -153.0
-offset_right = 549.0
-offset_bottom = -44.9999
-scale = Vector2(0.25, 0.25)
+offset_left = -69.0
+offset_top = -156.0
+offset_right = 559.0
+offset_bottom = -47.9999
+scale = Vector2(0.22, 0.22)
 value = 100.0
 nine_patch_stretch = true
 texture_under = ExtResource("2_ux8gw")
@@ -45,10 +45,10 @@ texture_progress = ExtResource("3_3aod0")
 [node name="Label" type="Label" parent="."]
 modulate = Color(1, 0.286275, 0.380392, 1)
 texture_filter = 1
-offset_left = -79.0
-offset_top = -165.0
-offset_right = 118.0
-offset_bottom = -116.0
+offset_left = -80.0
+offset_top = -172.0
+offset_right = 117.0
+offset_bottom = -123.0
 scale = Vector2(0.8, 0.8)
 theme = ExtResource("4_c5o0r")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

@@ -1,32 +1,26 @@
 extends Node2D
 
-var team_color: String
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+var team_color: String
 
 func _ready():
-	set_hitbox_layer()
+	$hitbox.set_collision_layer(Util.return_hitbox_layer(team_color))
 	play_ultra()
-
-
-func set_hitbox_layer() -> void:
-	$hitbox.set_collision_layer(Util.return_hurtbox_layer(team_color)) # set to hurtbox layer because heal hitbox
-
-
-func play_ultra() -> void:
+	
+func play_ultra():
 	sprite.play("start")
 	await sprite.animation_finished
 	for i in range(3):
 		sprite.play("loop")
 		await sprite.animation_finished
-		init_heal_hitbox()
-	sprite.play_backwards("start")
+		enable_hitbox()
+	sprite.play("end")
 	await sprite.animation_finished
 	call_deferred("queue_free")
-	
 
-func init_heal_hitbox():
+
+func enable_hitbox():
 	$hitbox/CollisionShape2D.set_deferred("disabled",false)
 	await get_tree().create_timer(0.1).timeout
 	$hitbox/CollisionShape2D.set_deferred("disabled",true)
-	

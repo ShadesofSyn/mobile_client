@@ -45,7 +45,7 @@ texture = ExtResource("1_me5m3")
 flip_h = true
 script = ExtResource("3_stowi")
 
-[node name="ultra_attack" type="TextureRect" parent="."]
+[node name="ultra_attack1" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 372.0
 offset_top = 370.0
@@ -55,7 +55,7 @@ pivot_offset = Vector2(75, 75)
 texture = ExtResource("4_di6kh")
 script = ExtResource("10_5btfc")
 
-[node name="icon" type="TextureRect" parent="ultra_attack"]
+[node name="icon" type="TextureRect" parent="ultra_attack1"]
 layout_mode = 0
 offset_left = -183.0
 offset_top = -186.0
@@ -65,16 +65,16 @@ scale = Vector2(0.2, 0.2)
 pivot_offset = Vector2(256, 256)
 texture = ExtResource("10_0dxil")
 
-[node name="cooldown" type="Control" parent="ultra_attack"]
+[node name="cooldown" type="Control" parent="ultra_attack1"]
 anchors_preset = 0
 offset_right = 150.0
 offset_bottom = 150.0
 script = ExtResource("7_x0136")
 
-[node name="Timer" type="Timer" parent="ultra_attack/cooldown"]
+[node name="Timer" type="Timer" parent="ultra_attack1/cooldown"]
 one_shot = true
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="ultra_attack/cooldown"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ultra_attack1/cooldown"]
 modulate = Color(0.262745, 0.262745, 0.262745, 0.823529)
 layout_mode = 0
 offset_right = 151.0
@@ -84,7 +84,7 @@ fill_mode = 4
 nine_patch_stretch = true
 texture_progress = ExtResource("6_eqkrv")
 
-[node name="Label" type="Label" parent="ultra_attack/cooldown"]
+[node name="Label" type="Label" parent="ultra_attack1/cooldown"]
 modulate = Color(0.956863, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -101,7 +101,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ultra_attack2" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 392.0
 offset_top = 202.0
@@ -157,7 +156,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ultra_attack3" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 536.0
 offset_top = 100.0
