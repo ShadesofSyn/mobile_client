@@ -71,7 +71,7 @@ script = ExtResource("10_41ge8")
 position = Vector2(89, 0)
 
 [node name="ally_navigation_agent" parent="." instance=ExtResource("11_7jtr7")]
-follow_position = Vector2(-200, 200)
+follow_position = Vector2(-100, 100)
 
 [node name="hurtbox" parent="." instance=ExtResource("3_dfdeh")]
 

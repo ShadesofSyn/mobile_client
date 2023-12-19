@@ -79,11 +79,11 @@ offset_top = -146.0
 offset_bottom = -37.9999
 
 [node name="Label" parent="hurtbox" index="3"]
-offset_top = -162.0
-offset_bottom = -113.0
+offset_top = -159.0
+offset_bottom = -110.0
 
 [node name="ally_navigation_agent" parent="." instance=ExtResource("11_xesr1")]
-follow_position = Vector2(200, 200)
+follow_position = Vector2(100, 100)
 
 [connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
 

@@ -50,15 +50,16 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_amfc6"]
-radius = 226.0
-height = 966.0
+radius = 104.0
+height = 458.0
 
 [node name="mariselle_ultra" type="Node2D"]
 z_index = -1
 script = ExtResource("1_ng4a1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
+modulate = Color(1, 1, 1, 0.823529)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_pnqk4")
 animation = &"loop"
 frame = 5

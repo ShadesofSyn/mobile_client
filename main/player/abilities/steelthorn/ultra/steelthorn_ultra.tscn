@@ -32,7 +32,7 @@ animations = [{
 
 [node name="steelthorn_ultra" type="Node2D"]
 y_sort_enabled = true
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 script = ExtResource("1_xe1lw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

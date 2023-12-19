@@ -85,7 +85,7 @@ z_index = -1
 position = Vector2(21, -74)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_vk2ks")
-animation = &"start"
+animation = &"loop"
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 0

@@ -46,6 +46,7 @@ autostart = true
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_c8k4v")
 autoplay = "default"
+frame_progress = 0.232958
 offset = Vector2(0, -116.667)
 
 [node name="hitbox" type="Area2D" parent="."]

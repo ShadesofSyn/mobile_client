@@ -131,6 +131,33 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_h07ia"]
 radius = 101.0
 
+[sub_resource type="Animation" id="Animation_ct4u6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, -120)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_e4fj0"]
 resource_name = "animate"
 length = 0.5
@@ -159,33 +186,6 @@ tracks/1/keys = {
 "values": [Vector2(64, -120), Vector2(64, -130)]
 }
 
-[sub_resource type="Animation" id="Animation_ct4u6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(64, -120)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7pe85"]
 _data = {
 "RESET": SubResource("Animation_ct4u6"),
@@ -211,8 +211,10 @@ material = SubResource("ShaderMaterial_i5uu6")
 position = Vector2(23, -37)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_kw1qb")
-animation = &"death"
+animation = &"attack"
 autoplay = "walk"
+frame = 5
+frame_progress = 1.0
 
 [node name="hurtbox" parent="." instance=ExtResource("24_gc0ry")]
 

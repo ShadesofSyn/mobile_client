@@ -25,6 +25,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	return
 	if Server.world:
 		if attacking:
 			return

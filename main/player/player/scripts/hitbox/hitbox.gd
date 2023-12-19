@@ -7,5 +7,6 @@ var knockback_vector: Vector2 = Vector2.ZERO
 
 
 func destroy():
-	if not get_parent().character_stats.character_name == "ghoul":
-		get_parent().destroy()
+	pass
+#	if not get_parent().character_stats.character_name == "ghoul":
+#	get_parent().destroy()

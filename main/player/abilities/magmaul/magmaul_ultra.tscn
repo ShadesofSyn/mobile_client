@@ -54,17 +54,18 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_61hpq"]
-radius = 226.0
-height = 966.0
+radius = 160.0
+height = 500.0
 
 [node name="magmaul_ultra" type="Node2D"]
 script = ExtResource("1_3ho3k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.823529)
 z_index = -1
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_rey70")
-animation = &"start"
+animation = &"loop"
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 0
