@@ -81,7 +81,7 @@ var start_pos: Vector2
 
 func _ready() -> void:
 #	start_pos = $CharacterBody2D.position
-	modulate.a = 0.15
+	modulate.a = 0.5
 	if not DisplayServer.is_touchscreen_available() and visibility_mode == Visibility_mode.TOUCHSCREEN_ONLY:
 		hide()
 	_reset()
@@ -146,6 +146,7 @@ var joy_btn_pressed: bool = false
 func _input(event: InputEvent) -> void:
 #	if cooldown or _base.self_modulate.a == 0.0:
 #		return
+
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			if joystick_mode == Joystick_mode.BUTTON and _is_point_inside_base(event.position):
@@ -217,8 +218,6 @@ func _update_joystick(touch_position: Vector2) -> void:
 		modulate.a =  0.15
 		_tip.self_modulate.a = 1.0
 		_base.self_modulate.a = 1.0
-#		_tip.self_modulate.a = 0.0
-#		_base.self_modulate.a = 0.0
 	
 	if use_input_actions:
 		if output.x > 0:
@@ -234,6 +233,8 @@ func _update_joystick(touch_position: Vector2) -> void:
 
 func _physics_process(delta):
 	if name == "movement_joystick":
+		if not is_pressed:
+			output = get_input_vector()
 		if slide_joystick_mode and is_pressed:
 			var center : Vector2 = _base.global_position + _base_radius
 			var vector : Vector2 = screen_touch_position - center
@@ -247,6 +248,27 @@ func _physics_process(delta):
 			$Base/Tip/icon.hide()
 			$Base/Tip/time_remaing.show()
 			$Base/Tip/time_remaing.text = str(snapped($cooldown.time_left,0.1))
+
+
+func get_input_vector() -> Vector2:
+	var input_vector = Vector2.ZERO
+	input_vector.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	input_vector.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	var center : Vector2 = _base.global_position + _base_radius
+	var vector : Vector2 =  input_vector
+	vector = vector.limit_length(clampzone_size)
+	strength_coefficient = vector.length()/clampzone_size
+	if not input_vector == Vector2.ZERO:
+		modulate.a =  1.0
+		_tip.self_modulate.a = 1.0
+		_base.self_modulate.a = 1.0
+	else:
+		modulate.a =  0.1
+		_tip.self_modulate.a = 1.0
+		_base.self_modulate.a = 1.0
+	_move_tip(center + vector.normalized()*clampzone_size)
+	return input_vector.normalized()
+
 
 
 func slide_joystick(delta,vector,touch_position): 

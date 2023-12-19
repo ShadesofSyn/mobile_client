@@ -1,0 +1,100 @@
+[gd_scene load_steps=18 format=3 uid="uid://dexw8jc1qpmch"]
+
+[ext_resource type="Script" path="res://main/player/abilities/technomancer/ultra/technomancer_ultra.gd" id="1_f5xqd"]
+[ext_resource type="Texture2D" uid="uid://kmrcchwu2asn" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-01.png" id="1_xfvir"]
+[ext_resource type="Texture2D" uid="uid://dh0sra1f740hc" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-02.png" id="2_3ojie"]
+[ext_resource type="Texture2D" uid="uid://b4kdrj6pohi88" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-03.png" id="3_yfrsc"]
+[ext_resource type="Texture2D" uid="uid://c8hek67cfjvep" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-04.png" id="4_3tvrm"]
+[ext_resource type="Texture2D" uid="uid://ch2e8y0w1lngf" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-05.png" id="5_jaw1w"]
+[ext_resource type="Texture2D" uid="uid://bmj2msqkpvyy8" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-06.png" id="6_1fv2j"]
+[ext_resource type="Texture2D" uid="uid://1taov6dw5rrd" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-07.png" id="7_wy2k8"]
+[ext_resource type="Texture2D" uid="uid://cre6mvxfkqgfc" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-08.png" id="8_ytu3v"]
+[ext_resource type="Texture2D" uid="uid://w0ne3acxawfq" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-09.png" id="9_u1k4r"]
+[ext_resource type="Texture2D" uid="uid://duik88tu2a2yi" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-10.png" id="10_vy1ac"]
+[ext_resource type="Texture2D" uid="uid://h4f8kfgd8mtt" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-11.png" id="11_fncdu"]
+[ext_resource type="Texture2D" uid="uid://bfqdt88ynhln1" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-12.png" id="12_htjrm"]
+[ext_resource type="Texture2D" uid="uid://dvcf44hwqejwy" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-13.png" id="13_1tfs5"]
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="15_7n05j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vk2ks"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_vy1ac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fncdu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_htjrm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1tfs5")
+}],
+"loop": false,
+"name": &"end",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jaw1w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1fv2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wy2k8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ytu3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_u1k4r")
+}],
+"loop": false,
+"name": &"loop",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xfvir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3ojie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yfrsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3tvrm")
+}],
+"loop": false,
+"name": &"start",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_irx5s"]
+radius = 111.0
+height = 500.0
+
+[node name="technomancer_ultra" type="Node2D"]
+script = ExtResource("1_f5xqd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(21, -74)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_vk2ks")
+animation = &"loop"
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("15_7n05j")
+hitbox_character_name = "technomancer"
+hitbox_attack_type = "ultra"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_irx5s")
+disabled = true

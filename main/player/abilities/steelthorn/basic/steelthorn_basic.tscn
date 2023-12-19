@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bws235aahsjec"]
+
+[ext_resource type="Script" path="res://main/player/abilities/steelthorn/basic/steelthorn_basic.gd" id="1_834x2"]
+[ext_resource type="Texture2D" uid="uid://blogri4jn7q2d" path="res://assets/characters/steelthorn/projectile-ready.png" id="2_jc8og"]
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="3_tqpyk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fjko7"]
+radius = 14.0357
+
+[node name="steelthorn_basic" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_834x2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-14, 0)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_jc8og")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_tqpyk")
+hitbox_character_name = "steelthorn"
+hitbox_attack_type = "basic"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_fjko7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,98 @@
+[gd_scene load_steps=14 format=3 uid="uid://1jniane4wwft"]
+
+[ext_resource type="Script" path="res://main/player/player/scripts/movement.gd" id="1_fmmiy"]
+[ext_resource type="Script" path="res://main/player/player/characters/character.gd" id="1_ghag4"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="2_8dcqk"]
+[ext_resource type="PackedScene" uid="uid://bs6ncy56q2n34" path="res://main/player/player_gui/player_gui.tscn" id="3_4qbha"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="4_pc0im"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="5_m3r5y"]
+[ext_resource type="Texture2D" uid="uid://kiajklic1nbl" path="res://assets/characters/technomancer/attack/tech-attack-s-01.png" id="7_mdgyp"]
+[ext_resource type="Script" path="res://main/player/player/scripts/sprite.gd" id="7_puxfa"]
+[ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="8_sc2ks"]
+[ext_resource type="Script" path="res://main/player/player/scripts/line_of_sight.gd" id="10_ykb25"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f01f4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yrk13"]
+shader = ExtResource("5_m3r5y")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0hu7q"]
+radius = 715.003
+
+[node name="technomancer" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_ghag4")
+
+[node name="movement" type="Node" parent="."]
+script = ExtResource("1_fmmiy")
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("2_8dcqk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_f01f4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="player_gui" parent="Camera2D" instance=ExtResource("3_4qbha")]
+visible = false
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(1.2, 1.2, 1.2, 1)
+material = SubResource("ShaderMaterial_yrk13")
+position = Vector2(2.08165e-12, -50)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_mdgyp")
+script = ExtResource("7_puxfa")
+
+[node name="Timer" type="Timer" parent="sprite"]
+wait_time = 0.125
+autostart = true
+
+[node name="detect_enemy" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("8_sc2ks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+shape = SubResource("CircleShape2D_0hu7q")
+
+[node name="line_of_sight" type="Node2D" parent="."]
+position = Vector2(-1.90707e-07, -16)
+script = ExtResource("10_ykb25")
+
+[node name="Marker2D" type="Marker2D" parent="line_of_sight"]
+position = Vector2(35, 0)
+
+[node name="ColorRect" type="ColorRect" parent="line_of_sight"]
+visible = false
+offset_left = 18.0
+offset_top = -4.0
+offset_right = 52.0
+offset_bottom = 5.0
+
+[node name="hurtbox" parent="." instance=ExtResource("4_pc0im")]
+
+[node name="attack_progress_bar" parent="hurtbox" index="1"]
+offset_top = -121.0
+offset_bottom = -73.0
+
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_left = -68.0
+offset_top = -127.0
+offset_right = 560.0
+offset_bottom = -18.9999
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_left = -79.0
+offset_top = -139.0
+offset_right = 118.0
+offset_bottom = -90.0
+
+[connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
+
+[editable path="hurtbox"]

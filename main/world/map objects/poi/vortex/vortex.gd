@@ -5,11 +5,16 @@ extends Node2D
 #@onready var outline = $shadow/outline
 
 
+func _ready():
+	$red_team.set_collision_mask(Constants.RED_TEAM_HURTBOX_LAYER)
+	$blue_team.set_collision_mask(Constants.BLUE_TEAM_HURTBOX_LAYER)
+	var shader_scale = Constants.SIZE_OF_VORTEX / 34.285
+	border.scale = Vector2(shader_scale,shader_scale)
+	$blue_team/CollisionShape2D.shape.set_deferred("radius",Constants.SIZE_OF_VORTEX)
+	$red_team/CollisionShape2D.shape.set_deferred("radius",Constants.SIZE_OF_VORTEX)
+
 
 func _physics_process(delta):
-	$blue_team/CollisionShape2D.shape.set_deferred("radius",Server.world.size_of_vortex)
-	border.scale.x = Server.world.size_of_vortex / 34.285
-	border.scale.y = Server.world.size_of_vortex / 34.285
 	if $red_team.has_overlapping_bodies() and not $blue_team.has_overlapping_bodies():
 		set_red_team_state()
 	elif $blue_team.has_overlapping_bodies() and not $red_team.has_overlapping_bodies():
@@ -42,12 +47,11 @@ func set_empty_state() -> void:
 
 
 func _on_timer_timeout():
-	var favor = Server.player_node.player_gui.get_node("FavorBar")
+	return
+	var favor = Server.player_node.player_gui.get_node("favor_bar")
 	if name == "hotzone" and $flag.modulate == Color("ffffff"):
 		favor.right_team_score += 1
 		favor.set_right_team_position()
 	elif name == "hotzone" and $flag.modulate == Color("00ffff"):
 		favor.left_team_score += 1
 		favor.set_left_team_position()
-		
-		

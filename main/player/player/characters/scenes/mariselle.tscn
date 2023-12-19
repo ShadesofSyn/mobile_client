@@ -1,0 +1,90 @@
+[gd_scene load_steps=15 format=3 uid="uid://g872rpf7dlhi"]
+
+[ext_resource type="Script" path="res://main/player/player/scripts/movement.gd" id="1_pqv16"]
+[ext_resource type="Script" path="res://main/player/player/characters/character.gd" id="1_xkxbi"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="2_5yf82"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="3_tvwfm"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="4_smtab"]
+[ext_resource type="Texture2D" uid="uid://blg1wb8vljqxv" path="res://assets/characters/mariselle/walk/Mari-walking-s-01.png" id="5_hjimw"]
+[ext_resource type="Script" path="res://main/player/player/scripts/sprite.gd" id="6_y20bf"]
+[ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="7_383kw"]
+[ext_resource type="PackedScene" uid="uid://bs6ncy56q2n34" path="res://main/player/player_gui/player_gui.tscn" id="8_a8k27"]
+[ext_resource type="Script" path="res://main/player/player/scripts/line_of_sight.gd" id="10_b6x05"]
+[ext_resource type="PackedScene" uid="uid://dympouuep62iu" path="res://main/player/player/scripts/ally_navigation_agent/ally_navigation_agent.tscn" id="11_xesr1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vd3bd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1pm5y"]
+shader = ExtResource("4_smtab")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ldu32"]
+radius = 605.001
+
+[node name="mariselle" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_xkxbi")
+
+[node name="movement" type="Node" parent="."]
+script = ExtResource("1_pqv16")
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("2_5yf82")
+max_speed = 220.0
+friction = 1500.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vd3bd")
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(1.2, 1.2, 1.2, 1)
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_1pm5y")
+position = Vector2(0, -60)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_hjimw")
+script = ExtResource("6_y20bf")
+
+[node name="Timer" type="Timer" parent="sprite"]
+wait_time = 0.1
+autostart = true
+
+[node name="detect_enemy" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("7_383kw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+shape = SubResource("CircleShape2D_ldu32")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="player_gui" parent="Camera2D" instance=ExtResource("8_a8k27")]
+visible = false
+
+[node name="line_of_sight" type="Node2D" parent="."]
+position = Vector2(-1.90707e-07, -16)
+script = ExtResource("10_b6x05")
+
+[node name="Marker2D" type="Marker2D" parent="line_of_sight"]
+position = Vector2(35, 0)
+
+[node name="hurtbox" parent="." instance=ExtResource("3_tvwfm")]
+
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_top = -146.0
+offset_bottom = -37.9999
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_top = -159.0
+offset_bottom = -110.0
+
+[node name="ally_navigation_agent" parent="." instance=ExtResource("11_xesr1")]
+follow_position = Vector2(100, 100)
+
+[connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
+
+[editable path="hurtbox"]

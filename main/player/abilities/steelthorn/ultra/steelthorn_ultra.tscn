@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdkwf6c5rdx8t"]
+
+[ext_resource type="Script" path="res://main/player/abilities/steelthorn/ultra/steelthorn_ultra.gd" id="1_xe1lw"]
+[ext_resource type="Texture2D" uid="uid://sk0py0ywpyoh" path="res://assets/characters/steelthorn/ultra/Steel-ultra-s-03.png" id="2_jpd6a"]
+[ext_resource type="Texture2D" uid="uid://yigy6si7mfno" path="res://assets/characters/steelthorn/ultra/Steel-ultra-s-01.png" id="3_qdqb3"]
+[ext_resource type="Texture2D" uid="uid://dy6mwlu2x4cyp" path="res://assets/characters/steelthorn/ultra/Steel-ultra-s-02.png" id="4_dcnbg"]
+[ext_resource type="Texture2D" uid="uid://dv2y872pfarie" path="res://assets/characters/steelthorn/ultra/Steel-ultra-s-04.png" id="5_xkonq"]
+[ext_resource type="Texture2D" uid="uid://b747rl34pwsl4" path="res://assets/characters/steelthorn/ultra/Steel-ultra-s-05.png" id="6_bqids"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ol1g0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qdqb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dcnbg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jpd6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xkonq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bqids")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="steelthorn_ultra" type="Node2D"]
+y_sort_enabled = true
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_xe1lw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -284)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_jpd6a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(20, 490)
+sprite_frames = SubResource("SpriteFrames_ol1g0")
+offset = Vector2(-1.90735e-06, -700)

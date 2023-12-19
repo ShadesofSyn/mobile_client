@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8a0g2hi22nmu"]
+
+[ext_resource type="Script" path="res://main/player/abilities/technomancer/basic/technomancer_basic.gd" id="1_26iuh"]
+[ext_resource type="Texture2D" uid="uid://biacetwcbkswy" path="res://assets/characters/technomancer/projectile-ready.png" id="2_seurr"]
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="3_7e0qx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_csasy"]
+radius = 14.0357
+
+[node name="technomancer_basic" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_26iuh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_seurr")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_7e0qx")
+hitbox_character_name = "technomancer"
+hitbox_attack_type = "basic"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_csasy")

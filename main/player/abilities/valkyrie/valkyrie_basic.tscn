@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj6p4xgardkqn"]
+
+[ext_resource type="Script" path="res://main/player/abilities/valkyrie/valkyrie_basic.gd" id="1_522v6"]
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="1_harqm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w4sp3"]
+radius = 72.0
+height = 214.0
+
+[node name="valkyrie_basic" type="Node2D"]
+script = ExtResource("1_522v6")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_harqm")
+hitbox_character_name = "valkyrie"
+hitbox_attack_type = "basic"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CapsuleShape2D_w4sp3")
