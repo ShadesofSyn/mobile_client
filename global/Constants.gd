@@ -92,6 +92,48 @@ var structure_data = {
 	},
 }
 
+
+var beast_data = {
+	"gargoyle": {
+		"description": "Defeating the Gargoyle massively enhances your speed for a short duration.",
+		"basic": {
+			"health": "350",
+	  "damage": 12.0,
+	  "attackSpeed": 1.0,
+	  "DPS": 11.0,
+	  "movementSpeed": 3.0,
+	  "range": 2.0
+	},
+	"attackDescription": "Quick slash with claws"
+  },
+  "tree": {
+	"characterDescription": "Ensare your enemy, rooting them to the ground for easy attack.",
+	"stats": {
+	  "health": "350",
+	  "attackDamage": 10.0,
+	  "attackSpeed": 1.0,
+	  "DPS": 13.0,
+	  "range": 3.0
+	},
+	"attackDescription": "Lashing whip with branches"
+  },
+{
+	"Golem": {
+	"characterDescription": "A tanky companion ready to shield your team.",
+	"stats": {
+	  "health": "400",
+	  "attackDamage": 18.0,
+	  "attackSpeed": 1.0,
+	  "DPS": 14.0,
+	  "movementSpeed": 3.0,
+	  "range": 2.0
+	},
+	"attackDescription": "Heavy punch attack"
+  }
+}
+}
+
+
 var ad_data = {
 	"ghoul": {
 		"class": "Unknown",
