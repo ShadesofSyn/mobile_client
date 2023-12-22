@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4ojpxo2gkniw"]
+
+[ext_resource type="Script" path="res://main/player/player_gui/active_team_boosts/active_team_boosts.gd" id="1_h6mno"]
+[ext_resource type="Theme" uid="uid://dbalkluvqmaae" path="res://assets/resources/text/text theme bold.tres" id="1_otwrl"]
+
+[node name="active_team_boosts" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_h6mno")
+
+[node name="title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 269.0
+offset_right = 425.0
+offset_bottom = 318.0
+theme = ExtResource("1_otwrl")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 7
+text = "Active Team Boosts:"
+
+[node name="list" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 320.0
+offset_right = 436.0
+offset_bottom = 369.0
+scale = Vector2(0.75, 0.75)

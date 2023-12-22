@@ -21,6 +21,9 @@ func set_grass_invisible(_delta):
 	
 	
 func near_player() -> bool:
+	if not Server.player_node:
+		return false
+
 	if self.position.distance_to(Server.player_node.position) < distance_to_hide_grass:
 		return true
 	return false

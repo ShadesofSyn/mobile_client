@@ -26,7 +26,7 @@ func _is_point_inside_button_area(point:Vector2) -> bool:
 
 func play_button_pressed() -> void:
 	var tween = get_tree().create_tween()
-	tween.tween_property(self,"scale",Vector2(0.95,0.95),0.1).set_ease(Tween.EASE_IN)
+	tween.tween_property(self,"scale",Vector2(0.72,0.72),0.1).set_ease(Tween.EASE_IN)
 	await get_tree().create_timer(0.3).timeout
 	var tween2 = get_tree().create_tween() 
-	tween2.tween_property(self,"scale",Vector2(1.0,1.0),0.1).set_ease(Tween.EASE_IN)
+	tween2.tween_property(self,"scale",Vector2(0.75,0.75),0.1).set_ease(Tween.EASE_IN)

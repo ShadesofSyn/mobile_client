@@ -1,6 +1,135 @@
 extends Node
 
 
+### the percent chance something happens
+func chance(num):
+	randomize()
+
+	if randi() % 100 <= num:  return true
+	else:                     return false
+
+func capitalizeFirstLetter(_string) -> String:
+	return _string.left(1).to_upper() + _string.right(_string.length()-1)
+
+
+func return_damage_inflicted(hitbox_name:String,war_cry_active:bool,unstable_core_active:bool) -> int:
+	var damage = return_hitbox_damage(hitbox_name)
+	if war_cry_active:
+		damage *= 1.2 # increase damage by 20%
+	if unstable_core_active:
+		damage += 30.0  # increase damage by 30
+	return damage
+
+
+func return_percentage_health_increase(percentage_to_heal,max_health) -> int:
+	return max_health / percentage_to_heal
+
+
+func return_hitbox_damage(hitbox_name:String) -> int:
+	return 10
+
+
+
+### Setting collision layers
+func return_hurtbox_layer(_team_color) -> int:
+	match _team_color:
+		"blue":
+			return Constants.BLUE_TEAM_HURTBOX_LAYER
+		"red":
+			return Constants.RED_TEAM_HURTBOX_LAYER
+		"white":
+			return Constants.WHITE_TEAM_HURTBOX_LAYER
+		_:
+			printerr("INVALID HURTBOX DATA")
+			return 0
+
+func return_hitbox_layer(_team_color) -> int:
+	match _team_color:
+		"blue":
+			return Constants.RED_TEAM_HURTBOX_LAYER + Constants.WHITE_TEAM_HURTBOX_LAYER
+		"red":
+			return Constants.BLUE_TEAM_HURTBOX_LAYER + Constants.WHITE_TEAM_HURTBOX_LAYER
+		"white":
+			return Constants.BLUE_TEAM_HURTBOX_LAYER + Constants.RED_TEAM_HURTBOX_LAYER 
+		_:
+			printerr("INVALID HITBOX DATA")
+			return 0
+
+
+
+func return_abbreviated_character_name(_char_name):
+	match _char_name:
+		"technomancer":
+			return "tech"
+		"valkyrie":
+			return "val"
+		"steelthorn":
+			return "Steel"
+		"magmaul":
+			return "Magmaul"
+		"mariselle":
+			return "Mari"
+		_:
+			return _char_name
+
+
+### Damage inflicted
+func return_health_change(character,type) -> int:
+	if character == "valkyrie" and type == "ultimate":
+		return -60
+	elif character == "ghoul":
+		return -30
+	return -Constants.character_data[character][type]["damage"]
+
+
+func destructable_projectile(character,type) -> bool:
+	if type == "ultimate" or character == "magmaul" or character == "valkyrie":
+		return false
+	return true
+
+
+
+### Detect enemy nodes
+func get_nearest_target(_detect_enemy_node): 
+	var enemy_node
+	var max_distance_to_check = 100000.0
+	var _pos = _detect_enemy_node.global_position
+	var _enemy_nodes = _detect_enemy_node.get_overlapping_bodies()
+	if _enemy_nodes.size() == 0:
+		return null
+	else:
+		for node in _enemy_nodes:
+			var distance_to_enemy = _pos.distance_to(node.global_position)
+			if distance_to_enemy < max_distance_to_check:
+				max_distance_to_check = distance_to_enemy
+				enemy_node = node
+		return enemy_node
+
+func get_lowest_health_target(_detect_enemy_node):
+	var enemy_node
+	var max_health_to_check = 100000.0
+	var _pos = _detect_enemy_node.global_position
+	var _enemy_nodes = _detect_enemy_node.get_overlapping_bodies()
+	if _enemy_nodes.size() == 0:
+		return null
+	else:
+		for node in _enemy_nodes:
+			var health_of_enemy = node.get_node("hurtbox").health
+			if health_of_enemy < max_health_to_check:
+				max_health_to_check = health_of_enemy
+				enemy_node = node
+		return enemy_node
+
+func return_random_idle_position(_spawn_pos) -> Vector2:
+	var random_vec = Vector2(randf_range(100,300),randf_range(100,300))
+	if chance(50):
+		random_vec.x *= -1
+	if chance(50):
+		random_vec.y *= -1
+	return random_vec + _spawn_pos
+
+
+### Validate and remove tile functions
 func validate_tiles(location,dimensions) -> bool:
 	for x in range(dimensions.x):
 		for y in range(dimensions.y):
