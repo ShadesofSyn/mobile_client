@@ -48,7 +48,8 @@ const SUPPRESS_SPEED_DECREASE: float = 0.25
 enum character_type  {
 	MAIN,
 	ALLY,
-	AD
+	AD,
+	BEAST
 }
 
 # Player state constants
@@ -92,6 +93,45 @@ var structure_data = {
 	},
 }
 
+
+var beast_data = {
+	"gargoyle": {
+		"description": "Defeating the Gargoyle massively enhances your speed for a short duration.",
+		"basic": {
+			"health": 350,
+			"damage": 12.0,
+			"attackSpeed": 1.0,
+			"DPS": 11.0,
+			"movementSpeed": 3.0,
+			"range": 2.0
+		},
+		"attackDescription": "Quick slash with claws"
+	},
+	"tree": {
+		"characterDescription": "Ensare your enemy, rooting them to the ground for easy attack.",
+		"basic": {
+			"health": 350,
+			"damage": 10.0,
+			"attackSpeed": 1.0,
+			"DPS": 13.0,
+			"range": 3.0
+		},
+		"attackDescription": "Lashing whip with branches"
+	},
+	"golem": {
+		"characterDescription": "A tanky companion ready to shield your team.",
+		"basic": {
+			"health": 400,
+			"damage": 18.0,
+			"attackSpeed": 1.0,
+			"DPS": 14.0,
+			"movementSpeed": 3.0,
+			"range": 2.0
+	},
+		"attackDescription": "Heavy punch attack"
+}}
+
+
 var ad_data = {
 	"ghoul": {
 		"class": "Unknown",
@@ -105,6 +145,7 @@ var ad_data = {
 		},
 	},
 }
+
 
 var character_data = {
 	"valkyrie": {
@@ -129,8 +170,7 @@ var character_data = {
 			"damage": 60,
 			"range": 5,
 			"cooldown": 10
-		}
-	}
+		}}
 	},
 	"technomancer": {
 		"class": "Unknown",
@@ -253,31 +293,6 @@ var character_data = {
 			"cooldown": 8
 		}
 	},
-#	"valkyrie": {
-#		"class": "Warrior",
-#		"description": "Melee swordsmith master, of an ancient race.",
-#		"basic": {
-#			"health": 350,
-#			"damage": 30,
-#			"attackSpeed": 0.8,
-#			"movementSpeed": 14,
-#			"attackRange": 3
-#		},
-#		"abilities": {
-#			"chargedAttack": {
-#				"description": "Every 6th Basic Attack does +100% Basic Attack Damage",
-#				"chargedAttackDamage": "Basic Damage + (Basic Damage*1.0)"
-#			},
-#		"ultimate": {
-#			"name": "Bladefury",
-#			"type": "Action",
-#			"description": "Spin around 3 times dealing damage each rotation to anything within range",
-#			"damage": 60,
-#			"range": 5,
-#			"cooldown": 10
-#		}
-#	}
-#	}
 }
 
 

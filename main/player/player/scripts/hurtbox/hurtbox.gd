@@ -15,6 +15,8 @@ func _ready():
 func set_hurtbox_stats() -> void:
 	if get_parent().character_stats.TYPE == Constants.character_type.AD:
 		progress_bar.max_value = Constants.ad_data[get_parent().character_stats.character_name]["basic"]["health"]
+	elif get_parent().character_stats.TYPE == Constants.character_type.BEAST:
+		progress_bar.max_value = Constants.beast_data[get_parent().character_stats.character_name]["basic"]["health"]
 	else:
 		progress_bar.max_value = Constants.character_data[get_parent().character_stats.character_name]["basic"]["health"]
 	progress_bar.value = progress_bar.max_value
@@ -82,6 +84,7 @@ func flash_green() -> void:
 
 
 func flash_red() -> void:
+	return
 	var sprite_material = get_parent().sprite.material
 	sprite_material.set_shader_parameter("flash_color",Color("b80000"))
 	sprite_material.set_shader_parameter("flash_modifier", 0.75)

@@ -1,0 +1,250 @@
+[gd_scene load_steps=48 format=3 uid="uid://c22l5y07o8ry0"]
+
+[ext_resource type="Script" path="res://main/world/map objects/beasts/golem/golem.gd" id="1_gsp1t"]
+[ext_resource type="Texture2D" uid="uid://d1bhungi1xfq7" path="res://assets/characters/beasts/golem/0_boss_attack_000.png" id="2_0l7kv"]
+[ext_resource type="Texture2D" uid="uid://cr7hbnsrr5qfy" path="res://assets/characters/beasts/golem/0_boss_attack_002.png" id="3_tqrwe"]
+[ext_resource type="Texture2D" uid="uid://dvgdlqb7qbbaw" path="res://assets/characters/beasts/golem/0_boss_attack_004.png" id="4_c0dh7"]
+[ext_resource type="Texture2D" uid="uid://w6s7ormoqncw" path="res://assets/characters/beasts/golem/0_boss_attack_006.png" id="5_bvom8"]
+[ext_resource type="Texture2D" uid="uid://fxc6ghvyj6ty" path="res://assets/characters/beasts/golem/0_boss_attack_008.png" id="6_b36gs"]
+[ext_resource type="Texture2D" uid="uid://5y43jrfu1cm0" path="res://assets/characters/beasts/golem/0_boss_attack_010.png" id="7_knfdt"]
+[ext_resource type="Texture2D" uid="uid://bxfovq5b7mrvg" path="res://assets/characters/beasts/golem/0_boss_attack_012.png" id="8_r4asj"]
+[ext_resource type="Texture2D" uid="uid://lb3nbcc2a5bm" path="res://assets/characters/beasts/golem/0_boss_attack_014.png" id="9_ao587"]
+[ext_resource type="Texture2D" uid="uid://cj35uw8wvattd" path="res://assets/characters/beasts/golem/0_boss_attack_016.png" id="10_ammx1"]
+[ext_resource type="Texture2D" uid="uid://jeejno10f3wy" path="res://assets/characters/beasts/golem/0_boss_attack_018.png" id="11_yhtrt"]
+[ext_resource type="Texture2D" uid="uid://4tp8j3i7m7nc" path="res://assets/characters/beasts/golem/0_boss_attack_019.png" id="12_x08ar"]
+[ext_resource type="Texture2D" uid="uid://dto8a0c5erkgl" path="res://assets/characters/beasts/golem/0_boss_die_000.png" id="13_ky4go"]
+[ext_resource type="Texture2D" uid="uid://cbd6746sqwoq2" path="res://assets/characters/beasts/golem/0_boss_die_002.png" id="14_yp7o6"]
+[ext_resource type="Texture2D" uid="uid://dn0adp73e3ani" path="res://assets/characters/beasts/golem/0_boss_die_004.png" id="15_28yig"]
+[ext_resource type="Texture2D" uid="uid://djvl6f1ev6kfh" path="res://assets/characters/beasts/golem/0_boss_die_006.png" id="16_2afjh"]
+[ext_resource type="Texture2D" uid="uid://xr3wsodmy7v8" path="res://assets/characters/beasts/golem/0_boss_die_008.png" id="17_g0sn6"]
+[ext_resource type="Texture2D" uid="uid://dnd05jm6x3wr6" path="res://assets/characters/beasts/golem/0_boss_die_010.png" id="18_h7oao"]
+[ext_resource type="Texture2D" uid="uid://bh52ggv3otfea" path="res://assets/characters/beasts/golem/0_boss_die_012.png" id="19_7w578"]
+[ext_resource type="Texture2D" uid="uid://opfvkqt4wjx2" path="res://assets/characters/beasts/golem/0_boss_die_014.png" id="20_5w6pa"]
+[ext_resource type="Texture2D" uid="uid://b1hoq00yt5iim" path="res://assets/characters/beasts/golem/0_boss_die_016.png" id="21_iomer"]
+[ext_resource type="Texture2D" uid="uid://crxs3ydwk24eo" path="res://assets/characters/beasts/golem/0_boss_die_018.png" id="22_dweoy"]
+[ext_resource type="Texture2D" uid="uid://bfo3rsevuwnga" path="res://assets/characters/beasts/golem/0_boss_idle_000.png" id="23_ockm7"]
+[ext_resource type="Texture2D" uid="uid://bg6v4xr7qijna" path="res://assets/characters/beasts/golem/0_boss_idle_002.png" id="24_d5bcr"]
+[ext_resource type="Texture2D" uid="uid://iapio60xqxbt" path="res://assets/characters/beasts/golem/0_boss_idle_004.png" id="25_ncfvt"]
+[ext_resource type="Texture2D" uid="uid://6a8x125u18t7" path="res://assets/characters/beasts/golem/0_boss_idle_006.png" id="26_w8idk"]
+[ext_resource type="Texture2D" uid="uid://bv3oge3mifo4q" path="res://assets/characters/beasts/golem/0_boss_idle_008.png" id="27_usr0s"]
+[ext_resource type="Texture2D" uid="uid://cym4hhqvqpkrj" path="res://assets/characters/beasts/golem/0_boss_idle_010.png" id="28_j1gc7"]
+[ext_resource type="Texture2D" uid="uid://dgootjag827d7" path="res://assets/characters/beasts/golem/0_boss_idle_012.png" id="29_46rot"]
+[ext_resource type="Texture2D" uid="uid://c8r5v44pucmsy" path="res://assets/characters/beasts/golem/0_boss_idle_014.png" id="30_qvbqu"]
+[ext_resource type="Texture2D" uid="uid://bev16y7e6e63t" path="res://assets/characters/beasts/golem/0_boss_idle_016.png" id="31_eufng"]
+[ext_resource type="Texture2D" uid="uid://dt0sex24c2upn" path="res://assets/characters/beasts/golem/0_boss_idle_018.png" id="32_1m1pk"]
+[ext_resource type="Texture2D" uid="uid://cxfapi5uijd53" path="res://assets/characters/beasts/golem/0_boss_run_000.png" id="33_4wrxf"]
+[ext_resource type="Texture2D" uid="uid://bmmb6n8orh442" path="res://assets/characters/beasts/golem/0_boss_run_002.png" id="34_j1nud"]
+[ext_resource type="Texture2D" uid="uid://bxulm3fmo4gby" path="res://assets/characters/beasts/golem/0_boss_run_004.png" id="35_f10dw"]
+[ext_resource type="Texture2D" uid="uid://b6tbnouycnhq1" path="res://assets/characters/beasts/golem/0_boss_run_006.png" id="36_n80sa"]
+[ext_resource type="Texture2D" uid="uid://ccyfpgfo0cdt0" path="res://assets/characters/beasts/golem/0_boss_run_008.png" id="37_2ecyc"]
+[ext_resource type="Texture2D" uid="uid://5f4300l30xpk" path="res://assets/characters/beasts/golem/0_boss_run_009.png" id="38_dhyx3"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="39_umqeg"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="40_o2uop"]
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="41_ho5tn"]
+[ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="41_tmkc0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_auvhc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0l7kv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tqrwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c0dh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bvom8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b36gs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_knfdt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_r4asj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ao587")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ammx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_yhtrt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_x08ar")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_ky4go")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yp7o6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_28yig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_2afjh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_g0sn6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_h7oao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_7w578")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_5w6pa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_iomer")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_dweoy")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_ockm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_d5bcr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ncfvt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_w8idk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_usr0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_j1gc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_46rot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_qvbqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_eufng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_1m1pk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_4wrxf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_j1nud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_f10dw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_n80sa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_2ecyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_dhyx3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yjnfs"]
+radius = 20.0998
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g30dd"]
+radius = 652.406
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qkcoy"]
+radius = 94.5304
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_clsw8"]
+radius = 122.0
+height = 274.0
+
+[node name="golem" type="CharacterBody2D"]
+script = ExtResource("1_gsp1t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(108, -187)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_auvhc")
+animation = &"attack"
+autoplay = "idle"
+frame = 10
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yjnfs")
+disabled = true
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("39_umqeg")
+
+[node name="detect_enemy" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("41_tmkc0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+shape = SubResource("CircleShape2D_g30dd")
+
+[node name="ad_navigation_agent" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="Timer" type="Timer" parent="ad_navigation_agent"]
+wait_time = 0.15
+autostart = true
+
+[node name="hitbox" type="Area2D" parent="."]
+script = ExtResource("41_ho5tn")
+hitbox_character_name = "ghoul"
+hitbox_attack_type = "basic"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_qkcoy")
+disabled = true
+
+[node name="hurtbox" parent="." instance=ExtResource("40_o2uop")]
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(-1, -58)
+shape = SubResource("CapsuleShape2D_clsw8")
+
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_top = -312.0
+offset_bottom = -204.0
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_top = -328.0
+offset_bottom = -279.0
+
+[editable path="hurtbox"]

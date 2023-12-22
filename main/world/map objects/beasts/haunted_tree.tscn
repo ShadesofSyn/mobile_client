@@ -1,0 +1,179 @@
+[gd_scene load_steps=39 format=3 uid="uid://c4w82tvdx81gp"]
+
+[ext_resource type="Script" path="res://main/world/map objects/beasts/haunted_tree.gd" id="1_enkpo"]
+[ext_resource type="Texture2D" uid="uid://d4n1oyrpsexeb" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_000.png" id="1_hh432"]
+[ext_resource type="Texture2D" uid="uid://8vtsv63ie057" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_002.png" id="2_05dat"]
+[ext_resource type="Texture2D" uid="uid://bqtvxtvrcysau" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_004.png" id="3_8oanv"]
+[ext_resource type="Texture2D" uid="uid://bu18baiog35d3" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_006.png" id="4_7pbhr"]
+[ext_resource type="Texture2D" uid="uid://g1k4wvahrq4k" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_008.png" id="5_vbdaf"]
+[ext_resource type="Texture2D" uid="uid://bbyq68xbi0wo0" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_010.png" id="6_ntalj"]
+[ext_resource type="Texture2D" uid="uid://bmmqa63yygefm" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_012.png" id="7_pq3ve"]
+[ext_resource type="Texture2D" uid="uid://dtvmpdb8iyuyc" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_014.png" id="8_cp0hg"]
+[ext_resource type="Texture2D" uid="uid://dpkqcl6a03wgg" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_016.png" id="9_ptx52"]
+[ext_resource type="Texture2D" uid="uid://wp8lxm0viwfu" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_018.png" id="10_k5y0e"]
+[ext_resource type="Texture2D" uid="uid://7o8pvkuq16u6" path="res://assets/characters/beasts/haunted_tree/0_boss_die_000.png" id="11_3r8de"]
+[ext_resource type="Texture2D" uid="uid://e1a3586rxb1j" path="res://assets/characters/beasts/haunted_tree/0_boss_die_002.png" id="12_s3rf8"]
+[ext_resource type="Texture2D" uid="uid://wd87p55kmc6p" path="res://assets/characters/beasts/haunted_tree/0_boss_die_004.png" id="13_xagch"]
+[ext_resource type="Texture2D" uid="uid://cifio7lcbo7kh" path="res://assets/characters/beasts/haunted_tree/0_boss_die_006.png" id="14_2uul0"]
+[ext_resource type="Texture2D" uid="uid://dncbddfc028pn" path="res://assets/characters/beasts/haunted_tree/0_boss_die_008.png" id="15_11xoe"]
+[ext_resource type="Texture2D" uid="uid://bg2lno1uwniwp" path="res://assets/characters/beasts/haunted_tree/0_boss_die_010.png" id="16_1iafw"]
+[ext_resource type="Texture2D" uid="uid://c12yjxebck3oh" path="res://assets/characters/beasts/haunted_tree/0_boss_die_012.png" id="17_8fo2p"]
+[ext_resource type="Texture2D" uid="uid://ciq88yoa2u6c8" path="res://assets/characters/beasts/haunted_tree/0_boss_die_014.png" id="18_4467s"]
+[ext_resource type="Texture2D" uid="uid://xqisnsubh0yl" path="res://assets/characters/beasts/haunted_tree/0_boss_die_016.png" id="19_2igj7"]
+[ext_resource type="Texture2D" uid="uid://dfh6u5ebgqmc6" path="res://assets/characters/beasts/haunted_tree/0_boss_die_018.png" id="20_7wiq6"]
+[ext_resource type="Texture2D" uid="uid://8w87d1j5xrwd" path="res://assets/characters/beasts/haunted_tree/0_boss_idle_000.png" id="21_58tqq"]
+[ext_resource type="Texture2D" uid="uid://c78w6wh44admi" path="res://assets/characters/beasts/haunted_tree/0_boss_idle_002.png" id="22_tw32x"]
+[ext_resource type="Texture2D" uid="uid://dbffqdtjkgloo" path="res://assets/characters/beasts/haunted_tree/0_boss_idle_004.png" id="23_0153k"]
+[ext_resource type="Texture2D" uid="uid://y5uifv5opflf" path="res://assets/characters/beasts/haunted_tree/0_boss_idle_006.png" id="24_b7n2g"]
+[ext_resource type="Texture2D" uid="uid://e460g5nwg41a" path="res://assets/characters/beasts/haunted_tree/0_boss_idle_008.png" id="25_14c0b"]
+[ext_resource type="Texture2D" uid="uid://dilh6faxe885" path="res://assets/characters/beasts/haunted_tree/0_boss_idle_010.png" id="26_bemho"]
+[ext_resource type="Texture2D" uid="uid://chyisbfy0uu0k" path="res://assets/characters/beasts/haunted_tree/0_boss_idle_012.png" id="27_hxlx6"]
+[ext_resource type="Texture2D" uid="uid://ikgogt5mf2jr" path="res://assets/characters/beasts/haunted_tree/0_boss_idle_014.png" id="28_pqbi5"]
+[ext_resource type="Texture2D" uid="uid://daesx104fyssa" path="res://assets/characters/beasts/haunted_tree/0_boss_idle_016.png" id="29_cx827"]
+[ext_resource type="Texture2D" uid="uid://oun7t8b3sqk6" path="res://assets/characters/beasts/haunted_tree/0_boss_idle_018.png" id="30_h3bhi"]
+[ext_resource type="Texture2D" uid="uid://bwsdn6ntevdjw" path="res://assets/characters/beasts/haunted_tree/0_boss_run_000.png" id="31_8untq"]
+[ext_resource type="Texture2D" uid="uid://ddpdsbj3hghem" path="res://assets/characters/beasts/haunted_tree/0_boss_run_002.png" id="32_ojeme"]
+[ext_resource type="Texture2D" uid="uid://bfivli0hh3q5g" path="res://assets/characters/beasts/haunted_tree/0_boss_run_004.png" id="33_2o1v5"]
+[ext_resource type="Texture2D" uid="uid://e55fqrc4pqlf" path="res://assets/characters/beasts/haunted_tree/0_boss_run_006.png" id="34_ds2ve"]
+[ext_resource type="Texture2D" uid="uid://xncgv6yydu7s" path="res://assets/characters/beasts/haunted_tree/0_boss_run_008.png" id="35_28w6o"]
+[ext_resource type="Texture2D" uid="uid://dpt8m5l4isykf" path="res://assets/characters/beasts/haunted_tree/0_boss_run_009.png" id="36_oge4k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ksy5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hh432")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_05dat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8oanv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7pbhr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vbdaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ntalj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pq3ve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cp0hg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ptx52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_k5y0e")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_3r8de")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_s3rf8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xagch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2uul0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_11xoe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1iafw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_8fo2p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_4467s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2igj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_7wiq6")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_58tqq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_tw32x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_0153k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_b7n2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_14c0b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_bemho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_hxlx6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_pqbi5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_cx827")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_h3bhi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("31_8untq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_ojeme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_2o1v5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_ds2ve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_28w6o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_oge4k")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[node name="haunted_tree" type="CharacterBody2D"]
+script = ExtResource("1_enkpo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(132, -195)
+sprite_frames = SubResource("SpriteFrames_0ksy5")
+animation = &"idle"
+frame_progress = 0.73319
