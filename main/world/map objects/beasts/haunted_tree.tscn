@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c4w82tvdx81gp"]
+[gd_scene load_steps=42 format=3 uid="uid://c4w82tvdx81gp"]
 
 [ext_resource type="Script" path="res://main/world/map objects/beasts/haunted_tree.gd" id="1_enkpo"]
 [ext_resource type="Texture2D" uid="uid://d4n1oyrpsexeb" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_000.png" id="1_hh432"]
@@ -37,6 +37,8 @@
 [ext_resource type="Texture2D" uid="uid://e55fqrc4pqlf" path="res://assets/characters/beasts/haunted_tree/0_boss_run_006.png" id="34_ds2ve"]
 [ext_resource type="Texture2D" uid="uid://xncgv6yydu7s" path="res://assets/characters/beasts/haunted_tree/0_boss_run_008.png" id="35_28w6o"]
 [ext_resource type="Texture2D" uid="uid://dpt8m5l4isykf" path="res://assets/characters/beasts/haunted_tree/0_boss_run_009.png" id="36_oge4k"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="38_qk3l4"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="39_qbg5s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0ksy5"]
 animations = [{
@@ -169,11 +171,37 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8fiiw"]
+radius = 122.0
+height = 274.0
+
 [node name="haunted_tree" type="CharacterBody2D"]
 script = ExtResource("1_enkpo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(132, -195)
+modulate = Color(1.2, 1.2, 1.2, 1)
+position = Vector2(-139, -195)
 sprite_frames = SubResource("SpriteFrames_0ksy5")
 animation = &"idle"
+autoplay = "idle"
 frame_progress = 0.73319
+flip_h = true
+
+[node name="hurtbox" parent="." instance=ExtResource("38_qk3l4")]
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(-1, -58)
+shape = SubResource("CapsuleShape2D_8fiiw")
+
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_top = -411.0
+offset_bottom = -303.0
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_top = -427.0
+offset_bottom = -378.0
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("39_qbg5s")
+
+[editable path="hurtbox"]

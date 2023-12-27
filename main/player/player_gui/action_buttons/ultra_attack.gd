@@ -30,8 +30,10 @@ func ultra_attack():
 		"1":
 			Server.player_node.ultra_attack()
 		"2":
-			Server.ally_node1.ultra_attack()
+			if Server.ally_node1:
+				Server.ally_node1.ultra_attack()
 		"3":
-			Server.ally_node2.ultra_attack()
+			if Server.ally_node2:
+				Server.ally_node2.ultra_attack()
 
 

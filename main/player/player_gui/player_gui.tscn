@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b4ojpxo2gkniw" path="res://main/player/player_gui/active_team_boosts/active_team_boosts.tscn" id="7_vgens"]
 
 [node name="player_gui" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_2tmwi")
 
 [node name="movement_joystick" parent="." instance=ExtResource("2_o2cux")]

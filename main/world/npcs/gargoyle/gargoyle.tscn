@@ -1,0 +1,86 @@
+[gd_scene load_steps=16 format=3 uid="uid://5eqxlktjxjdw"]
+
+[ext_resource type="Script" path="res://main/world/npcs/gargoyle/gargoyle.gd" id="1_u5hgi"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="1_ybe4g"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="2_oydgp"]
+[ext_resource type="Texture2D" uid="uid://c3fjribqbu4sd" path="res://assets/characters/beasts/gargoyle/0_boss_idle_000.png" id="3_quyib"]
+[ext_resource type="Texture2D" uid="uid://cxpxa55eo8xkc" path="res://assets/characters/beasts/gargoyle/0_boss_idle_002.png" id="4_vtxc2"]
+[ext_resource type="Texture2D" uid="uid://vsvp0dhm0bxa" path="res://assets/characters/beasts/gargoyle/0_boss_idle_004.png" id="5_oto2c"]
+[ext_resource type="Texture2D" uid="uid://brht2fmh3cj7w" path="res://assets/characters/beasts/gargoyle/0_boss_idle_006.png" id="6_4g0yo"]
+[ext_resource type="Texture2D" uid="uid://dvdhfgdvrbxfx" path="res://assets/characters/beasts/gargoyle/0_boss_idle_008.png" id="7_1uqkp"]
+[ext_resource type="Texture2D" uid="uid://c6wmadvniqbq1" path="res://assets/characters/beasts/gargoyle/0_boss_idle_010.png" id="8_6ii2w"]
+[ext_resource type="Texture2D" uid="uid://c1d0bn0k1mc4h" path="res://assets/characters/beasts/gargoyle/0_boss_idle_012.png" id="9_o4rt4"]
+[ext_resource type="Texture2D" uid="uid://b8k28hq8btuk3" path="res://assets/characters/beasts/gargoyle/0_boss_idle_014.png" id="10_uld6u"]
+[ext_resource type="Texture2D" uid="uid://b0f2nlps0dufc" path="res://assets/characters/beasts/gargoyle/0_boss_idle_016.png" id="11_yuk3e"]
+[ext_resource type="Texture2D" uid="uid://cji2ve83mbmhs" path="res://assets/characters/beasts/gargoyle/0_boss_idle_018.png" id="12_t2fpt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ljrf"]
+radius = 122.0
+height = 274.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3d1ck"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_quyib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vtxc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oto2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4g0yo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1uqkp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6ii2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_o4rt4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_uld6u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_yuk3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_t2fpt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="gargoyle" type="CharacterBody2D"]
+script = ExtResource("1_u5hgi")
+
+[node name="hurtbox" parent="." instance=ExtResource("1_ybe4g")]
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(-1, -58)
+shape = SubResource("CapsuleShape2D_0ljrf")
+
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_top = -497.0
+offset_bottom = -389.0
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_top = -513.0
+offset_bottom = -464.0
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("2_oydgp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1.2, 1.2, 1.2, 1)
+position = Vector2(171, -257)
+sprite_frames = SubResource("SpriteFrames_3d1ck")
+autoplay = "default"
+frame_progress = 0.579905
+
+[editable path="hurtbox"]

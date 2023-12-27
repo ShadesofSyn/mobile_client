@@ -39,6 +39,7 @@ func _on_area_entered(area):
 		var hitbox_character_name = area.hitbox_character_name
 		var hitbox_type =  area.hitbox_attack_type
 		var health_change
+		print("ENTERED HURTBOX " + str(get_parent().name) + " " + hitbox_character_name + " " + hitbox_type)
 		if hitbox_character_name == "mariselle" and hitbox_type == "ultra":
 			health_change = int((Constants.character_data["mariselle"]["ultimate"]["healPercentagePerAction"] * 0.01) * progress_bar.max_value)
 		else:
@@ -54,18 +55,25 @@ func _on_area_entered(area):
 			area.destroy()
 #		if get_parent().character_stats.character_name == "ghoul":
 #			get_parent().start_agro_mode()
+	if get_parent().character_stats.TYPE == Constants.character_type.AD:
+		if not get_parent().aggro_mode:
+			get_parent().start_aggro_mode(true)
+			
 
 
 func destroy() -> void:
 	if not get_parent().character_stats.destroyed:
-		hide()
-		get_parent().character_stats.destroyed = true
-		var sprite_material = get_parent().sprite.material
-		sprite_material.set_shader_parameter("flash_modifier",0)
-		await get_tree().process_frame
-		get_parent().character_stats.STATE = Constants.player_state.DEATH
-		await get_tree().create_timer(0.125*5).timeout
-		get_parent().call_deferred("queue_free")
+		if not get_parent().character_stats.TYPE == Constants.character_type.MAIN:
+			hide()
+			get_parent().character_stats.destroyed = true
+			var sprite_material = get_parent().sprite.material
+			sprite_material.set_shader_parameter("flash_modifier",0)
+			await get_tree().process_frame
+			get_parent().character_stats.STATE = Constants.player_state.DEATH
+			await get_tree().create_timer(0.125*5).timeout
+			get_parent().call_deferred("queue_free")
+		else:
+			get_parent().sprite.destroy()
 
 
 func flash(_health_change) -> void:

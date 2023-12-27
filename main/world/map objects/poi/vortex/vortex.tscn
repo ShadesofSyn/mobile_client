@@ -1,55 +1,155 @@
-[gd_scene load_steps=7 format=3 uid="uid://hu0kbqkvutvk"]
+[gd_scene load_steps=18 format=3 uid="uid://c0vynf2sr0cx5"]
 
-[ext_resource type="Shader" path="res://assets/resources/shader/arched_projectile_line_shadow.gdshader" id="1_4kphm"]
+[ext_resource type="Texture2D" uid="uid://cbji8q452s2tb" path="res://assets/tilesets/map objects/stage/stage-01.png" id="1_ocsol"]
 [ext_resource type="Script" path="res://main/world/map objects/poi/vortex/vortex.gd" id="2_72qe1"]
-[ext_resource type="Texture2D" uid="uid://dripew0yx2hja" path="res://assets/interface/minimap/circle72.png" id="3_h35e8"]
-[ext_resource type="Texture2D" uid="uid://c5kpp1bm7g3f3" path="res://assets/tilesets/decoration/dark green/flag.png" id="4_l65kt"]
+[ext_resource type="Texture2D" uid="uid://mwvtpvbxv0nj" path="res://assets/tilesets/map objects/stage/stage-02.png" id="2_lloq1"]
+[ext_resource type="Texture2D" uid="uid://bvkv0ljpb7v54" path="res://assets/tilesets/map objects/stage/stage-03.png" id="3_ro48g"]
+[ext_resource type="Texture2D" uid="uid://bemunhbci4ydf" path="res://assets/tilesets/map objects/stage/stage-04.png" id="4_ttwgu"]
+[ext_resource type="Texture2D" uid="uid://cxodtgwcmha4h" path="res://assets/tilesets/map objects/beacon/stage-beacon-01.png" id="5_jre78"]
+[ext_resource type="Texture2D" uid="uid://b3pq6ik4w1gu7" path="res://assets/tilesets/map objects/beacon/stage-beacon-02.png" id="6_qxwtr"]
+[ext_resource type="Texture2D" uid="uid://ffsend5j6thm" path="res://assets/tilesets/map objects/beacon/stage-beacon-03.png" id="7_nbdvr"]
+[ext_resource type="Texture2D" uid="uid://cgsww6aps6afp" path="res://assets/tilesets/map objects/beacon/stage-beacon-04.png" id="8_k6ij1"]
+[ext_resource type="Texture2D" uid="uid://dgn26a14jwhdc" path="res://assets/tilesets/map objects/beacon/stage-beacon-05.png" id="9_o6d5j"]
+[ext_resource type="Texture2D" uid="uid://cphyqyn4df71y" path="res://assets/tilesets/map objects/beacon/stage-beacon-06.png" id="10_tlv51"]
+[ext_resource type="Texture2D" uid="uid://d08aw153pgslv" path="res://assets/tilesets/map objects/beacon/stage-beacon-07.png" id="11_f2en5"]
+[ext_resource type="Texture2D" uid="uid://b5pr7r6g25ddp" path="res://assets/tilesets/map objects/stage/stage-pillars_top.png" id="13_0jrr8"]
+[ext_resource type="Texture2D" uid="uid://ccol8k15wlkqb" path="res://assets/tilesets/map objects/stage/stage-pillars_bottom.png" id="14_5qnyk"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gncsh"]
-radius = 480.0
+[sub_resource type="SpriteFrames" id="SpriteFrames_2pt6o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ocsol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lloq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ro48g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ttwgu")
+}],
+"loop": false,
+"name": &"close",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ttwgu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ro48g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lloq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ocsol")
+}],
+"loop": false,
+"name": &"open",
+"speed": 8.0
+}]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bc6el"]
-shader = ExtResource("1_4kphm")
-shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/size = 0.92
-shader_parameter/squishness = Vector2(1, 1)
-shader_parameter/color1 = Color(1, 1, 1, 0)
-shader_parameter/color2 = Color(1, 1, 1, 0.494118)
-shader_parameter/color3 = Color(1, 1, 1, 0)
-shader_parameter/step1 = 0.345
-shader_parameter/step2 = 0.514
-shader_parameter/step3 = 0.516
+[sub_resource type="SpriteFrames" id="SpriteFrames_uvjuo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jre78")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qxwtr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nbdvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k6ij1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_o6d5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_tlv51")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_f2en5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
-[node name="vortex" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xmd8x"]
+radius = 153.0
+height = 480.0
+
+[node name="vortex" type="AnimatedSprite2D"]
+z_index = -1
 y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_2pt6o")
+animation = &"close"
+frame = 3
+frame_progress = 1.0
 script = ExtResource("2_72qe1")
 
-[node name="flag" type="Sprite2D" parent="."]
-y_sort_enabled = true
-texture = ExtResource("4_l65kt")
-offset = Vector2(2, -98)
+[node name="beacon" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1.2, 1.2, 1.2, 1)
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_uvjuo")
+autoplay = "default"
+offset = Vector2(2.08165e-12, -294)
+
+[node name="Stage-pillars" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-846, -223)
+texture = ExtResource("13_0jrr8")
+centered = false
+offset = Vector2(-9, -519)
+
+[node name="Stage-pillars2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-847, 308)
+texture = ExtResource("14_5qnyk")
+centered = false
+offset = Vector2(-8, -1050)
 
 [node name="red_team" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="red_team"]
-shape = SubResource("CircleShape2D_gncsh")
+position = Vector2(2.08165e-12, 14)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xmd8x")
 
 [node name="blue_team" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blue_team"]
-shape = SubResource("CircleShape2D_gncsh")
+position = Vector2(2.08165e-12, 14)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xmd8x")
 
-[node name="border" type="Sprite2D" parent="."]
-z_index = -1
-material = SubResource("ShaderMaterial_bc6el")
-scale = Vector2(14, 14)
-texture = ExtResource("3_h35e8")
+[node name="collision" type="StaticBody2D" parent="."]
+collision_layer = 24
+collision_mask = 24
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collision"]
+polygon = PackedVector2Array(-637, -250, -637, -175, -517, -181, -522, -254)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="collision"]
+polygon = PackedVector2Array(519, -251, 508, -178, 623, -175, 624, -240)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="collision"]
+polygon = PackedVector2Array(-726, 237, -782, 334, -692, 376, -622, 292)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="collision"]
+polygon = PackedVector2Array(614, 288, 683, 378, 780, 333, 716, 237)
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

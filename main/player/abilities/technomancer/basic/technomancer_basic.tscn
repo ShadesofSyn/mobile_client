@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8a0g2hi22nmu"]
+[gd_scene load_steps=6 format=3 uid="uid://c8a0g2hi22nmu"]
 
 [ext_resource type="Script" path="res://main/player/abilities/technomancer/basic/technomancer_basic.gd" id="1_26iuh"]
 [ext_resource type="Texture2D" uid="uid://biacetwcbkswy" path="res://assets/characters/technomancer/projectile-ready.png" id="2_seurr"]
@@ -6,6 +6,10 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_csasy"]
 radius = 14.0357
+
+[sub_resource type="Gradient" id="Gradient_8nylx"]
+offsets = PackedFloat32Array(0.00177936, 0.948399, 1)
+colors = PackedColorArray(0.983196, 0.519734, 0.989659, 1, 0.78911, 0.00348613, 0.801963, 1, 0.972549, 0, 0.988235, 1)
 
 [node name="technomancer_basic" type="CharacterBody2D"]
 collision_layer = 0
@@ -25,3 +29,25 @@ hitbox_attack_type = "basic"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_csasy")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(16, 0)
+emitting = false
+amount = 300
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.93
+lifetime_randomness = 0.83
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 50.0
+initial_velocity_max = 120.0
+scale_amount_min = 2.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_8nylx")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

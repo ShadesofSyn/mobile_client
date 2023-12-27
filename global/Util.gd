@@ -83,7 +83,7 @@ func return_health_change(character,type) -> int:
 
 
 func destructable_projectile(character,type) -> bool:
-	if type == "ultimate" or character == "magmaul" or character == "valkyrie":
+	if type == "ultimate" or character == "magmaul" or character == "valkyrie" or character == "ghoul":
 		return false
 	return true
 
@@ -144,3 +144,20 @@ func remove_valid_tiles(location,dimensions) -> void:
 	for x in range(dimensions.x):
 		for y in range(dimensions.y):
 			Server.world.valid_tiles.erase_cell(0,location+Vector2i(x-1,-y))
+			
+			
+			
+### Set character attributes
+
+func is_character_ad(_char_name) -> bool:
+	if Constants.ad_data.keys().has(_char_name):
+		return true
+	return false
+	
+func is_character_beast(_char_name) -> bool:
+	if Constants.beast_data.keys().has(_char_name):
+		return true
+	return false
+	
+func is_character_ally(_char_name) -> bool:
+	return false

@@ -1,28 +1,21 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@onready var character_stats = $character_stats
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var navigation_agent: NavigationAgent2D = $ad_navigation_agent
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var MAX_SPEED = 100
+@export var ACCELERATION = 50
 
 
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+var team_color: String
+var anchor_mode: bool = false
+var spawn_position: Vector2
+var attacking: bool = false
 
-	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
+func _ready():
+	character_stats.team_color = "red"
+	character_stats.character_name = "tree"
+	character_stats.TYPE = Constants.character_type.BEAST

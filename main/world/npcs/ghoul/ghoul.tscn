@@ -129,7 +129,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h07ia"]
-radius = 101.0
+radius = 148.0
 
 [sub_resource type="Animation" id="Animation_ct4u6"]
 length = 0.001
@@ -193,11 +193,11 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8iexr"]
-radius = 94.5304
+radius = 48.0104
 
 [node name="ghoul" type="CharacterBody2D"]
-collision_layer = 0
-collision_mask = 8
+collision_layer = 16
+collision_mask = 24
 script = ExtResource("1_j5fy0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -211,15 +211,13 @@ material = SubResource("ShaderMaterial_i5uu6")
 position = Vector2(23, -37)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_kw1qb")
-animation = &"attack"
+animation = &"death"
 autoplay = "walk"
-frame = 5
-frame_progress = 1.0
 
 [node name="hurtbox" parent="." instance=ExtResource("24_gc0ry")]
 
 [node name="CollisionShape2D" parent="hurtbox" index="0"]
-position = Vector2(0, 16)
+position = Vector2(0, 9)
 
 [node name="health_progress_bar" parent="hurtbox" index="2"]
 offset_top = -83.0
@@ -230,20 +228,19 @@ offset_top = -95.0
 offset_bottom = -46.0
 
 [node name="detect_enemy" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("25_lc481")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_h07ia")
 
 [node name="ad_navigation_agent" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 
 [node name="Timer" type="Timer" parent="ad_navigation_agent"]
-wait_time = 0.15
-autostart = true
+wait_time = 5.0
 
 [node name="agro_label" type="Label" parent="."]
 modulate = Color(1, 0, 0, 0)
@@ -262,18 +259,17 @@ libraries = {
 }
 
 [node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("29_gwxwy")
 hitbox_character_name = "ghoul"
 hitbox_attack_type = "basic"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_8iexr")
 disabled = true
 
-[node name="Timer2" type="Timer" parent="."]
-autostart = true
-
 [connection signal="timeout" from="ad_navigation_agent/Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
 
 [editable path="hurtbox"]

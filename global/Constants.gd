@@ -13,8 +13,8 @@ const WHITE_TEAM_HURTBOX_LAYER: int = 4 # layer 3 ( bit value is 2, 2^2 = 4)
 ### Map data
 const SIZE_OF_VORTEX: float = 600.0
 const SIZE_OF_SPAWN_AREA: float = 640.0
-const SIZE_OF_HEXAGON: float = 5500.0
-
+const SIZE_OF_HEXAGON: float = 4500.0
+const SCRYING_ORB_DISTANCE_TO_CENTER: float = 1000.0
 
 
 ### Special abilities -> 
@@ -144,6 +144,17 @@ var ad_data = {
 			"attackRange": 3
 		},
 	},
+	"ghoul2": {
+		"class": "Unknown",
+		"description": "A slow-moving swordsman.",
+		"basic": {
+			"health": 80,
+			"damage": 40,
+			"attackSpeed": 0.8,
+			"movementSpeed": 7,
+			"attackRange": 3
+		},
+	},
 }
 
 
@@ -191,7 +202,7 @@ var character_data = {
 			"type": "Placeholder Type",
 			"description": "Placeholder description for the Ultimate Ability.",
 			"totalDamage": 300,
-			"damagePerAction": 100.0,  ## Individual damage per action
+			"damage": 100.0,  ## Individual damage per action
 			"range": 10,
 			"cooldown": 9
 		}
@@ -210,7 +221,7 @@ var character_data = {
 		"description": "Triggers every 6th hit, dealing double damage.",
 		"damage": 50
 		},
-	"ultimate": {
+	"ultra": {
 		"name": "Placeholder Ultimate Name",
 		"type": "Placeholder Type",
 		"description": "Placeholder description for the Ultimate Ability.",
@@ -234,7 +245,7 @@ var character_data = {
 			"description": "Triggers every 6th hit, dealing double damage.",
 			"damage": 50
 		},
-		"ultimate": {
+		"ultra": {
 			"name": "Placeholder Ultimate Name",
 			"type": "Defense",
 			"description": "Blocks a percentage of incoming damage for 3 seconds.",
@@ -258,13 +269,13 @@ var character_data = {
 			"description": "Triggers every 6th hit, dealing double damage.",
 			"damage": 60
 		},
-		"ultimate": {
+		"ultra": {
 			"name": "Placeholder Ultimate Name",
 			"type": "Action",
 			"description": "Two-action attack: First, lunges forward and bites an enemy causing 100 damage. Second, drags the enemy back to the starting point causing 50 damage.",
 			"actionOneDamage": 100,
 			"actionTwoDamage": 50,
-			"totalDamage": 150,  ## Total damage combining both actions
+			"damage": 150,  ## Total damage combining both actions
 			"range": 6,
 			"cooldown": 11
 		}
@@ -283,7 +294,7 @@ var character_data = {
 			"description": "Triggers every 6th hit, dealing double damage.",
 			"damage": 54
 		},
-		"ultimate": {
+		"ultra": {
 			"name": "Placeholder Ultimate Name",
 			"type": "Support",
 			"description": "Heals all friendlies within range for 26% of their total health, occurring over three actions.",

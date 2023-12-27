@@ -15,7 +15,7 @@ var attacking: bool = false
 
 
 func _ready():
-	character_stats.team_color = "white"
+	character_stats.team_color = "red"
 	character_stats.character_name = "golem"
 	character_stats.TYPE = Constants.character_type.BEAST
 #	calculate_path()

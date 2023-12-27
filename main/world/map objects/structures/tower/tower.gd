@@ -3,8 +3,8 @@ extends Node2D
 var dropped: bool = false
 
 
-func _physics_process(delta):
-	deploy_mode()
+#func _physics_process(delta):
+#	deploy_mode()
 
 
 func init():
