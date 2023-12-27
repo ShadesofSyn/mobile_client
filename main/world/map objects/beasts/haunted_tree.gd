@@ -1,28 +1,65 @@
 extends CharacterBody2D
 
+@onready var hurtbox: CollisionShape2D = $hurtbox/CollisionShape2D
+@onready var character_stats = $character_stats
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+#@onready var navigation_agent: NavigationAgent2D = $ad_navigation_agent
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@export var MAX_SPEED = 100
+@export var ACCELERATION = 50
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+var team_color: String
+var anchor_mode: bool = false
+var spawn_position: Vector2
+var attacking: bool = false
+
+
+func _ready():
+	$hitbox.set_collision_layer(Util.return_hitbox_layer("red"))
+	character_stats.team_color = "red"
+	character_stats.character_name = "tree"
+	character_stats.TYPE = Constants.character_type.BEAST
+	position = Vector2(Constants.SIZE_OF_HEXAGON/2,0)
 
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	if character_stats.destroyed:
+		$hitbox/CollisionShape2D.set_deferred("disabled",true)
+		return
+	set_direction()
+	if $detect_enemy.has_overlapping_bodies():
+		var target = Util.get_nearest_target($detect_enemy)
+		$line_of_sight.look_at(target.position)
+		if not attacking:
+			attack()
 
-	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+func set_direction():
+	if Server.player_node.position.x > self.position.x:
+		sprite.position.x = 140
+		sprite.flip_h = false
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		sprite.position.x = -140
+		sprite.flip_h = true
+	
 
-	move_and_slide()
+func attack():
+	attacking = true
+	init_hitbox()
+	await get_tree().create_timer(Constants.beast_data["tree"]["basic"]["attackSpeed"]).timeout
+	attacking = false
+
+
+func init_hitbox():
+	$AnimatedSprite2D.play("attack")
+	$hitbox/CollisionShape2D.set_deferred("disabled",false)
+	await $AnimatedSprite2D.animation_finished
+	$AnimatedSprite2D.play("idle")
+	$hitbox/CollisionShape2D.set_deferred("disabled",true)
+	
+func destroy():
+	character_stats.destroyed = true
+	$AnimatedSprite2D.play("death")
+	await $AnimatedSprite2D.animation_finished
+	call_deferred("queue_free")

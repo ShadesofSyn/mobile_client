@@ -1,0 +1,116 @@
+[gd_scene load_steps=13 format=3 uid="uid://4yxwliy5qpqh"]
+
+[ext_resource type="Script" path="res://main/world/map objects/structures/unstable core/unstable_core.gd" id="1_dbljw"]
+[ext_resource type="Texture2D" uid="uid://c7afbotgi7w68" path="res://assets/tilesets/map objects/structures/unstable core/8.png" id="2_ajyde"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="2_pgjid"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="3_6u086"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="4_i6agm"]
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="5_sr8e3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kipy4"]
+radius = 56.0
+height = 218.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p20r5"]
+shader = ExtResource("2_pgjid")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6rt31"]
+radius = 62.0
+height = 226.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6bs4b"]
+radius = 60.0
+height = 206.0
+
+[sub_resource type="Gradient" id="Gradient_dpjby"]
+colors = PackedColorArray(0.780392, 0.94902, 0.905882, 1, 0.270588, 1, 0.764706, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tkfqo"]
+radius = 437.018
+
+[node name="unstable_core" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_dbljw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -20)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_kipy4")
+
+[node name="base" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_p20r5")
+position = Vector2(0, 23.5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_ajyde")
+offset = Vector2(7, -74)
+
+[node name="hurtbox" parent="." instance=ExtResource("3_6u086")]
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+z_index = 1
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6rt31")
+
+[node name="attack_progress_bar" parent="hurtbox" index="1"]
+offset_top = -121.0
+offset_bottom = -73.0
+
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_left = -68.0
+offset_top = -233.0
+offset_right = 560.0
+offset_bottom = -125.0
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_left = -79.0
+offset_top = -245.0
+offset_right = 118.0
+offset_bottom = -196.0
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("4_i6agm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -26)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6bs4b")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -51)
+emitting = false
+amount = 1000
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.84
+randomness = 0.85
+lifetime_randomness = 0.55
+emission_shape = 1
+emission_sphere_radius = 42.87
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
+scale_amount_min = 6.0
+scale_amount_max = 12.0
+color_ramp = SubResource("Gradient_dpjby")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("5_sr8e3")
+hitbox_character_name = "unstable core"
+hitbox_attack_type = "basic"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -35)
+shape = SubResource("CircleShape2D_tkfqo")
+disabled = true
+
+[editable path="hurtbox"]

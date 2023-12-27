@@ -61,7 +61,6 @@ shape = SubResource("CircleShape2D_a1y66")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="player_gui" parent="Camera2D" instance=ExtResource("8_2o5au")]
-visible = false
 
 [node name="line_of_sight" type="Node2D" parent="."]
 position = Vector2(-1.90707e-07, -41)

@@ -81,7 +81,7 @@ func check_if_attack_mode() -> void:
 
 
 func set_main_sprite_state() -> void:
-	if get_parent().character_stats.destroyed:
+	if get_parent().character_stats.destroyed or get_parent().character_stats.STATE == Constants.player_state.DEATH:
 		return
 	if ultra_attacking:
 		if not get_parent().character_stats.STATE == Constants.player_state.ULTRA_ATTACK:
@@ -178,7 +178,18 @@ func set_direction_from_angle(angle) -> void:
 	if desired_direction_index == 8:
 		desired_direction_index = 0
 	direction = directions[desired_direction_index]
-
+	if direction == "S":
+		Server.ally_node1.get_node("ally_navigation_agent").follow_position = Vector2(-100,100)
+		Server.ally_node2.get_node("ally_navigation_agent").follow_position = Vector2(100,100)
+	elif direction == "E":
+		Server.ally_node1.get_node("ally_navigation_agent").follow_position = Vector2(100,100)
+		Server.ally_node2.get_node("ally_navigation_agent").follow_position = Vector2(100,-100)
+	elif direction == "N":
+		Server.ally_node1.get_node("ally_navigation_agent").follow_position = Vector2(-100,-100)
+		Server.ally_node2.get_node("ally_navigation_agent").follow_position = Vector2(100,-100)
+	elif direction == "W":
+		Server.ally_node1.get_node("ally_navigation_agent").follow_position = Vector2(-100,100)
+		Server.ally_node2.get_node("ally_navigation_agent").follow_position = Vector2(-100,-100)
 
 func set_sprite_texture(): 
 	var abbreviated_character_name = Util.return_abbreviated_character_name(get_parent().character_stats.character_name)
@@ -194,9 +205,8 @@ func set_sprite_texture():
 			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/walking_attack/"+abbreviated_character_name+"-walking-attack-"+direction.to_lower()+"-0"+str(frame_index+1)+".png")
 		Constants.player_state.ULTRA_ATTACK:
 			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/casting_ultra/"+abbreviated_character_name+"-casting-ultra-"+direction.to_lower()+"-0"+str(frame_index+1)+".png")
-#		Constants.player_state.DEATH:
-#			max_frame_index = 7
-#			self.texture = load("res://assets/characters/fighter/death/"+direction+"/"+ str(frame_index) +".png")
+		Constants.player_state.DEATH:
+			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/death/"+abbreviated_character_name+"-death-0"+str(frame_index+1)+".png")
 
 func return_walk_max_frames():
 	match get_parent().character_stats.character_name:
@@ -230,10 +240,10 @@ func return_ultra_attack_max_frames():
 
 
 func _on_timer_timeout():
-	if get_parent().character_stats.STATE == Constants.player_state.DEATH: #and frame_index == max_frame_index:
+	if get_parent().character_stats.STATE == Constants.player_state.DEATH and frame_index == max_frame_index:
 		return
 	frame_index += 1
-	if frame_index > max_frame_index:
+	if frame_index > max_frame_index: 
 		frame_index = 0
 
 
@@ -242,19 +252,20 @@ func destroy():
 		get_parent().character_stats.destroyed = true
 		material.set_shader_parameter("flash_modifier", 0)
 		await get_tree().process_frame
-		get_parent().character_stats.STATE = get_parent().character_stats.DEATH
+		get_parent().character_stats.STATE = Constants.player_state.DEATH
 		frame_index = 0
-		await get_tree().create_timer(2.0).timeout
+		max_frame_index = 3
+		await get_tree().create_timer(5.0).timeout
 		respawn()
 
 
 func respawn():
 	get_parent().character_stats.STATE = Constants.player_state.IDLE
 	get_parent().position = get_parent().spawn_position
-	get_parent().destroyed = false
-	get_node("../hurtbox").health = get_node("../hurtbox").max_health
-	get_node("../hurtbox/ProgressBar").value = get_node("../hurtbox").max_health
-	get_node("../hurtbox/ProgressBar").show()
+	get_parent().character_stats.destroyed = false
+	get_node("../hurtbox/health_progress_bar").value = get_node("../hurtbox/health_progress_bar").max_value
+	get_node("../hurtbox/health_progress_bar").show()
+	get_node("../hurtbox/Label").text = str(get_node("../hurtbox/health_progress_bar").max_value)
 	get_node("../CollisionShape2D").set_deferred("disabled",false)
 	get_node("../hurtbox/CollisionShape2D").set_deferred("disabled",false)
 

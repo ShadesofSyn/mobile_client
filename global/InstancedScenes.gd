@@ -69,3 +69,10 @@ func init_steelthorn_ultra(_pos,team_color) -> void:
 	ult.position = _pos
 	Server.world.projectiles.call_deferred("add_child",ult)
 	
+	
+### Effects
+func init_aggro_effect(_node) -> void:
+	var effect = preload("res://main/player/effects/aggro/aggro_effect.tscn").instantiate()
+	_node.call_deferred("add_child",effect)
+	
+	

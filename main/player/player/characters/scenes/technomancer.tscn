@@ -18,8 +18,9 @@ shader = ExtResource("5_m3r5y")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0hu7q"]
-radius = 715.003
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_74ds4"]
+radius = 519.0
+height = 1688.0
 
 [node name="technomancer" type="CharacterBody2D"]
 collision_layer = 0
@@ -38,7 +39,6 @@ shape = SubResource("CircleShape2D_f01f4")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="player_gui" parent="Camera2D" instance=ExtResource("3_4qbha")]
-visible = false
 
 [node name="sprite" type="Sprite2D" parent="."]
 modulate = Color(1.2, 1.2, 1.2, 1)
@@ -59,7 +59,8 @@ collision_mask = 0
 script = ExtResource("8_sc2ks")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
-shape = SubResource("CircleShape2D_0hu7q")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_74ds4")
 
 [node name="line_of_sight" type="Node2D" parent="."]
 position = Vector2(-1.90707e-07, -16)

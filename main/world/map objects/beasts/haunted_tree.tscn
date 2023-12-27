@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://c4w82tvdx81gp"]
+[gd_scene load_steps=49 format=3 uid="uid://c4w82tvdx81gp"]
 
 [ext_resource type="Script" path="res://main/world/map objects/beasts/haunted_tree.gd" id="1_enkpo"]
 [ext_resource type="Texture2D" uid="uid://d4n1oyrpsexeb" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_000.png" id="1_hh432"]
 [ext_resource type="Texture2D" uid="uid://8vtsv63ie057" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_002.png" id="2_05dat"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="2_juio3"]
 [ext_resource type="Texture2D" uid="uid://bqtvxtvrcysau" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_004.png" id="3_8oanv"]
 [ext_resource type="Texture2D" uid="uid://bu18baiog35d3" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_006.png" id="4_7pbhr"]
 [ext_resource type="Texture2D" uid="uid://g1k4wvahrq4k" path="res://assets/characters/beasts/haunted_tree/0_boss_attack_008.png" id="5_vbdaf"]
@@ -37,6 +38,15 @@
 [ext_resource type="Texture2D" uid="uid://e55fqrc4pqlf" path="res://assets/characters/beasts/haunted_tree/0_boss_run_006.png" id="34_ds2ve"]
 [ext_resource type="Texture2D" uid="uid://xncgv6yydu7s" path="res://assets/characters/beasts/haunted_tree/0_boss_run_008.png" id="35_28w6o"]
 [ext_resource type="Texture2D" uid="uid://dpt8m5l4isykf" path="res://assets/characters/beasts/haunted_tree/0_boss_run_009.png" id="36_oge4k"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="38_qk3l4"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="39_qbg5s"]
+[ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="40_nbi72"]
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="41_xkvch"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8rfd3"]
+shader = ExtResource("2_juio3")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0ksy5"]
 animations = [{
@@ -169,11 +179,82 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8fiiw"]
+radius = 122.0
+height = 274.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqxxv"]
+radius = 368.392
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3p3v"]
+radius = 374.021
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jfbf5"]
+radius = 60.0
+height = 206.0
+
 [node name="haunted_tree" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_enkpo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(132, -195)
+modulate = Color(1.2, 1.2, 1.2, 1)
+material = SubResource("ShaderMaterial_8rfd3")
+position = Vector2(-139, -195)
 sprite_frames = SubResource("SpriteFrames_0ksy5")
 animation = &"idle"
+autoplay = "idle"
 frame_progress = 0.73319
+flip_h = true
+
+[node name="hurtbox" parent="." instance=ExtResource("38_qk3l4")]
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(-1, -58)
+shape = SubResource("CapsuleShape2D_8fiiw")
+
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_top = -411.0
+offset_bottom = -303.0
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_top = -427.0
+offset_bottom = -378.0
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("39_qbg5s")
+
+[node name="detect_enemy" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("40_nbi72")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+position = Vector2(0, -41)
+shape = SubResource("CircleShape2D_qqxxv")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("41_xkvch")
+hitbox_character_name = "tree"
+hitbox_attack_type = "basic"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -35)
+shape = SubResource("CircleShape2D_b3p3v")
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -26)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jfbf5")
+
+[node name="line_of_sight" type="Node2D" parent="."]
+position = Vector2(0, -150)
+
+[node name="Marker2D" type="Marker2D" parent="line_of_sight"]
+position = Vector2(57, 0)
+
+[editable path="hurtbox"]

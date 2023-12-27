@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3gxdxpucbvyy"]
+
+[ext_resource type="Script" path="res://main/world/map objects/structures/tower/tower_projectile.gd" id="1_dc0qs"]
+[ext_resource type="Texture2D" uid="uid://bufuoe3b75dxd" path="res://assets/tilesets/map objects/structures/tower/23.png" id="2_pl6cv"]
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="3_lukhd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vqmok"]
+radius = 14.0357
+
+[sub_resource type="Gradient" id="Gradient_hn13y"]
+offsets = PackedFloat32Array(0.00177936, 0.948399, 1)
+colors = PackedColorArray(0.983196, 0.519734, 0.989659, 1, 0.78911, 0.00348613, 0.801963, 1, 0.972549, 0, 0.988235, 1)
+
+[node name="tower_projectile" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_dc0qs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, 0)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_pl6cv")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_lukhd")
+hitbox_character_name = "technomancer"
+hitbox_attack_type = "basic"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_vqmok")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 1
+position = Vector2(16, 0)
+emitting = false
+amount = 500
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.93
+lifetime_randomness = 0.83
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 50.0
+initial_velocity_max = 120.0
+scale_amount_min = 4.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_hn13y")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true

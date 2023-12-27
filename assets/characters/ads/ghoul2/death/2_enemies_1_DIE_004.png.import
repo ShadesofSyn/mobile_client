@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r84atovftlou"
-path="res://.godot/imported/stage-pillars.png-f7b5acb4952ea924b2dff250afbb1676.ctex"
+uid="uid://dsb1y3q8er8no"
+path="res://.godot/imported/2_enemies_1_DIE_004.png-00576bc910772ef639c4638438886098.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/map objects/stage/stage-pillars.png"
-dest_files=["res://.godot/imported/stage-pillars.png-f7b5acb4952ea924b2dff250afbb1676.ctex"]
+source_file="res://assets/characters/ads/ghoul2/death/2_enemies_1_DIE_004.png"
+dest_files=["res://.godot/imported/2_enemies_1_DIE_004.png-00576bc910772ef639c4638438886098.ctex"]
 
 [params]
 

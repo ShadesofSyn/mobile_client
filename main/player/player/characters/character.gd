@@ -7,8 +7,10 @@ extends CharacterBody2D
 @onready var player_gui = $Camera2D/player_gui
 
 var lockstep_active = false
+var spawn_position: Vector2
 
 func _ready():
+	spawn_position = position
 	character_stats.character_name = name
 	if not name == "valkyrie" and not name == "technomancer":
 		character_stats.TYPE = Constants.character_type.ALLY

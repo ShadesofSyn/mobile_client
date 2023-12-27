@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://bi0usa05p6iq0"]
+
+[ext_resource type="Texture2D" uid="uid://bhe2k8ndpqldu" path="res://assets/images/abilities/aggro/aggro-01.png" id="1_8gjve"]
+[ext_resource type="Texture2D" uid="uid://dkcnmaq8uj6e5" path="res://assets/images/abilities/aggro/aggro-02.png" id="2_67njn"]
+[ext_resource type="Texture2D" uid="uid://586jbrcnhurr" path="res://assets/images/abilities/aggro/aggro-03.png" id="3_s45s2"]
+[ext_resource type="Texture2D" uid="uid://ga251i8ijs1t" path="res://assets/images/abilities/aggro/aggro-04.png" id="4_kg7ox"]
+[ext_resource type="Texture2D" uid="uid://ce578v45pkkmq" path="res://assets/images/abilities/aggro/aggro-05.png" id="5_1w1ew"]
+[ext_resource type="Script" path="res://main/player/effects/aggro/aggro_effect.gd" id="6_fn58n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f23p7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8gjve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_67njn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s45s2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kg7ox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1w1ew")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="aggro_effect" type="AnimatedSprite2D"]
+position = Vector2(0, -28)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_f23p7")
+script = ExtResource("6_fn58n")
