@@ -9,7 +9,7 @@ extends Node2D
 
 func _ready():
 	set_spawn_area_points_and_size()
-	set_size_of_polygon()
+#	set_size_of_polygon()
 #	init_tall_grass()
 	await get_tree().process_frame
 	Server.world = self
@@ -22,7 +22,7 @@ func set_spawn_area_points_and_size() -> void:
 		get_node("spawn_areas/"+str(i+1)).queue_redraw()
 
 
-func set_size_of_polygon() -> void:
+#func set_size_of_polygon() -> void:
 #	var points: PackedVector2Array
 #	points.append(Vector2(0,hex_size)) # going clockwise
 #	points.append(Vector2(hex_size*HEX_OFFSET,hex_size*0.5))
@@ -34,14 +34,14 @@ func set_size_of_polygon() -> void:
 #	points.append(Vector2(0,hex_size))
 #	$lines/border.points = points
 #	print(Vector2(hex_size/3.46,hex_size/2))
-	get_node("objectives/scrying_orbs/1").position.x = -Constants.SCRYING_ORB_DISTANCE_TO_CENTER
-	get_node("objectives/scrying_orbs/2").position.x = Constants.SCRYING_ORB_DISTANCE_TO_CENTER
-	get_node("objectives/objectives/1").position = Vector2(-Constants.SIZE_OF_HEXAGON/3.46,Constants.SIZE_OF_HEXAGON/2)
-	get_node("objectives/objectives/2").position = Vector2(Constants.SIZE_OF_HEXAGON/3.46,Constants.SIZE_OF_HEXAGON/2)
-	get_node("objectives/objectives/3").position = Vector2(-Constants.SIZE_OF_HEXAGON/3.46,-Constants.SIZE_OF_HEXAGON/2)
-	get_node("objectives/objectives/4").position = Vector2(Constants.SIZE_OF_HEXAGON/3.46,-Constants.SIZE_OF_HEXAGON/2)
-	get_node("objectives/objectives/5").position = Vector2(-Constants.SIZE_OF_HEXAGON/1.73,0)
-	get_node("objectives/objectives/6").position = Vector2(Constants.SIZE_OF_HEXAGON/1.73,0)
+#	get_node("objectives/scrying_orbs/1").position.x = -Constants.SCRYING_ORB_DISTANCE_TO_CENTER
+#	get_node("objectives/scrying_orbs/2").position.x = Constants.SCRYING_ORB_DISTANCE_TO_CENTER
+#	get_node("objectives/objectives/1").position = Vector2(-Constants.SIZE_OF_HEXAGON/3.46,Constants.SIZE_OF_HEXAGON/2)
+#	get_node("objectives/objectives/2").position = Vector2(Constants.SIZE_OF_HEXAGON/3.46,Constants.SIZE_OF_HEXAGON/2)
+#	get_node("objectives/objectives/3").position = Vector2(-Constants.SIZE_OF_HEXAGON/3.46,-Constants.SIZE_OF_HEXAGON/2)
+#	get_node("objectives/objectives/4").position = Vector2(Constants.SIZE_OF_HEXAGON/3.46,-Constants.SIZE_OF_HEXAGON/2)
+#	get_node("objectives/objectives/5").position = Vector2(-Constants.SIZE_OF_HEXAGON/1.73,0)
+#	get_node("objectives/objectives/6").position = Vector2(Constants.SIZE_OF_HEXAGON/1.73,0)
 
 
 #func set_lines() -> void:

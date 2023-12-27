@@ -1,45 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp0mhhrdj15ta"]
+[gd_scene load_steps=16 format=3 uid="uid://bdxckhax8qbtq"]
 
 [ext_resource type="Texture2D" uid="uid://dtrtkphxfbmw6" path="res://assets/tilesets/map objects/structures/bio forge/35.png" id="1_4vssq"]
 [ext_resource type="Texture2D" uid="uid://cuohkbt8mhqrn" path="res://assets/tilesets/map objects/structures/bio forge/10.png" id="1_rnwu7"]
 [ext_resource type="Texture2D" uid="uid://dmf5h6n758gc3" path="res://assets/tilesets/map objects/structures/bio forge/14.png" id="1_uc5h4"]
 [ext_resource type="Script" path="res://main/world/map objects/poi/bio_forge/bio_forge.gd" id="1_xc8aq"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="2_o6cgs"]
 [ext_resource type="Texture2D" uid="uid://cs87lbmeb1l2" path="res://assets/tilesets/map objects/structures/bio forge/11.png" id="3_wughb"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="6_hevpf"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="7_c1xa6"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pqsu2"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_br2ae"]
 radius = 56.0
 height = 218.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0fg0r"]
+shader = ExtResource("2_o6cgs")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="Animation" id="Animation_lwtva"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_0oh26"]
 resource_name = "animate"
 length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprites/moving_platform:position:y")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1.6245, 4),
-"update": 0,
-"values": [2.08165e-12, -50.0]
-}
-
-[sub_resource type="Animation" id="Animation_lwtva"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprites/moving_platform:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.08165e-12]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p0fsj"]
 _data = {
@@ -47,8 +31,17 @@ _data = {
 "animate": SubResource("Animation_0oh26")
 }
 
-[node name="bio forge" type="Node2D"]
-y_sort_enabled = true
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u1nim"]
+radius = 62.0
+height = 226.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s6t1o"]
+radius = 60.0
+height = 206.0
+
+[node name="bio forge" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_xc8aq")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -58,10 +51,11 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -20)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_pqsu2")
+shape = SubResource("CapsuleShape2D_br2ae")
 
 [node name="sprites" type="Node2D" parent="."]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_0fg0r")
 position = Vector2(0, 25)
 scale = Vector2(1.5, 1.5)
 
@@ -73,25 +67,68 @@ texture = ExtResource("1_4vssq")
 offset = Vector2(2.08165e-12, -200)
 
 [node name="base" type="Sprite2D" parent="sprites"]
+use_parent_material = true
 position = Vector2(0, -1)
 texture = ExtResource("1_uc5h4")
 offset = Vector2(7, -74)
 
 [node name="moving_platform" type="Node2D" parent="sprites"]
 y_sort_enabled = true
-position = Vector2(2.08165e-12, 2.08165e-12)
+use_parent_material = true
+position = Vector2(0, 2.08165e-12)
 
 [node name="back" type="Sprite2D" parent="sprites/moving_platform"]
+use_parent_material = true
 position = Vector2(0, -83.3333)
 texture = ExtResource("1_rnwu7")
 offset = Vector2(-0.666672, -9.16666)
 
 [node name="front" type="Sprite2D" parent="sprites/moving_platform"]
-position = Vector2(0, 66.6667)
+use_parent_material = true
+position = Vector2(0, 54)
 texture = ExtResource("3_wughb")
-offset = Vector2(-0.666672, -132.5)
+offset = Vector2(-0.666672, -119.833)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_p0fsj")
 }
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="hurtbox" parent="." instance=ExtResource("6_hevpf")]
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+z_index = 1
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_u1nim")
+
+[node name="attack_progress_bar" parent="hurtbox" index="1"]
+offset_top = -121.0
+offset_bottom = -73.0
+
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_left = -68.0
+offset_top = -233.0
+offset_right = 560.0
+offset_bottom = -125.0
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_left = -79.0
+offset_top = -245.0
+offset_right = 118.0
+offset_bottom = -196.0
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("7_c1xa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -26)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_s6t1o")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="hurtbox"]

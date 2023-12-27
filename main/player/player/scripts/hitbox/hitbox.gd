@@ -9,4 +9,5 @@ var knockback_vector: Vector2 = Vector2.ZERO
 func destroy():
 #	pass
 #	if not get_parent().character_stats.character_name == "ghoul":
-	get_parent().destroy()
+#	if not hitbox_attack_type == "ultra":
+		get_parent().destroy()

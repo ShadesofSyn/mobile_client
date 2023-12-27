@@ -49,7 +49,8 @@ enum character_type  {
 	MAIN,
 	ALLY,
 	AD,
-	BEAST
+	BEAST,
+	STRUCTURE
 }
 
 # Player state constants
@@ -77,7 +78,7 @@ var structure_data = {
 			"health": 200,
 			"damage": 30,
 			"attackSpeed": 0.8,
-			"movementSpeed": 10,
+#			"movementSpeed": 10,
 			"attackRange": 3
 		},
 	},
@@ -87,8 +88,19 @@ var structure_data = {
 		"basic": {
 			"health": 200,
 			"attackSpeed": 0.8,
-			"movementSpeed": 10,
+#			"movementSpeed": 10,
 			"attackRange": 3
+		},
+	},
+	"unstable core": {
+		"class": "Unknown",
+		"description": "Produces minions to attack nearby enemies.",
+		"basic": {
+			"health": 200,
+			"damage": 80,
+#			"attackSpeed": 0.8,
+#			"movementSpeed": 10,
+#			"attackRange": 3
 		},
 	},
 }
@@ -114,6 +126,7 @@ var beast_data = {
 			"damage": 10.0,
 			"attackSpeed": 1.0,
 			"DPS": 13.0,
+			"movementSpeed": 0.0,
 			"range": 3.0
 		},
 		"attackDescription": "Lashing whip with branches"
@@ -174,7 +187,7 @@ var character_data = {
 				"description": "Every 6th Basic Attack does +100% Basic Attack Damage",
 				"chargedAttackDamage": "Basic Damage + (Basic Damage*1.0)"
 			},
-		"ultimate": {
+		"ultra": {
 			"name": "Bladefury",
 			"type": "Action",
 			"description": "Spin around 3 times dealing damage each rotation to anything within range",
@@ -197,7 +210,7 @@ var character_data = {
 			"description": "Triggers every 6th hit, dealing double damage.",
 			"damage": 84
 		},
-		"ultimate": {
+		"ultra": {
 			"name": "Placeholder Ultimate Name",
 			"type": "Placeholder Type",
 			"description": "Placeholder description for the Ultimate Ability.",

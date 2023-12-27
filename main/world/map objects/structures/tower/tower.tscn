@@ -1,16 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://np34agvgbjfj"]
+[gd_scene load_steps=14 format=3 uid="uid://np34agvgbjfj"]
 
 [ext_resource type="Script" path="res://main/world/map objects/structures/tower/tower.gd" id="1_gqymn"]
 [ext_resource type="Texture2D" uid="uid://wow70xj0mmu" path="res://assets/images/misc/green_square.png" id="2_0glua"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="3_3ddet"]
 [ext_resource type="Texture2D" uid="uid://cq8qoisx71q4g" path="res://assets/tilesets/map objects/structures/tower/top.png" id="3_hyjfv"]
 [ext_resource type="Texture2D" uid="uid://ciycnoyhogwhr" path="res://assets/tilesets/map objects/structures/tower/structure.png" id="3_qsbxb"]
-[ext_resource type="Texture2D" uid="uid://bufuoe3b75dxd" path="res://assets/tilesets/map objects/structures/tower/23.png" id="5_q8jve"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="5_g0tni"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="6_vi52o"]
+[ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="7_sv1tk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v15kx"]
 radius = 40.0
 height = 160.0
 
-[node name="tower" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ejam"]
+shader = ExtResource("3_3ddet")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3a4ao"]
+radius = 62.0
+height = 226.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gamr7"]
+radius = 60.0
+height = 206.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4m0ti"]
+radius = 658.003
+
+[node name="tower" type="CharacterBody2D"]
 script = ExtResource("1_gqymn")
 
 [node name="indicator" type="Sprite2D" parent="."]
@@ -19,6 +38,8 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_0glua")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 24
+collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 rotation = 1.5708
@@ -26,6 +47,7 @@ shape = SubResource("CapsuleShape2D_v15kx")
 disabled = true
 
 [node name="sprites" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_6ejam")
 scale = Vector2(1.2, 1.2)
 
 [node name="structure" type="Sprite2D" parent="sprites"]
@@ -36,7 +58,50 @@ texture = ExtResource("3_qsbxb")
 position = Vector2(-4, -114)
 texture = ExtResource("3_hyjfv")
 
-[node name="23" type="Sprite2D" parent="sprites"]
-position = Vector2(-2.5, -197.5)
-scale = Vector2(0.833333, 0.833333)
-texture = ExtResource("5_q8jve")
+[node name="hurtbox" parent="." instance=ExtResource("5_g0tni")]
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+z_index = 1
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3a4ao")
+
+[node name="attack_progress_bar" parent="hurtbox" index="1"]
+offset_top = -121.0
+offset_bottom = -73.0
+
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_left = -68.0
+offset_top = -190.0
+offset_right = 560.0
+offset_bottom = -82.0
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_left = -79.0
+offset_top = -202.0
+offset_right = 118.0
+offset_bottom = -153.0
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("6_vi52o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -26)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gamr7")
+
+[node name="detect_enemy" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("7_sv1tk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+position = Vector2(0, -41)
+shape = SubResource("CircleShape2D_4m0ti")
+
+[node name="line_of_sight" type="Node2D" parent="."]
+position = Vector2(0, -150)
+
+[node name="Marker2D" type="Marker2D" parent="line_of_sight"]
+position = Vector2(57, 0)
+
+[editable path="hurtbox"]

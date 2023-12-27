@@ -131,12 +131,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1c6xd"]
-radius = 148.0
+radius = 195.892
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wwu0b"]
-radius = 70.8
+radius = 90.8055
 
 [node name="ghoul2" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_5402c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -160,15 +162,15 @@ frame_progress = 1.0
 position = Vector2(2.2, -28)
 
 [node name="CollisionShape2D" parent="hurtbox" index="0"]
-position = Vector2(0, 9)
+position = Vector2(-2.2, -4)
 
 [node name="health_progress_bar" parent="hurtbox" index="2"]
-offset_top = -83.0
-offset_bottom = 25.0001
+offset_top = -117.0
+offset_bottom = -8.9999
 
 [node name="Label" parent="hurtbox" index="3"]
-offset_top = -95.0
-offset_bottom = -46.0
+offset_top = -129.0
+offset_bottom = -80.0
 
 [node name="detect_enemy" type="Area2D" parent="."]
 position = Vector2(2.2, 0)
@@ -178,6 +180,7 @@ script = ExtResource("26_nijaf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
 position = Vector2(0, -15)
+rotation = 0.00112223
 shape = SubResource("CircleShape2D_1c6xd")
 
 [node name="ad_navigation_agent" type="NavigationAgent2D" parent="."]
@@ -191,12 +194,14 @@ position = Vector2(2.2, 0)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("28_58njw")
-hitbox_character_name = "ghoul"
+hitbox_character_name = "ghoul2"
 hitbox_attack_type = "basic"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_wwu0b")
 disabled = true
+
+[connection signal="timeout" from="ad_navigation_agent/Timer" to="." method="_on_timer_timeout"]
 
 [editable path="hurtbox"]

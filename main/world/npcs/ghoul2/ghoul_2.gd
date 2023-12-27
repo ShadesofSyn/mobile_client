@@ -18,16 +18,17 @@ var aggro_mode: bool = false
 
 
 func _ready():
-	spawn_position = position + Vector2(randf_range(-400,400),randf_range(-400,400))
+	spawn_position = position + Vector2(randf_range(-600,600),randf_range(-600,600))
 	character_stats.team_color = "red"
 	character_stats.character_name = "ghoul2"
 	$hitbox.set_collision_layer(Util.return_hitbox_layer(character_stats.team_color))
 	$ad_navigation_agent/Timer.start(randf_range(3.0,8.0))
+	calculate_path()
 
 func start_aggro_mode(is_first_ad):
 	if is_first_ad:
 		check_nearby_ads()
-	$detect_enemy/CollisionShape2D.shape.set_deferred("radius",64)
+	$detect_enemy/CollisionShape2D.shape.set_deferred("radius",72)
 	navigation_agent.set_target_position(position)
 	$ad_navigation_agent/Timer.stop()
 	InstancedScenes.init_aggro_effect(self)
@@ -65,6 +66,7 @@ func _physics_process(delta):
 			velocity += steering
 		set_sprite_state()
 		move_and_slide()
+
 
 func attack():
 	if not attacking:

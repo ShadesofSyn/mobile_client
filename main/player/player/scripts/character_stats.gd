@@ -22,12 +22,16 @@ func _ready():
 
 
 func set_character_type():
+#	print(character_name)
 	if Util.is_character_ad(character_name):
 		TYPE = Constants.character_type.AD
 	elif Util.is_character_beast(character_name):
 		TYPE = Constants.character_type.BEAST
 	elif Util.is_character_ally(character_name):
 		TYPE = Constants.character_type.ALLY
+	elif Util.is_character_structure(character_name):
+#		print("TYPE IS STRCUTRE " + character_name)
+		TYPE = Constants.character_type.STRUCTURE
 	else:
 		TYPE = Constants.character_type.MAIN
 
@@ -38,7 +42,10 @@ func set_character_attributes():
 			get_node("../").set_collision_layer(Util.return_hurtbox_layer(team_color)+16)
 			max_speed = Constants.ad_data[character_name]["basic"]["movementSpeed"] * 18
 		Constants.character_type.BEAST:
+			get_node("../").set_collision_layer(Util.return_hurtbox_layer(team_color)+16)
 			max_speed = Constants.beast_data[character_name]["basic"]["movementSpeed"] * 18
+		Constants.character_type.STRUCTURE:
+			get_node("../").set_collision_layer(Util.return_hurtbox_layer(team_color)+16)
 		_:
 			get_node("../").set_collision_layer(Util.return_hurtbox_layer(team_color)+16)
 			max_speed = Constants.character_data[character_name]["basic"]["movementSpeed"] * 18
