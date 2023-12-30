@@ -78,10 +78,10 @@ func set_sprite_state():
 func set_direction():
 	if velocity.x > 0:
 		sprite.flip_h = false
-		sprite.position.x = 108
+		sprite.position.x = 86
 	else:
 		sprite.flip_h = true
-		sprite.position.x = -108
+		sprite.position.x = -86
 		
 		
 func destroy():

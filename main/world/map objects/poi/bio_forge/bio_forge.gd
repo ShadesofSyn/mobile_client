@@ -10,7 +10,7 @@ func _ready():
 	position = Vector2(Constants.SIZE_OF_HEXAGON/3.46,Constants.SIZE_OF_HEXAGON/2)
 
 
-func spawn_minion():
+func spawn_minion():	
 	var minion = preload("res://main/world/npcs/ghoul2/ghoul_2.tscn").instantiate()
 	minion.position = self.position + Vector2(randf_range(-200,200),randf_range(-200,200))
 	Server.world.get_node("ads").call_deferred("add_child",minion)
@@ -22,7 +22,7 @@ func _on_timer_timeout():
 	await $AnimationPlayer.animation_finished
 	$AnimationPlayer.play_backwards("animate")
 	await $AnimationPlayer.animation_finished
-	if ads.size() < 10:
+	if ads.size() < 15:
 		spawn_minion()
 
 

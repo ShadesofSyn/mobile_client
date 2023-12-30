@@ -40,7 +40,7 @@ func check_nearby_ads():
 	var ads = Server.world.get_node("ads").get_children()
 	for ad in ads:
 		if not ad.name == self.name and not ad.aggro_mode:
-			if ad.position.distance_to(self.position) < 500:
+			if ad.position.distance_to(self.position) < 600:
 				ad.start_aggro_mode(false)
 
 

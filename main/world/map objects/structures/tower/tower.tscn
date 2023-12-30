@@ -51,10 +51,12 @@ material = SubResource("ShaderMaterial_6ejam")
 scale = Vector2(1.2, 1.2)
 
 [node name="structure" type="Sprite2D" parent="sprites"]
+use_parent_material = true
 position = Vector2(10, -43)
 texture = ExtResource("3_qsbxb")
 
 [node name="turret" type="Sprite2D" parent="sprites"]
+use_parent_material = true
 position = Vector2(-4, -114)
 texture = ExtResource("3_hyjfv")
 

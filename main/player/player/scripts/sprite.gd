@@ -178,6 +178,8 @@ func set_direction_from_angle(angle) -> void:
 	if desired_direction_index == 8:
 		desired_direction_index = 0
 	direction = directions[desired_direction_index]
+	if not Server.ally_node1:
+		return
 	if direction == "S":
 		Server.ally_node1.get_node("ally_navigation_agent").follow_position = Vector2(-100,100)
 		Server.ally_node2.get_node("ally_navigation_agent").follow_position = Vector2(100,100)
