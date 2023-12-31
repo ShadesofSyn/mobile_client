@@ -326,7 +326,7 @@ position = Vector2(1185, 85)
 y_sort_enabled = true
 
 [node name="technomancer" parent="players" instance=ExtResource("14_wnef0")]
-position = Vector2(958, -1526)
+position = Vector2(1735, 355)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false

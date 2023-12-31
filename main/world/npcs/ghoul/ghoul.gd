@@ -5,9 +5,6 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var navigation_agent: NavigationAgent2D = $ad_navigation_agent
 
-@export var MAX_SPEED = 240
-@export var ACCELERATION = 90
-
 
 var team_color: String
 
@@ -46,7 +43,8 @@ func check_nearby_ads():
 
 func _physics_process(delta):
 	if Server.world:
-		if attacking:
+		if attacking or character_stats.destroyed:
+			print(sprite.animation)
 			return
 		if not aggro_mode:
 			if $detect_enemy.has_overlapping_bodies():
@@ -66,11 +64,12 @@ func _physics_process(delta):
 		set_sprite_state()
 		move_and_slide()
 
+
 func attack():
 	if not attacking:
 		attacking = true
-		$AnimatedSprite2D.play("attack")
-		await $AnimatedSprite2D.animation_finished
+		sprite.play("attack")
+		await sprite.animation_finished
 		$hitbox/CollisionShape2D.set_deferred("disabled",false)
 		await get_tree().create_timer(0.1).timeout
 		$hitbox/CollisionShape2D.set_deferred("disabled",true)
@@ -78,10 +77,10 @@ func attack():
 
 
 func set_sprite_state():
-	if attacking:
+	if attacking or character_stats.destroyed:
 		return
-	if character_stats.destroyed:
-		$AnimatedSprite2D.play("death")
+#	if character_stats.destroyed:
+#		$AnimatedSprite2D.play("death")
 	elif velocity == Vector2.ZERO:
 		$AnimatedSprite2D.play("idle")
 	else:
@@ -98,11 +97,16 @@ func set_direction():
 
 
 func destroy():
-	set_physics_process(false)
-	character_stats.destroyed = true
-	sprite.play("death")
-	await sprite.animation_finished
-	call_deferred("queue_free")
+	if not character_stats.destroyed:
+		character_stats.destroyed = true
+		await get_tree().process_frame
+		sprite.play("death")
+		await sprite.animation_finished
+		InstancedScenes.init_item_drop(position)
+		var tween = get_tree().create_tween()
+		tween.tween_property(sprite,"modulate:a",0.0,0.5)
+		await tween.finished
+		call_deferred("queue_free")
 
 
 func _on_timer_timeout():

@@ -22,6 +22,9 @@ func _ready():
 	else:
 		Server.player_node = self
 
+func destroy():
+	sprite.destroy()
+
 
 func use_special_ability() -> void:
 	play_dash()

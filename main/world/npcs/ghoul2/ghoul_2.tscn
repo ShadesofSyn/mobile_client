@@ -153,10 +153,8 @@ material = SubResource("ShaderMaterial_ux3mg")
 position = Vector2(25.2, -37)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_x63k0")
-animation = &"attack"
+animation = &"idle"
 autoplay = "walk"
-frame = 5
-frame_progress = 1.0
 
 [node name="hurtbox" parent="." instance=ExtResource("25_bvu6j")]
 position = Vector2(2.2, -28)

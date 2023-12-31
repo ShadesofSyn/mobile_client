@@ -75,4 +75,10 @@ func init_aggro_effect(_node) -> void:
 	var effect = preload("res://main/player/effects/aggro/aggro_effect.tscn").instantiate()
 	_node.call_deferred("add_child",effect)
 	
-	
+
+### Misc
+func init_item_drop(_pos) -> void:
+	var item_drop = preload("res://main/world/map objects/item_drop/item_drop.tscn").instantiate()
+	item_drop.position = _pos
+	Server.world.projectiles.call_deferred("add_child",item_drop)
+

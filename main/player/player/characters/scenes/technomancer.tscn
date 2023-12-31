@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://1jniane4wwft"]
+[gd_scene load_steps=15 format=3 uid="uid://1jniane4wwft"]
 
 [ext_resource type="Script" path="res://main/player/player/scripts/movement.gd" id="1_fmmiy"]
 [ext_resource type="Script" path="res://main/player/player/characters/character.gd" id="1_ghag4"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://main/player/player/scripts/sprite.gd" id="7_puxfa"]
 [ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="8_sc2ks"]
 [ext_resource type="Script" path="res://main/player/player/scripts/line_of_sight.gd" id="10_ykb25"]
+[ext_resource type="PackedScene" uid="uid://bd6g7r4joxsdy" path="res://main/player/player/scripts/pick_up_zone/pick_up_zone.tscn" id="11_orkvr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f01f4"]
 
@@ -93,6 +94,9 @@ offset_left = -79.0
 offset_top = -139.0
 offset_right = 118.0
 offset_bottom = -90.0
+
+[node name="pick_up_zone" parent="." instance=ExtResource("11_orkvr")]
+visible = false
 
 [connection signal="timeout" from="sprite/Timer" to="sprite" method="_on_timer_timeout"]
 
