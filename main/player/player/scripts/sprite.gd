@@ -76,7 +76,7 @@ func set_ally_sprite_state() -> void:
 func check_if_attack_mode() -> void:
 	if attacking or ultra_attacking:
 		return 
-	if Util.get_nearest_target(get_node("../detect_enemy")):
+	if Util.get_nearest_aggro_target(get_node("../detect_enemy")):
 		attack()
 
 

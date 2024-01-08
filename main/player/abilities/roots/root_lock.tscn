@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://vl03esddx0mg"]
+
+[ext_resource type="Texture2D" uid="uid://dn5gq06un2y48" path="res://assets/images/abilities/roots/roots-single-01.png" id="1_2e21x"]
+[ext_resource type="Texture2D" uid="uid://sgw76k4o8yc0" path="res://assets/images/abilities/roots/roots-single-02.png" id="2_7jggg"]
+[ext_resource type="Texture2D" uid="uid://0fm2x03cpbc0" path="res://assets/images/abilities/roots/roots-single-03.png" id="3_juchl"]
+[ext_resource type="Texture2D" uid="uid://cv6m2j72qh4ad" path="res://assets/images/abilities/roots/roots-single-04.png" id="4_weml3"]
+[ext_resource type="Texture2D" uid="uid://bweo7bc004ni0" path="res://assets/images/abilities/roots/roots-single-05.png" id="5_uue84"]
+[ext_resource type="Texture2D" uid="uid://btlojbq3clb40" path="res://assets/images/abilities/roots/roots-single-06.png" id="6_nepkc"]
+[ext_resource type="Script" path="res://main/player/abilities/roots/root_lock.gd" id="7_cus4x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0foaw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2e21x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7jggg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_juchl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_weml3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uue84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nepkc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="root_lock" type="AnimatedSprite2D"]
+position = Vector2(0, -33)
+sprite_frames = SubResource("SpriteFrames_0foaw")
+frame = 5
+frame_progress = 1.0
+script = ExtResource("7_cus4x")

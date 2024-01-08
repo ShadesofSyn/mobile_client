@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://np34agvgbjfj"]
+[gd_scene load_steps=15 format=3 uid="uid://np34agvgbjfj"]
 
 [ext_resource type="Script" path="res://main/world/map objects/structures/tower/tower.gd" id="1_gqymn"]
 [ext_resource type="Texture2D" uid="uid://wow70xj0mmu" path="res://assets/images/misc/green_square.png" id="2_0glua"]
@@ -28,6 +28,10 @@ height = 206.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4m0ti"]
 radius = 658.003
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8e8hq"]
+radius = 40.0
+height = 160.0
 
 [node name="tower" type="CharacterBody2D"]
 script = ExtResource("1_gqymn")
@@ -105,5 +109,15 @@ position = Vector2(0, -150)
 
 [node name="Marker2D" type="Marker2D" parent="line_of_sight"]
 position = Vector2(57, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8e8hq")
+
+[node name="Line2D" type="Line2D" parent="."]
 
 [editable path="hurtbox"]

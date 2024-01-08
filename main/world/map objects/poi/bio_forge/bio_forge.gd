@@ -7,13 +7,19 @@ extends CharacterBody2D
 func _ready():
 	character_stats.team_color = "red"
 	character_stats.character_name = "bio-forge"
-	position = Vector2(Constants.SIZE_OF_HEXAGON/3.46,Constants.SIZE_OF_HEXAGON/2)
+	position = Vector2(-Constants.SIZE_OF_HEXAGON/3.46,-Constants.SIZE_OF_HEXAGON/2)
 
 
-func spawn_minion():	
-	var minion = preload("res://main/world/npcs/ghoul2/ghoul_2.tscn").instantiate()
+func spawn_minion():
+	var minion = preload("res://main/world/npcs/minion/minion.tscn").instantiate()
 	minion.position = self.position + Vector2(randf_range(-200,200),randf_range(-200,200))
 	Server.world.get_node("ads").call_deferred("add_child",minion)
+	if character_stats.aggro_mode:
+		minion.character_stats.aggro_mode = true
+
+
+func start_aggro_mode(is_first_ad):
+	character_stats.aggro_mode = true
 
 
 func _on_timer_timeout():
@@ -27,4 +33,5 @@ func _on_timer_timeout():
 
 
 func destroy():
+	InstancedScenes.init_item_drop(position,true)
 	call_deferred("queue_free")

@@ -11,8 +11,6 @@ var team_color: String
 var spawn_position: Vector2
 var attacking: bool = false
 
-var aggro_mode: bool = false
-
 
 func _ready():
 	spawn_position = position
@@ -20,6 +18,7 @@ func _ready():
 	character_stats.character_name = "ghoul2"
 	$hitbox.set_collision_layer(Util.return_hitbox_layer(character_stats.team_color))
 	$ad_navigation_agent/Timer.start(randf_range(3.0,8.0))
+	start_aggro_mode(false)
 
 
 func start_aggro_mode(is_first_ad):
@@ -30,14 +29,14 @@ func start_aggro_mode(is_first_ad):
 	$ad_navigation_agent/Timer.stop()
 	InstancedScenes.init_aggro_effect(self)
 	await get_tree().create_timer(5*0.125).timeout
-	aggro_mode = true
+	character_stats.aggro_mode = true
 	$ad_navigation_agent/Timer.start(randf_range(0.1,0.2))
 
 
 func check_nearby_ads():
 	var ads = Server.world.get_node("ads").get_children()
 	for ad in ads:
-		if not ad.name == self.name and not ad.aggro_mode:
+		if not ad.name == self.name and not ad.character_stats.aggro_mode:
 			if ad.position.distance_to(self.position) < 600:
 				ad.start_aggro_mode(false)
 
@@ -45,13 +44,12 @@ func check_nearby_ads():
 func _physics_process(delta):
 	if Server.world:
 		if attacking or character_stats.destroyed:
-			print(sprite.animation)
 			return
-		if not aggro_mode:
+		if not character_stats.aggro_mode:
 			if $detect_enemy.has_overlapping_bodies():
 				start_aggro_mode(true)
 		else:
-			if $detect_enemy.has_overlapping_bodies() and not attacking:
+			if Util.get_nearest_target($detect_enemy) and not attacking:
 				attack()
 		if navigation_agent.is_navigation_finished() or character_stats.destroyed:
 			velocity = velocity.move_toward(Vector2.ZERO,character_stats.friction*delta)
@@ -70,9 +68,8 @@ func attack():
 	if not attacking:
 		attacking = true
 		sprite.play("attack")
-		await sprite.animation_finished
 		$hitbox/CollisionShape2D.set_deferred("disabled",false)
-		await get_tree().create_timer(0.1).timeout
+		await sprite.animation_finished
 		$hitbox/CollisionShape2D.set_deferred("disabled",true)
 		attacking = false
 
@@ -103,7 +100,7 @@ func destroy():
 		await get_tree().process_frame
 		sprite.play("death")
 		await sprite.animation_finished
-		InstancedScenes.init_item_drop(position)
+		InstancedScenes.init_item_drop(position,false)
 		var tween = get_tree().create_tween()
 		tween.tween_property(sprite,"modulate:a",0.0,0.5)
 		await tween.finished
@@ -115,7 +112,7 @@ func _on_timer_timeout():
 
 
 func calculate_path():
-	if not aggro_mode:
+	if not character_stats.aggro_mode:
 		$ad_navigation_agent/Timer.start(randf_range(3.0,8.0))
 		navigation_agent.set_target_position(Util.return_random_idle_position(spawn_position))
 	else:

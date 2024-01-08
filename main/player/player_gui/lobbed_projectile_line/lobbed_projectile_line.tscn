@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://bigcuaiqhmhiq"]
+
+[ext_resource type="Script" path="res://main/player/player_gui/lobbed_projectile_line/lobbed_projectile_line.gd" id="1_gnyjg"]
+[ext_resource type="Shader" path="res://assets/resources/shader/arched_projectile_line_shadow.gdshader" id="1_u8co4"]
+[ext_resource type="Texture2D" uid="uid://c32ssfg2uu0xt" path="res://assets/images/misc/invisible.png" id="2_2xjj4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_haqc0"]
+shader = ExtResource("1_u8co4")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/size = 0.92
+shader_parameter/squishness = Vector2(1, 1)
+shader_parameter/color1 = Color(1, 1, 1, 0)
+shader_parameter/color2 = Color(1, 1, 1, 0.596078)
+shader_parameter/color3 = null
+shader_parameter/step1 = 0.35
+shader_parameter/step2 = 0.52
+shader_parameter/step3 = 0.529
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3fswf"]
+shader = ExtResource("1_u8co4")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/size = 0.946
+shader_parameter/squishness = Vector2(1, 1)
+shader_parameter/color1 = Color(1, 1, 1, 0)
+shader_parameter/color2 = Color(1, 1, 1, 0.584314)
+shader_parameter/color3 = Color(0, 0, 0, 1)
+shader_parameter/step1 = 0.516
+shader_parameter/step2 = 0.51
+shader_parameter/step3 = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r6p6l"]
+load_path = "res://.godot/imported/invisible.png-901afc65daefa239e48dd5d99dc5230c.ctex"
+
+[sub_resource type="Curve2D" id="Curve2D_8xiax"]
+
+[node name="lobbed_projectile_line" type="Node2D"]
+script = ExtResource("1_gnyjg")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 24.0
+default_color = Color(1, 1, 1, 0.823529)
+
+[node name="aim_box" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_haqc0")
+scale = Vector2(9, 4.5)
+texture = ExtResource("2_2xjj4")
+
+[node name="outline" type="Sprite2D" parent="aim_box"]
+material = SubResource("ShaderMaterial_3fswf")
+texture = SubResource("CompressedTexture2D_r6p6l")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_8xiax")

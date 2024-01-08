@@ -13,13 +13,15 @@ var team_color: String
 var anchor_mode: bool = false
 var spawn_position: Vector2
 var attacking: bool = false
-var aggro_mode: bool = false
+#var aggro_mode: bool = false
+var rolling: bool = false
 
 func _ready():
 	character_stats.team_color = "red"
 	character_stats.character_name = "golem"
 	character_stats.TYPE = Constants.character_type.BEAST
-	position = Vector2(-Constants.SIZE_OF_HEXAGON/3.46,-Constants.SIZE_OF_HEXAGON/2)
+	position = Vector2(-Constants.SIZE_OF_HEXAGON/3.46,Constants.SIZE_OF_HEXAGON/2)
+	spawn_position = position
 #	calculate_path()
 
 func start_aggro_mode(is_first_ad):
@@ -31,7 +33,7 @@ func start_aggro_mode(is_first_ad):
 	$ad_navigation_agent/Timer.stop()
 	InstancedScenes.init_aggro_effect(self)
 	await get_tree().create_timer(5*0.125).timeout
-	aggro_mode = true
+	character_stats.aggro_mode = true
 	$ad_navigation_agent/Timer.start(randf_range(0.1,0.2))
 
 
@@ -47,7 +49,7 @@ func _physics_process(delta):
 			set_direction()
 			var target = navigation_agent.get_next_path_position()
 			var move_direction = position.direction_to(target)
-			var desired_velocity = move_direction * navigation_agent.max_speed
+			var desired_velocity = move_direction * character_stats.max_speed
 			var steering = (desired_velocity - velocity) * delta * 4.0
 			velocity += steering
 		set_sprite_state()
@@ -65,7 +67,7 @@ func attack():
 
 
 func set_sprite_state():
-	if attacking:
+	if attacking or rolling:
 		return
 	if character_stats.destroyed:
 		$AnimatedSprite2D.play("death")
@@ -92,4 +94,25 @@ func destroy():
 
 
 func _on_timer_timeout():
-	pass # Replace with function body.
+	calculate_path()
+
+
+func calculate_path():
+	if not character_stats.aggro_mode:
+		$ad_navigation_agent/Timer.start(randf_range(3.0,8.0))
+		navigation_agent.set_target_position(Util.return_random_idle_position(spawn_position))
+	else:
+		navigation_agent.set_target_position(Server.player_node.global_position)
+
+
+func _on_timer_2_timeout():
+	if not attacking:
+		$hurtbox/CollisionShape2D.set_deferred("disabled",true)
+		calculate_path()
+		character_stats.max_speed *= 3
+		rolling = true
+		sprite.play("roll")
+		await sprite.animation_finished
+		rolling = false
+		character_stats.max_speed = character_stats.max_speed / 3
+		$hurtbox/CollisionShape2D.set_deferred("disabled",false)

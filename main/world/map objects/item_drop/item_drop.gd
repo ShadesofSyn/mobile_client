@@ -7,9 +7,12 @@ var being_added_to_inventory = false
 const MAX_SPEED = 700
 const ACCELERATION = 150
 
+var special: bool = false
 
 func _ready():
-#	$crystal.texture = load("res://assets/tilesets/tower defense/td-tileset3/PNG/game_background_2/layers/decor_"+ str(randi_range(2,4)) +".png")
+	if special:
+		$Sprite2D.scale *= 2
+	$Sprite2D.texture = load("res://assets/tilesets/map objects/crystals/decor_"+ str(randi_range(2,4)) +".png")
 	await get_tree().create_timer(0.5).timeout
 	$CollisionShape2D.set_deferred("disabled",false)
 

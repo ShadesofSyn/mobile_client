@@ -10,12 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://j2d2tw1w6b4h" path="res://main/world/map objects/structures/scrying_orb.tscn" id="6_ekg18"]
 [ext_resource type="Texture2D" uid="uid://pfsh2pw6ow7r" path="res://assets/tilesets/map objects/obstacles/barrel.png" id="6_xaqjc"]
 [ext_resource type="PackedScene" uid="uid://bdxckhax8qbtq" path="res://main/world/map objects/poi/bio_forge/bio_forge.tscn" id="10_1r7a2"]
-[ext_resource type="PackedScene" uid="uid://4yxwliy5qpqh" path="res://main/world/map objects/structures/unstable core/unstable_core.tscn" id="12_e631b"]
+[ext_resource type="PackedScene" uid="uid://4yxwliy5qpqh" path="res://main/world/map objects/structures/unstable core/unstable_core.tscn" id="12_2xbci"]
 [ext_resource type="PackedScene" uid="uid://dvv48njinvfud" path="res://main/world/npcs/ghoul/ghoul.tscn" id="12_tm6la"]
-[ext_resource type="PackedScene" uid="uid://np34agvgbjfj" path="res://main/world/map objects/structures/tower/tower.tscn" id="14_5d1gb"]
-[ext_resource type="PackedScene" uid="uid://c4w82tvdx81gp" path="res://main/world/map objects/beasts/haunted_tree.tscn" id="14_qiy13"]
+[ext_resource type="PackedScene" uid="uid://np34agvgbjfj" path="res://main/world/map objects/structures/tower/tower.tscn" id="13_fdmyp"]
 [ext_resource type="PackedScene" uid="uid://1jniane4wwft" path="res://main/player/player/characters/scenes/technomancer.tscn" id="14_wnef0"]
-[ext_resource type="PackedScene" uid="uid://c22l5y07o8ry0" path="res://main/world/map objects/beasts/golem/golem.tscn" id="15_v5ter"]
+[ext_resource type="PackedScene" uid="uid://c4w82tvdx81gp" path="res://main/world/map objects/beasts/haunted_tree.tscn" id="14_xxi6m"]
+[ext_resource type="PackedScene" uid="uid://c22l5y07o8ry0" path="res://main/world/map objects/beasts/golem/golem.tscn" id="15_38ycr"]
 [ext_resource type="PackedScene" uid="uid://c0vynf2sr0cx5" path="res://main/world/map objects/poi/vortex/vortex.tscn" id="19_vocb2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_htgnw"]
@@ -279,16 +279,17 @@ y_sort_enabled = true
 [node name="bio forge" parent="objectives/objectives" instance=ExtResource("10_1r7a2")]
 position = Vector2(1489, 1511)
 
-[node name="unstable_core" parent="objectives/objectives" instance=ExtResource("12_e631b")]
+[node name="unstable_core" parent="objectives/objectives" instance=ExtResource("12_2xbci")]
+position = Vector2(3313, -166)
 
-[node name="tower" parent="objectives/objectives" instance=ExtResource("14_5d1gb")]
-position = Vector2(1462, -1934)
+[node name="tower" parent="objectives/objectives" instance=ExtResource("13_fdmyp")]
+position = Vector2(1300, 2250)
 
-[node name="haunted_tree" parent="objectives/objectives" instance=ExtResource("14_qiy13")]
-position = Vector2(2316, 0)
+[node name="haunted_tree" parent="objectives/objectives" instance=ExtResource("14_xxi6m")]
+position = Vector2(2081, -1786)
 
-[node name="golem" parent="objectives/objectives" instance=ExtResource("15_v5ter")]
-position = Vector2(-1324, -2088)
+[node name="golem" parent="objectives/objectives" instance=ExtResource("15_38ycr")]
+position = Vector2(-1471, 2173)
 
 [node name="vortex2" parent="objectives" instance=ExtResource("19_vocb2")]
 
@@ -326,7 +327,7 @@ position = Vector2(1185, 85)
 y_sort_enabled = true
 
 [node name="technomancer" parent="players" instance=ExtResource("14_wnef0")]
-position = Vector2(1735, 355)
+position = Vector2(-833, 2234)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false

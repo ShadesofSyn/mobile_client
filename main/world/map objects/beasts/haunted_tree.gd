@@ -20,7 +20,7 @@ func _ready():
 	character_stats.team_color = "red"
 	character_stats.character_name = "tree"
 	character_stats.TYPE = Constants.character_type.BEAST
-	position = Vector2(Constants.SIZE_OF_HEXAGON/2,0)
+	position = Vector2(-Constants.SIZE_OF_HEXAGON/2,0)
 
 
 func _physics_process(delta):
@@ -47,7 +47,9 @@ func set_direction():
 func attack():
 	attacking = true
 	init_hitbox()
-	await get_tree().create_timer(Constants.beast_data["tree"]["basic"]["attackSpeed"]).timeout
+	if Util.chance(50):
+		Server.player_node.root_lock()
+	await get_tree().create_timer(Constants.beast_data["tree"]["basic"]["attackSpeed"]*3).timeout
 	attacking = false
 
 

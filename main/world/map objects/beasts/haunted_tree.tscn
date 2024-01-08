@@ -380,7 +380,6 @@ frame_progress = 1.0
 flip_h = true
 
 [node name="hurtbox" parent="." instance=ExtResource("38_qk3l4")]
-visible = false
 
 [node name="CollisionShape2D" parent="hurtbox" index="0"]
 position = Vector2(-1, -58)

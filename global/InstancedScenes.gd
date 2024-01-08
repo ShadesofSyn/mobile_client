@@ -1,5 +1,22 @@
 extends Node
 
+func init_hit_effect(amt,pos) -> void:
+	var effect = preload("res://main/player/effects/hit/hit_effect.tscn").instantiate()
+	effect.amount = amt
+	effect.position = pos + Vector2(randf_range(-50,50),randf_range(-50,50))
+	Server.world.projectiles.call_deferred("add_child",effect)
+
+
+### 
+func init_lobbed_projectile(type:String,joystick_vector:Vector2) -> void:
+	var aim_line = Server.player_node.get_node("Camera2D/player_gui/lobbed_projectile_line")
+	var projectile = preload("res://main/player/abilities/projectile/lobbed_projectile.tscn").instantiate()
+	projectile.type = type
+	projectile.strength = aim_line.strength_coefficient
+	projectile.path = aim_line.path 
+	projectile.player_pos = Server.player_node.position
+	Server.world.projectiles.call_deferred("add_child",projectile)
+
 
 ### Basic attacks
 func init_technomancer_basic(team_color,velocity,spawn_pt) -> void:
@@ -63,9 +80,9 @@ func init_technomancer_ultra(_pos,team_color) -> void:
 	ult.position = _pos
 	Server.world.projectiles.call_deferred("add_child",ult)
 
-func init_steelthorn_ultra(_pos,team_color) -> void:
+func init_steelthorn_ultra(_pos,team_color,aim_vector) -> void:
 	var ult = preload("res://main/player/abilities/steelthorn/ultra/steelthorn_ultra.tscn").instantiate()
-#	ult.team_color = team_color
+	ult.aim_vector = aim_vector
 	ult.position = _pos
 	Server.world.projectiles.call_deferred("add_child",ult)
 	
@@ -77,8 +94,9 @@ func init_aggro_effect(_node) -> void:
 	
 
 ### Misc
-func init_item_drop(_pos) -> void:
+func init_item_drop(_pos,special) -> void:
 	var item_drop = preload("res://main/world/map objects/item_drop/item_drop.tscn").instantiate()
+	item_drop.special = special
 	item_drop.position = _pos
 	Server.world.projectiles.call_deferred("add_child",item_drop)
 
