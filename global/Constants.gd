@@ -86,7 +86,7 @@ var structure_data = {
 		"class": "Unknown",
 		"description": "Produces minions to attack nearby enemies.",
 		"basic": {
-			"health": 200,
+			"health": 500,
 			"attackSpeed": 0.8,
 #			"movementSpeed": 10,
 			"attackRange": 3

@@ -14,9 +14,14 @@ const ICON_TRAVEL_DISTANCE: float = 264
 
 
 func _ready():
+	set_team_favor()
+	Server.connect("update_favor",Callable(self,"set_team_favor"))
+
+
+func set_team_favor():
 	set_left_team_position()
 	set_right_team_position()
-
+	
 
 func set_left_team_position():
 	var progress_amt = float(Server.left_team_favor) / MAX_TEAM_SCORE

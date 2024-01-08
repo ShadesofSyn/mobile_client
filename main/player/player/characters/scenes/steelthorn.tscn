@@ -63,11 +63,11 @@ shape = SubResource("CircleShape2D_a1y66")
 [node name="player_gui" parent="Camera2D" instance=ExtResource("8_2o5au")]
 
 [node name="line_of_sight" type="Node2D" parent="."]
-position = Vector2(-1.90707e-07, -41)
+position = Vector2(0, -42)
 script = ExtResource("10_41ge8")
 
 [node name="Marker2D" type="Marker2D" parent="line_of_sight"]
-position = Vector2(89, 0)
+position = Vector2(48, 0)
 
 [node name="ally_navigation_agent" parent="." instance=ExtResource("11_7jtr7")]
 follow_position = Vector2(-100, 100)

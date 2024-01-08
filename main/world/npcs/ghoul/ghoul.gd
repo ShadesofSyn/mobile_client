@@ -5,16 +5,13 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var navigation_agent: NavigationAgent2D = $ad_navigation_agent
 
-@export var MAX_SPEED = 240
-@export var ACCELERATION = 90
-
 
 var team_color: String
 
 var spawn_position: Vector2
 var attacking: bool = false
 
-var aggro_mode: bool = false
+#var aggro_mode: bool = false
 
 
 func _ready():
@@ -32,27 +29,27 @@ func start_aggro_mode(is_first_ad):
 	$ad_navigation_agent/Timer.stop()
 	InstancedScenes.init_aggro_effect(self)
 	await get_tree().create_timer(5*0.125).timeout
-	aggro_mode = true
+	character_stats.aggro_mode = true
 	$ad_navigation_agent/Timer.start(randf_range(0.1,0.2))
 
 
 func check_nearby_ads():
 	var ads = Server.world.get_node("ads").get_children()
 	for ad in ads:
-		if not ad.name == self.name and not ad.aggro_mode:
-			if ad.position.distance_to(self.position) < 500:
+		if not ad.name == self.name and not ad.character_stats.aggro_mode:
+			if ad.position.distance_to(self.position) < 600:
 				ad.start_aggro_mode(false)
 
 
 func _physics_process(delta):
 	if Server.world:
-		if attacking:
+		if attacking or character_stats.destroyed:
 			return
-		if not aggro_mode:
+		if not character_stats.aggro_mode:
 			if $detect_enemy.has_overlapping_bodies():
 				start_aggro_mode(true)
 		else:
-			if $detect_enemy.has_overlapping_bodies() and not attacking:
+			if Util.get_nearest_target($detect_enemy) and not attacking:
 				attack()
 		if navigation_agent.is_navigation_finished() or character_stats.destroyed:
 			velocity = velocity.move_toward(Vector2.ZERO,character_stats.friction*delta)
@@ -66,22 +63,22 @@ func _physics_process(delta):
 		set_sprite_state()
 		move_and_slide()
 
+
 func attack():
 	if not attacking:
 		attacking = true
-		$AnimatedSprite2D.play("attack")
-		await $AnimatedSprite2D.animation_finished
+		sprite.play("attack")
 		$hitbox/CollisionShape2D.set_deferred("disabled",false)
-		await get_tree().create_timer(0.1).timeout
+		await sprite.animation_finished
 		$hitbox/CollisionShape2D.set_deferred("disabled",true)
 		attacking = false
 
 
 func set_sprite_state():
-	if attacking:
+	if attacking or character_stats.destroyed:
 		return
-	if character_stats.destroyed:
-		$AnimatedSprite2D.play("death")
+#	if character_stats.destroyed:
+#		$AnimatedSprite2D.play("death")
 	elif velocity == Vector2.ZERO:
 		$AnimatedSprite2D.play("idle")
 	else:
@@ -98,11 +95,16 @@ func set_direction():
 
 
 func destroy():
-	set_physics_process(false)
-	character_stats.destroyed = true
-	sprite.play("death")
-	await sprite.animation_finished
-	call_deferred("queue_free")
+	if not character_stats.destroyed:
+		character_stats.destroyed = true
+		await get_tree().process_frame
+		sprite.play("death")
+		await sprite.animation_finished
+		InstancedScenes.init_item_drop(position,false)
+		var tween = get_tree().create_tween()
+		tween.tween_property(sprite,"modulate:a",0.0,0.5)
+		await tween.finished
+		call_deferred("queue_free")
 
 
 func _on_timer_timeout():
@@ -110,7 +112,7 @@ func _on_timer_timeout():
 
 
 func calculate_path():
-	if not aggro_mode:
+	if not character_stats.aggro_mode:
 		$ad_navigation_agent/Timer.start(randf_range(3.0,8.0))
 		navigation_agent.set_target_position(Util.return_random_idle_position(spawn_position))
 	else:

@@ -41,8 +41,10 @@ func _on_area_entered(area):
 		var hitbox_character_name = area.hitbox_character_name
 		var hitbox_type =  area.hitbox_attack_type
 		var health_change
+		if hitbox_type == "special" and hitbox_character_name == "unstable core":
+			health_change = -(progress_bar.value/2)
 #		print("ENTERED HURTBOX " + str(get_parent().name) + " " + hitbox_character_name + " " + hitbox_type)
-		if hitbox_character_name == "mariselle" and hitbox_type == "ultra":
+		elif hitbox_character_name == "mariselle" and hitbox_type == "ultra":
 			health_change = int((Constants.character_data["mariselle"]["ultra"]["healPercentagePerAction"] * 0.01) * progress_bar.max_value)
 		else:
 			health_change = Util.return_health_change(hitbox_character_name,hitbox_type)
@@ -55,31 +57,35 @@ func _on_area_entered(area):
 			flash(health_change)
 		if Util.destructable_projectile(hitbox_character_name,hitbox_type):
 			area.destroy()
-#		if get_parent().character_stats.character_name == "ghoul":
-#			get_parent().start_agro_mode()
+		InstancedScenes.init_hit_effect(health_change,global_position)
 	if get_parent().character_stats.TYPE == Constants.character_type.AD or get_parent().character_stats.character_name == "golem":
-		if not get_parent().aggro_mode:
+		if not get_parent().character_stats.aggro_mode:
 			get_parent().start_aggro_mode(true)
 			
 
 
 func destroy() -> void:
 	if not get_parent().character_stats.destroyed:
-		$Label.text = str(0)
-		if get_parent().character_stats.TYPE == Constants.character_type.STRUCTURE or get_parent().character_stats.TYPE == Constants.character_type.BEAST:
-			hide()
-			get_parent().destroy()
-		elif not get_parent().character_stats.TYPE == Constants.character_type.MAIN:
-			hide()
-			get_parent().character_stats.destroyed = true
-			var sprite_material = get_parent().sprite.material
-			sprite_material.set_shader_parameter("flash_modifier",0)
-			await get_tree().process_frame
-			get_parent().character_stats.STATE = Constants.player_state.DEATH
-			await get_tree().create_timer(0.125*5).timeout
-			get_parent().destroy()
-		else:
-			get_parent().sprite.destroy()
+		hide()
+		get_parent().destroy()
+#		$Label.text = str(0)
+#		if get_parent().character_stats.TYPE == Constants.character_type.STRUCTURE or get_parent().character_stats.TYPE == Constants.character_type.BEAST:
+#			hide()
+#			get_parent().destroy()
+#		elif  get_parent().character_stats.TYPE == Constants.character_type.STRUCTURE:
+#			hide()
+#			get_parent().destroy()
+#		elif not get_parent().character_stats.TYPE == Constants.character_type.MAIN:
+#			hide()
+#			get_parent().character_stats.destroyed = true
+#			var sprite_material = get_parent().sprite.material
+#			sprite_material.set_shader_parameter("flash_modifier",0)
+#			await get_tree().process_frame
+#			get_parent().character_stats.STATE = Constants.player_state.DEATH
+#			await get_tree().create_timer(0.125*5).timeout
+#			get_parent().destroy()
+#		else:
+#			get_parent().sprite.destroy()
 
 
 func flash(_health_change) -> void:

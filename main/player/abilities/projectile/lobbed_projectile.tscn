@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://beo6ibcau2e1p"]
+
+[ext_resource type="Script" path="res://main/player/abilities/projectile/lobbed_projectile.gd" id="1_36t2v"]
+[ext_resource type="Texture2D" uid="uid://ogvxr3asi518" path="res://assets/interface/buttons/circle72.png" id="2_e2fec"]
+
+[sub_resource type="Curve2D" id="Curve2D_sq7oy"]
+
+[node name="lobbed_projectile" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_36t2v")
+
+[node name="ArchedPath" type="Path2D" parent="."]
+y_sort_enabled = true
+curve = SubResource("Curve2D_sq7oy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ArchedPath"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ArchedPath/PathFollow2D"]
+y_sort_enabled = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_e2fec")

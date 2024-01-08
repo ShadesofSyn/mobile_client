@@ -81,7 +81,7 @@ func return_health_change(character,type) -> int:
 		return -Constants.ad_data[character][type]["damage"]
 	elif character == "tower" or character == "unstable core":
 		return -Constants.structure_data[character][type]["damage"]
-	elif character == "tree":
+	elif character == "tree" or character == "golem":
 		return -Constants.beast_data[character][type]["damage"]
 	return -Constants.character_data[character][type]["damage"]
 
@@ -94,6 +94,21 @@ func destructable_projectile(character,type) -> bool:
 
 
 ### Detect enemy nodes
+func get_nearest_aggro_target(_detect_enemy_node): 
+	var enemy_node
+	var max_distance_to_check = 100000.0
+	var _pos = _detect_enemy_node.global_position
+	var _enemy_nodes = _detect_enemy_node.get_overlapping_bodies()
+	if _enemy_nodes.size() == 0:
+		return null
+	else:
+		for node in _enemy_nodes:
+			var distance_to_enemy = _pos.distance_to(node.global_position)
+			if distance_to_enemy < max_distance_to_check and node.character_stats.aggro_mode:
+				max_distance_to_check = distance_to_enemy
+				enemy_node = node
+		return enemy_node
+
 func get_nearest_target(_detect_enemy_node): 
 	var enemy_node
 	var max_distance_to_check = 100000.0
@@ -125,7 +140,7 @@ func get_lowest_health_target(_detect_enemy_node):
 		return enemy_node
 
 func return_random_idle_position(_spawn_pos) -> Vector2:
-	var random_vec = Vector2(randf_range(100,300),randf_range(100,300))
+	var random_vec = Vector2(randf_range(100,400),randf_range(100,400))
 	if chance(50):
 		random_vec.x *= -1
 	if chance(50):

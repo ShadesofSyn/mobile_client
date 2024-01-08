@@ -9,7 +9,7 @@ func _ready():
 	$hitbox.set_collision_layer(Util.return_hitbox_layer("red"))
 	character_stats.team_color = "red"
 	character_stats.character_name = "unstable core"
-	position = Vector2(-Constants.SIZE_OF_HEXAGON/2,0)
+	position = Vector2(Constants.SIZE_OF_HEXAGON/2,0)
 
 
 

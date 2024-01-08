@@ -150,7 +150,6 @@ position = Vector2(23, -37)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_kw1qb")
 animation = &"death"
-autoplay = "walk"
 
 [node name="hurtbox" parent="." instance=ExtResource("24_gc0ry")]
 

@@ -76,7 +76,7 @@ func set_ally_sprite_state() -> void:
 func check_if_attack_mode() -> void:
 	if attacking or ultra_attacking:
 		return 
-	if Util.get_nearest_target(get_node("../detect_enemy")):
+	if Util.get_nearest_aggro_target(get_node("../detect_enemy")):
 		attack()
 
 
@@ -178,6 +178,8 @@ func set_direction_from_angle(angle) -> void:
 	if desired_direction_index == 8:
 		desired_direction_index = 0
 	direction = directions[desired_direction_index]
+	if not Server.ally_node1:
+		return
 	if direction == "S":
 		Server.ally_node1.get_node("ally_navigation_agent").follow_position = Vector2(-100,100)
 		Server.ally_node2.get_node("ally_navigation_agent").follow_position = Vector2(100,100)

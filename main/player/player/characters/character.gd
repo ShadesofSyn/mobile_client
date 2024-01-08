@@ -22,6 +22,9 @@ func _ready():
 	else:
 		Server.player_node = self
 
+func destroy():
+	sprite.destroy()
+
 
 func use_special_ability() -> void:
 	play_dash()
@@ -50,8 +53,9 @@ func basic_attack() -> void:
 			InstancedScenes.init_valkyrie_basic(character_stats.team_color,aim_vector,spawn_point)
 
 
-func ultra_attack() -> void:
+func ultra_attack(index,output) -> void:
 	await get_tree().process_frame
+#	if index == "1":
 	var spawn_point = $line_of_sight/Marker2D.global_position
 	var aim_vector = (spawn_point-$line_of_sight.global_position).normalized()
 	sprite.set_direction_attack_mode(aim_vector)
@@ -59,15 +63,21 @@ func ultra_attack() -> void:
 		sprite.attack(false)
 	else:
 		sprite.ultra_attack()
-	match name:
+	match index:
 		"valkyrie":
 			InstancedScenes.init_valkyrie_ultra(character_stats.team_color)
-		"mariselle":
-			InstancedScenes.init_mariselle_ultra(position,character_stats.team_color)
+		"3":
+			InstancedScenes.init_lobbed_projectile("mari",aim_vector)
+			#InstancedScenes.init_mariselle_ultra(position,character_stats.team_color)
 		"magmaul":
 			InstancedScenes.init_magmaul_ultra(position,character_stats.team_color)
-		"technomancer":
-			InstancedScenes.init_technomancer_ultra(position,character_stats.team_color)
-		"steelthorn":
-			InstancedScenes.init_steelthorn_ultra(position,character_stats.team_color)
+		"1": #"technomancer":
+			InstancedScenes.init_lobbed_projectile("tech",aim_vector)
+			#InstancedScenes.init_technomancer_ultra(position,character_stats.team_color)
+		"2":
+			InstancedScenes.init_steelthorn_ultra(Server.ally_node1.position,character_stats.team_color,output)
 
+func root_lock():
+	character_stats.stunned = true
+	var anim = preload("res://main/player/abilities/roots/root_lock.tscn").instantiate()
+	call_deferred("add_child",anim)

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dcc5nrwid03p8"]
+
+[node name="straight_projectile_line" type="Node2D"]
+rotation = -6.28319
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 333.0
+offset_bottom = 19.0
+color = Color(0.984314, 0.984314, 0.984314, 0.756863)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_top = -19.0
+offset_right = 333.0
+color = Color(0.984314, 0.984314, 0.984314, 0.756863)

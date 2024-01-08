@@ -1,35 +1,37 @@
-[gd_scene load_steps=18 format=3 uid="uid://dexw8jc1qpmch"]
+[gd_scene load_steps=27 format=3 uid="uid://dexw8jc1qpmch"]
 
 [ext_resource type="Script" path="res://main/player/abilities/technomancer/ultra/technomancer_ultra.gd" id="1_f5xqd"]
-[ext_resource type="Texture2D" uid="uid://kmrcchwu2asn" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-01.png" id="1_xfvir"]
-[ext_resource type="Texture2D" uid="uid://dh0sra1f740hc" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-02.png" id="2_3ojie"]
-[ext_resource type="Texture2D" uid="uid://b4kdrj6pohi88" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-03.png" id="3_yfrsc"]
-[ext_resource type="Texture2D" uid="uid://c8hek67cfjvep" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-04.png" id="4_3tvrm"]
-[ext_resource type="Texture2D" uid="uid://ch2e8y0w1lngf" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-05.png" id="5_jaw1w"]
-[ext_resource type="Texture2D" uid="uid://bmj2msqkpvyy8" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-06.png" id="6_1fv2j"]
-[ext_resource type="Texture2D" uid="uid://1taov6dw5rrd" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-07.png" id="7_wy2k8"]
-[ext_resource type="Texture2D" uid="uid://cre6mvxfkqgfc" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-08.png" id="8_ytu3v"]
-[ext_resource type="Texture2D" uid="uid://w0ne3acxawfq" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-09.png" id="9_u1k4r"]
-[ext_resource type="Texture2D" uid="uid://duik88tu2a2yi" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-10.png" id="10_vy1ac"]
-[ext_resource type="Texture2D" uid="uid://h4f8kfgd8mtt" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-11.png" id="11_fncdu"]
-[ext_resource type="Texture2D" uid="uid://bfqdt88ynhln1" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-12.png" id="12_htjrm"]
-[ext_resource type="Texture2D" uid="uid://dvcf44hwqejwy" path="res://assets/characters/technomancer/ultra/tecnomancer-ultra-13.png" id="13_1tfs5"]
+[ext_resource type="Texture2D" uid="uid://cdcaxpituk3pe" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-13.png" id="2_3h67q"]
+[ext_resource type="Texture2D" uid="uid://clqj7wm0tx8n8" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-14.png" id="3_64dlr"]
+[ext_resource type="Texture2D" uid="uid://5574e2o3778o" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-05.png" id="4_j1bjx"]
+[ext_resource type="Texture2D" uid="uid://cobvv5218ibbj" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-06.png" id="5_v0a6u"]
+[ext_resource type="Texture2D" uid="uid://dwx8kotgmxfcr" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-07.png" id="6_mi412"]
+[ext_resource type="Texture2D" uid="uid://bn2iswan7foxe" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-08.png" id="7_740e6"]
+[ext_resource type="Texture2D" uid="uid://bcqdwjhc70m7p" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-09.png" id="8_7kxam"]
+[ext_resource type="Texture2D" uid="uid://cyqqip5dyxwnp" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-10.png" id="9_qqgky"]
+[ext_resource type="Texture2D" uid="uid://b4g81ww0utded" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-11.png" id="10_54tvx"]
+[ext_resource type="Texture2D" uid="uid://6ks25g7ho5x2" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-12.png" id="11_x2lr1"]
+[ext_resource type="Texture2D" uid="uid://dlimxt641xi46" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-01.png" id="12_trjpo"]
+[ext_resource type="Texture2D" uid="uid://rros6ndj2ocr" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-02.png" id="13_6afnp"]
+[ext_resource type="Texture2D" uid="uid://mgbrk1x7lv7s" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-03.png" id="14_cra2r"]
 [ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="15_7n05j"]
+[ext_resource type="Texture2D" uid="uid://c48flpl2wt005" path="res://assets/characters/technomancer/ultra/base/thech-ultra-base-04.png" id="15_kf53m"]
+[ext_resource type="Texture2D" uid="uid://w4rg0ji28eww" path="res://assets/characters/technomancer/ultra/lightning/thech-ultra-lightining-06.png" id="16_4fk36"]
+[ext_resource type="Texture2D" uid="uid://c4i5rtitqn8lb" path="res://assets/characters/technomancer/ultra/lightning/thech-ultra-lightining-07.png" id="17_pj5nf"]
+[ext_resource type="Texture2D" uid="uid://b5ms6buqulbir" path="res://assets/characters/technomancer/ultra/lightning/thech-ultra-lightining-08.png" id="18_cpwe0"]
+[ext_resource type="Texture2D" uid="uid://bj3b4fa7833r8" path="res://assets/characters/technomancer/ultra/lightning/thech-ultra-lightining-09.png" id="19_2ox3l"]
+[ext_resource type="Texture2D" uid="uid://b6fjrxlw2vdvr" path="res://assets/characters/technomancer/ultra/lightning/thech-ultra-lightining-10.png" id="20_kmpv2"]
+[ext_resource type="Texture2D" uid="uid://b8qsb5s888sjb" path="res://assets/characters/technomancer/ultra/lightning/thech-ultra-lightining-11.png" id="21_gktq6"]
+[ext_resource type="Texture2D" uid="uid://bnwtpi26kaiml" path="res://assets/characters/technomancer/ultra/lightning/thech-ultra-lightining-05.png" id="22_yp4e7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vk2ks"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_vy1ac")
+"texture": ExtResource("2_3h67q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_fncdu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_htjrm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_1tfs5")
+"texture": ExtResource("3_64dlr")
 }],
 "loop": false,
 "name": &"end",
@@ -37,19 +39,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_jaw1w")
+"texture": ExtResource("4_j1bjx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_1fv2j")
+"texture": ExtResource("5_v0a6u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_wy2k8")
+"texture": ExtResource("6_mi412")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_ytu3v")
+"texture": ExtResource("7_740e6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_u1k4r")
+"texture": ExtResource("8_7kxam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qqgky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_54tvx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_x2lr1")
 }],
 "loop": false,
 "name": &"loop",
@@ -57,16 +68,50 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_xfvir")
+"texture": ExtResource("12_trjpo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_3ojie")
+"texture": ExtResource("13_6afnp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_yfrsc")
+"texture": ExtResource("14_cra2r")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_3tvrm")
+"texture": ExtResource("15_kf53m")
+}],
+"loop": false,
+"name": &"start",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sexqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_4fk36")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_pj5nf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_cpwe0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2ox3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_kmpv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_gktq6")
+}],
+"loop": true,
+"name": &"loop",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_yp4e7")
 }],
 "loop": false,
 "name": &"start",
@@ -78,14 +123,20 @@ radius = 111.0
 height = 500.0
 
 [node name="technomancer_ultra" type="Node2D"]
+modulate = Color(1.2, 1.2, 1.2, 1)
 script = ExtResource("1_f5xqd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
-position = Vector2(21, -74)
-scale = Vector2(0.2, 0.2)
+position = Vector2(2.08165e-12, -82)
 sprite_frames = SubResource("SpriteFrames_vk2ks")
-animation = &"loop"
+animation = &"start"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(2.08165e-12, -82)
+sprite_frames = SubResource("SpriteFrames_sexqv")
+animation = &"start"
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 0

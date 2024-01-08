@@ -56,7 +56,7 @@ func _on_timer_timeout():
 	$Timer.start(randf_range(10.0,20.0))
 	play("open")
 	await animation_finished
-	$beacon.show()
+#	$beacon.show()
 	await get_tree().create_timer(4.0).timeout
 	$beacon.hide()
 	play("close")
