@@ -262,6 +262,7 @@ func destroy():
 
 
 func respawn():
+	get_node("../hurtbox").show()
 	get_parent().character_stats.STATE = Constants.player_state.IDLE
 	get_parent().position = get_parent().spawn_position
 	get_parent().character_stats.destroyed = false

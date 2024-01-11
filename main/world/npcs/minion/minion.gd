@@ -18,7 +18,6 @@ func _ready():
 	character_stats.character_name = "ghoul"
 	$hitbox.set_collision_layer(Util.return_hitbox_layer(character_stats.team_color))
 	$ad_navigation_agent/Timer.start(randf_range(3.0,8.0))
-	start_aggro_mode(false)
 
 
 func start_aggro_mode(is_first_ad):
@@ -119,9 +118,8 @@ func calculate_path():
 		navigation_agent.set_target_position(Server.player_node.global_position)
 
 
-#
 
-#
+
 #	if $hitbox/CollisionShape2D.disabled:
 #		$hitbox/CollisionShape2D.set_deferred("disabled", false)
 #	else:

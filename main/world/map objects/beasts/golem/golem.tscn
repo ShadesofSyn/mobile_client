@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://c22l5y07o8ry0"]
+[gd_scene load_steps=93 format=3 uid="uid://c22l5y07o8ry0"]
 
 [ext_resource type="Script" path="res://main/world/map objects/beasts/golem/golem.gd" id="1_gsp1t"]
 [ext_resource type="Texture2D" uid="uid://d1bhungi1xfq7" path="res://assets/characters/beasts/golem/0_boss_attack_000.png" id="2_0l7kv"]
@@ -66,6 +66,26 @@
 [ext_resource type="Texture2D" uid="uid://bh6m6svx687an" path="res://assets/characters/beasts/golem/0_boss_specialty_2_018.png" id="55_oacwq"]
 [ext_resource type="Texture2D" uid="uid://mo637swng3c7" path="res://assets/characters/beasts/golem/0_boss_specialty_2_019.png" id="56_2f1tv"]
 [ext_resource type="Texture2D" uid="uid://bxrr00h3acrcb" path="res://assets/characters/beasts/golem/0_boss_specialty_003.png" id="57_27jc4"]
+[ext_resource type="Texture2D" uid="uid://cspad83f063ss" path="res://assets/characters/beasts/golem/0_boss_jump_000.png" id="74_fmyvu"]
+[ext_resource type="Texture2D" uid="uid://gtuw7sprl7j1" path="res://assets/characters/beasts/golem/0_boss_jump_001.png" id="75_dmjk4"]
+[ext_resource type="Texture2D" uid="uid://g5mwbm2nnr4d" path="res://assets/characters/beasts/golem/0_boss_jump_002.png" id="76_3ry24"]
+[ext_resource type="Texture2D" uid="uid://c2xqkg3khf2x7" path="res://assets/characters/beasts/golem/0_boss_jump_003.png" id="77_l8q1x"]
+[ext_resource type="Texture2D" uid="uid://vmjssc2pd8bb" path="res://assets/characters/beasts/golem/0_boss_jump_004.png" id="78_4yrdu"]
+[ext_resource type="Texture2D" uid="uid://b71uu8bpxeru6" path="res://assets/characters/beasts/golem/0_boss_jump_005.png" id="79_txbu5"]
+[ext_resource type="Texture2D" uid="uid://yjk6imtng4fg" path="res://assets/characters/beasts/golem/0_boss_jump_006.png" id="80_mrkw4"]
+[ext_resource type="Texture2D" uid="uid://ygiomo336spy" path="res://assets/characters/beasts/golem/0_boss_jump_007.png" id="81_lqmtb"]
+[ext_resource type="Texture2D" uid="uid://ctryto7pjr13f" path="res://assets/characters/beasts/golem/0_boss_jump_008.png" id="82_hvrk1"]
+[ext_resource type="Texture2D" uid="uid://bynenwdh20nd6" path="res://assets/characters/beasts/golem/0_boss_jump_009.png" id="83_uf8fm"]
+[ext_resource type="Texture2D" uid="uid://c16ljlcbctpwl" path="res://assets/characters/beasts/golem/0_boss_jump_010.png" id="84_knnrl"]
+[ext_resource type="Texture2D" uid="uid://bpeua3lon6l7m" path="res://assets/characters/beasts/golem/0_boss_jump_011.png" id="85_ipt40"]
+[ext_resource type="Texture2D" uid="uid://cx55knfh77nnx" path="res://assets/characters/beasts/golem/0_boss_jump_012.png" id="86_ykkux"]
+[ext_resource type="Texture2D" uid="uid://byefxsvmmp2co" path="res://assets/characters/beasts/golem/0_boss_jump_013.png" id="87_no2n7"]
+[ext_resource type="Texture2D" uid="uid://c1hbll6yuwopd" path="res://assets/characters/beasts/golem/0_boss_jump_014.png" id="88_0k4ag"]
+[ext_resource type="Texture2D" uid="uid://bj2orvmab031f" path="res://assets/characters/beasts/golem/0_boss_jump_015.png" id="89_viogh"]
+[ext_resource type="Texture2D" uid="uid://cgps66hhxjs14" path="res://assets/characters/beasts/golem/0_boss_jump_016.png" id="90_ylypu"]
+[ext_resource type="Texture2D" uid="uid://dysrjg76anio3" path="res://assets/characters/beasts/golem/0_boss_jump_017.png" id="91_i6gyp"]
+[ext_resource type="Texture2D" uid="uid://ci20iqcrqvudh" path="res://assets/characters/beasts/golem/0_boss_jump_018.png" id="92_75rmb"]
+[ext_resource type="Texture2D" uid="uid://cfb1w1a7pepvm" path="res://assets/characters/beasts/golem/0_boss_jump_019.png" id="93_23s0q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bpqbu"]
 shader = ExtResource("2_vv6tf")
@@ -180,6 +200,71 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("74_fmyvu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_dmjk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_3ry24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_l8q1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_4yrdu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_txbu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_mrkw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_lqmtb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_hvrk1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_uf8fm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_knnrl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_ipt40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_ykkux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_no2n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_0k4ag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_viogh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_ylypu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_i6gyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_75rmb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_23s0q")
+}],
+"loop": false,
+"name": &"new_animation",
 "speed": 8.0
 }, {
 "frames": [{
@@ -301,11 +386,13 @@ script = ExtResource("1_gsp1t")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1.2, 1.2, 1.2, 1)
 material = SubResource("ShaderMaterial_bpqbu")
-position = Vector2(86, -152)
+position = Vector2(85, -155)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_auvhc")
-animation = &"roll"
+animation = &"attack"
 autoplay = "idle"
+frame = 10
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yjnfs")

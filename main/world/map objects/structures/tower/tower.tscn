@@ -37,7 +37,6 @@ height = 160.0
 script = ExtResource("1_gqymn")
 
 [node name="indicator" type="Sprite2D" parent="."]
-visible = false
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_0glua")
 

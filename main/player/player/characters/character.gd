@@ -22,6 +22,7 @@ func _ready():
 	else:
 		Server.player_node = self
 
+
 func destroy():
 	sprite.destroy()
 

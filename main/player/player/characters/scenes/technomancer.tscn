@@ -40,6 +40,7 @@ shape = SubResource("CircleShape2D_f01f4")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="player_gui" parent="Camera2D" instance=ExtResource("3_4qbha")]
+visible = false
 
 [node name="sprite" type="Sprite2D" parent="."]
 modulate = Color(1.2, 1.2, 1.2, 1)

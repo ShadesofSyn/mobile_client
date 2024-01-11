@@ -109,10 +109,10 @@ func _on_timer_2_timeout():
 	if not attacking:
 		$hurtbox/CollisionShape2D.set_deferred("disabled",true)
 		calculate_path()
-		character_stats.max_speed *= 3
+		character_stats.max_speed *= 2
 		rolling = true
 		sprite.play("roll")
 		await sprite.animation_finished
 		rolling = false
-		character_stats.max_speed = character_stats.max_speed / 3
+		character_stats.max_speed = character_stats.max_speed / 2
 		$hurtbox/CollisionShape2D.set_deferred("disabled",false)
