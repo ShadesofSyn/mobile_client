@@ -6,21 +6,27 @@ extends CharacterBody2D
 
 var attacking: bool = false
 
-var dropped: bool = false
+var dropped: bool = true
+var team_color: String = "red"
 
 func _ready():
-	dropped = true
-	character_stats.team_color = "red"
+	character_stats.team_color = team_color
 	character_stats.character_name = "tower"
 	position = Vector2(Constants.SIZE_OF_HEXAGON/3.46,Constants.SIZE_OF_HEXAGON/2)
+	if team_color == "red": # Objective
+		init(false)
 
 
-func init():
+func init(spawn_at_player):
+	if spawn_at_player:
+		position = Server.player_node.position
 	if not $Area2D.has_overlapping_bodies():
-		character_stats.team_color = "blue"
 		dropped = true
 		$indicator.hide()
 		$StaticBody2D/CollisionShape2D.set_deferred("disabled",false)
+		$hurtbox/CollisionShape2D.set_deferred("disabled",false)
+	else:
+		call_deferred("queue_free")
 
 
 func _physics_process(delta):
@@ -47,6 +53,7 @@ func attack():
 
 func spawn_projectile():
 	var proj = preload("res://main/world/map objects/structures/tower/tower_projectile.tscn").instantiate()
+	proj.team_color = character_stats.team_color
 	proj.position = $line_of_sight/Marker2D.global_position
 	proj.velocity = ($line_of_sight/Marker2D.global_position - $line_of_sight.global_position).normalized()
 	Server.world.projectiles.call_deferred("add_child",proj)

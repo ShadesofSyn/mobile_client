@@ -1,0 +1,55 @@
+[gd_scene load_steps=12 format=3 uid="uid://clj03wbdkieqw"]
+
+[ext_resource type="Texture2D" uid="uid://2ybu5coi6r0f" path="res://assets/images/abilities/war cry/war-cry-01.png" id="1_lpeng"]
+[ext_resource type="Texture2D" uid="uid://ctiyqu7w8l8bn" path="res://assets/images/abilities/war cry/war-cry-02.png" id="2_pg42x"]
+[ext_resource type="Texture2D" uid="uid://bvcl22foiyuia" path="res://assets/images/abilities/war cry/war-cry-03.png" id="3_fkvti"]
+[ext_resource type="Texture2D" uid="uid://sf4e8pihpra4" path="res://assets/images/abilities/war cry/war-cry-04.png" id="4_gdupv"]
+[ext_resource type="Texture2D" uid="uid://dct81bgc5y37e" path="res://assets/images/abilities/war cry/war-cry-05.png" id="5_ysyeh"]
+[ext_resource type="Texture2D" uid="uid://dlo2pi76w4eh0" path="res://assets/images/abilities/war cry/war-cry-06.png" id="6_8jy52"]
+[ext_resource type="Texture2D" uid="uid://v81uej8qvmvv" path="res://assets/images/abilities/war cry/war-cry-07.png" id="7_bi7xc"]
+[ext_resource type="Texture2D" uid="uid://c43v68elgupt0" path="res://assets/images/abilities/war cry/war-cry-08.png" id="8_pooc3"]
+[ext_resource type="Texture2D" uid="uid://d4dpk6bshfbp7" path="res://assets/images/abilities/war cry/war-cry-09.png" id="9_q8e0j"]
+[ext_resource type="Script" path="res://main/player/effects/aggro/aggro_effect.gd" id="10_c74ga"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hxudt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lpeng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pg42x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fkvti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gdupv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ysyeh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8jy52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bi7xc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pooc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_q8e0j")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="war_cry_effect" type="AnimatedSprite2D"]
+position = Vector2(2.08165e-12, -28)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_hxudt")
+frame = 8
+frame_progress = 1.0
+script = ExtResource("10_c74ga")

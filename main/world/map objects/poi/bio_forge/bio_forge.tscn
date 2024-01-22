@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bdxckhax8qbtq"]
+[gd_scene load_steps=18 format=3 uid="uid://bdxckhax8qbtq"]
 
 [ext_resource type="Texture2D" uid="uid://dtrtkphxfbmw6" path="res://assets/tilesets/map objects/structures/bio forge/35.png" id="1_4vssq"]
 [ext_resource type="Texture2D" uid="uid://cuohkbt8mhqrn" path="res://assets/tilesets/map objects/structures/bio forge/10.png" id="1_rnwu7"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cs87lbmeb1l2" path="res://assets/tilesets/map objects/structures/bio forge/11.png" id="3_wughb"]
 [ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="6_hevpf"]
 [ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="7_c1xa6"]
+[ext_resource type="Texture2D" uid="uid://wow70xj0mmu" path="res://assets/images/misc/green_square.png" id="9_hrvqi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_br2ae"]
 radius = 56.0
@@ -51,6 +52,10 @@ height = 226.0
 radius = 60.0
 height = 206.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7es5w"]
+radius = 40.0
+height = 160.0
+
 [node name="bio forge" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
@@ -64,6 +69,7 @@ collision_mask = 0
 position = Vector2(0, -20)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_br2ae")
+disabled = true
 
 [node name="sprites" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -116,6 +122,7 @@ autostart = true
 z_index = 1
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_u1nim")
+disabled = true
 
 [node name="attack_progress_bar" parent="hurtbox" index="1"]
 offset_top = -121.0
@@ -140,6 +147,18 @@ script = ExtResource("7_c1xa6")
 position = Vector2(0, -26)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_s6t1o")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7es5w")
+
+[node name="indicator" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_hrvqi")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 

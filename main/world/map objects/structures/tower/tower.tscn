@@ -69,6 +69,7 @@ texture = ExtResource("3_hyjfv")
 z_index = 1
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3a4ao")
+disabled = true
 
 [node name="attack_progress_bar" parent="hurtbox" index="1"]
 offset_top = -121.0
@@ -95,6 +96,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gamr7")
 
 [node name="detect_enemy" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("7_sv1tk")
@@ -111,7 +113,7 @@ position = Vector2(57, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 13
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708

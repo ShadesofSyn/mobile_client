@@ -88,14 +88,39 @@ func init_steelthorn_ultra(_pos,team_color,aim_vector) -> void:
 	
 	
 ### Effects
+
+func init_dash_effect(_node) -> void:
+	var dash = preload("res://main/player/abilities/dash/dash.tscn").instantiate()
+	_node.call_deferred("add_child",dash)
+
 func init_aggro_effect(_node) -> void:
 	var effect = preload("res://main/player/effects/aggro/aggro_effect.tscn").instantiate()
 	_node.call_deferred("add_child",effect)
+
+func init_amplify_effect(_node) -> void:
+	var effect = preload("res://main/player/effects/amplify/amplify_effect.tscn").instantiate()
+	_node.call_deferred("add_child",effect)
 	
+func init_dispel_effect(_node) -> void:
+	var effect = preload("res://main/player/effects/dispel/dispel_effect.tscn").instantiate()
+	_node.call_deferred("add_child",effect)
+	
+func init_rejuvenate_effect(_node) -> void:
+	var effect = preload("res://main/player/effects/rejuvenate/rejuvenate_effect.tscn").instantiate()
+	_node.call_deferred("add_child",effect)
+	
+func init_supress_effect(_node) -> void:
+	var effect = preload("res://main/player/effects/supress/supress_effect.tscn").instantiate()
+	_node.call_deferred("add_child",effect)
+
+func init_war_cry_effect(_node) -> void:
+	var effect = preload("res://main/player/effects/war cry/war_cry_effect.tscn").instantiate()
+	_node.call_deferred("add_child",effect)
 
 ### Misc
-func init_item_drop(_pos,special) -> void:
+func init_item_drop(_pos,special,type = "") -> void:
 	var item_drop = preload("res://main/world/map objects/item_drop/item_drop.tscn").instantiate()
+	item_drop.type = type
 	item_drop.special = special
 	item_drop.position = _pos
 	Server.world.projectiles.call_deferred("add_child",item_drop)

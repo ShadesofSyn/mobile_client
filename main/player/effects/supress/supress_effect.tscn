@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://b73xv208bme0w"]
+
+[ext_resource type="Texture2D" uid="uid://nuvagg0iqrtp" path="res://assets/images/abilities/suppress/supress-01.png" id="1_eka4g"]
+[ext_resource type="Texture2D" uid="uid://bq6n2tanuk1l4" path="res://assets/images/abilities/suppress/supress-02.png" id="2_yvrof"]
+[ext_resource type="Texture2D" uid="uid://dgydar7dkyyu8" path="res://assets/images/abilities/suppress/supress-03.png" id="3_h8u4q"]
+[ext_resource type="Texture2D" uid="uid://c8xnb3lcx5ak" path="res://assets/images/abilities/suppress/supress-04.png" id="4_4ioer"]
+[ext_resource type="Texture2D" uid="uid://8by0pr4k5tlu" path="res://assets/images/abilities/suppress/supress-05.png" id="5_sf4jb"]
+[ext_resource type="Texture2D" uid="uid://dsava0156ioo1" path="res://assets/images/abilities/suppress/supress-06.png" id="6_30y5d"]
+[ext_resource type="Texture2D" uid="uid://cuf77c85qhh8f" path="res://assets/images/abilities/suppress/supress-07.png" id="7_tcmij"]
+[ext_resource type="Script" path="res://main/player/effects/aggro/aggro_effect.gd" id="8_rvm3o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6lleb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eka4g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yvrof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h8u4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4ioer")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sf4jb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_30y5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tcmij")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="supress_effect" type="AnimatedSprite2D"]
+position = Vector2(2.08165e-12, -28)
+sprite_frames = SubResource("SpriteFrames_6lleb")
+frame = 6
+frame_progress = 1.0
+script = ExtResource("8_rvm3o")

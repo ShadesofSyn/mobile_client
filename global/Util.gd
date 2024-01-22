@@ -123,6 +123,23 @@ func get_nearest_target(_detect_enemy_node):
 				max_distance_to_check = distance_to_enemy
 				enemy_node = node
 		return enemy_node
+		
+		
+func get_nearest_targets(_detect_enemy_node): 
+	var targets
+	var enemy_node
+	var max_distance_to_check = 100000.0
+	var _pos = _detect_enemy_node.global_position
+	var _enemy_nodes = _detect_enemy_node.get_overlapping_bodies()
+	if _enemy_nodes.size() == 0:
+		return null
+	else:
+		for node in _enemy_nodes:
+			var distance_to_enemy = _pos.distance_to(node.global_position)
+			if distance_to_enemy < max_distance_to_check:
+				max_distance_to_check = distance_to_enemy
+				enemy_node = node
+		return enemy_node
 
 func get_lowest_health_target(_detect_enemy_node):
 	var enemy_node

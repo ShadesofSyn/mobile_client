@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var speed = 4000
+var speed = 5000
 var destroyed = false
 var team_color: String = "red"
 

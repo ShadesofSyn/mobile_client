@@ -8,6 +8,7 @@ const MAX_SPEED = 700
 const ACCELERATION = 150
 
 var special: bool = false
+var type: String
 
 func _ready():
 	if special:
@@ -39,7 +40,7 @@ func _physics_process(delta):
 			else:
 				hide()
 				being_added_to_inventory = true
-				Server.pick_up_item()
+				Server.pick_up_item(type)
 				call_deferred("queue_free")
 
 	velocity.normalized()

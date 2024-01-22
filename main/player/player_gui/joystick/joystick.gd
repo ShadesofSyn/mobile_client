@@ -143,13 +143,8 @@ var joy_btn_pressed: bool = false
 
 
 func _input(event: InputEvent) -> void:
-#	if cooldown or _base.self_modulate.a == 0.0:
-#		return
-
 	if event is InputEventScreenTouch:
 		if event.pressed:
-#			if joystick_mode == Joystick_mode.BUTTON and _is_point_inside_base(event.position):
-#				Server.player_node.init_special_joystick_attack(name,output)
 			if _is_point_inside_joystick_area(event.position) and _touch_index == -1:
 				if joystick_mode == Joystick_mode.DYNAMIC or (joystick_mode == Joystick_mode.FIXED and _is_point_inside_base(event.position)):
 					if joystick_mode == Joystick_mode.DYNAMIC:
@@ -165,7 +160,6 @@ func _input(event: InputEvent) -> void:
 		if event.index == _touch_index:
 			_update_joystick(event.position)
 			get_viewport().set_input_as_handled()
-#	strength_coefficient = _tip.position.distance_to(_tip_default_position) / 100.0
 
 func _move_base(new_position: Vector2) -> void:
 	_base.global_position = new_position - _base.pivot_offset * get_global_transform_with_canvas().get_scale()
@@ -324,7 +318,15 @@ func check_if_shoot_projectile():
 #			$cooldown.start()
 #			modulate.g = 0.0
 #			modulate.b = 0.0
-			Server.player_node.ultra_attack(name.right(1),output)
+			var char
+			match name.right(1):
+				"1":
+					char = Server.player_node
+				"2":
+					char = Server.ally_node1
+				"3":
+					char = Server.ally_node2
+			char.ultra_attack(output)
 
 func _on_cooldown_timeout():
 	cooldown_active = false

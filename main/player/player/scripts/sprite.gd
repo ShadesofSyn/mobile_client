@@ -210,6 +210,13 @@ func set_sprite_texture():
 		Constants.player_state.DEATH:
 			self.texture = load("res://assets/characters/"+get_parent().character_stats.character_name+"/death/"+abbreviated_character_name+"-death-0"+str(frame_index+1)+".png")
 
+#func return_death_max_frames():
+#	match get_parent().character_stats.character_name:
+#		"mariselle":
+#			return 3
+#		_:
+#			return 7
+
 func return_walk_max_frames():
 	match get_parent().character_stats.character_name:
 		"mariselle":

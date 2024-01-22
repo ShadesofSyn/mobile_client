@@ -14,7 +14,7 @@ var attacking: bool = false
 
 func _ready():
 	spawn_position = position
-	character_stats.team_color = "red"
+	character_stats.team_color = team_color
 	character_stats.character_name = "ghoul"
 	$hitbox.set_collision_layer(Util.return_hitbox_layer(character_stats.team_color))
 	$ad_navigation_agent/Timer.start(randf_range(3.0,8.0))

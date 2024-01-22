@@ -9,6 +9,8 @@ extends CharacterBody2D
 var lockstep_active = false
 var spawn_position: Vector2
 
+var special_ability_selected: String = "dash"
+
 func _ready():
 	spawn_position = position
 	character_stats.character_name = name
@@ -28,12 +30,11 @@ func destroy():
 
 
 func use_special_ability() -> void:
-	play_dash()
-
-
-func play_dash() -> void:
-	var dash = preload("res://main/player/abilities/dash/dash.tscn").instantiate()
-	call_deferred("add_child",dash)
+	match special_ability_selected:
+		"dash":
+			InstancedScenes.init_dash_effect(self)
+		
+	
 
 
 func basic_attack() -> void:
@@ -54,9 +55,8 @@ func basic_attack() -> void:
 			InstancedScenes.init_valkyrie_basic(character_stats.team_color,aim_vector,spawn_point)
 
 
-func ultra_attack(index,output) -> void:
+func ultra_attack(output) -> void:
 	await get_tree().process_frame
-#	if index == "1":
 	var spawn_point = $line_of_sight/Marker2D.global_position
 	var aim_vector = (spawn_point-$line_of_sight.global_position).normalized()
 	sprite.set_direction_attack_mode(aim_vector)
@@ -64,19 +64,20 @@ func ultra_attack(index,output) -> void:
 		sprite.attack(false)
 	else:
 		sprite.ultra_attack()
-	match index:
+	match character_stats.character_name:
 		"valkyrie":
 			InstancedScenes.init_valkyrie_ultra(character_stats.team_color)
-		"3":
+		"mariselle":
 			InstancedScenes.init_lobbed_projectile("mari",aim_vector)
 			#InstancedScenes.init_mariselle_ultra(position,character_stats.team_color)
 		"magmaul":
 			InstancedScenes.init_magmaul_ultra(position,character_stats.team_color)
-		"1": #"technomancer":
+		"technomancer": #"technomancer":
 			InstancedScenes.init_lobbed_projectile("tech",aim_vector)
 			#InstancedScenes.init_technomancer_ultra(position,character_stats.team_color)
-		"2":
+		"steelthorn":
 			InstancedScenes.init_steelthorn_ultra(Server.ally_node1.position,character_stats.team_color,output)
+			
 
 func root_lock():
 	character_stats.stunned = true

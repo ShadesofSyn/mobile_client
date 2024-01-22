@@ -17,6 +17,14 @@ var attacking: bool = false
 
 func _ready():
 	show()
+	
+	
+func set_action_reward(type):
+	if type == "bio-forge":
+		$action_rewards.bio_forge_sprite.show()
+	else:
+		$action_rewards.tower_sprite.show()
+		
 
 
 func set_active_joysticks(new_index):

@@ -231,7 +231,6 @@ width = 12.0
 
 [node name="quad_lines" type="Node2D" parent="lines"]
 position = Vector2(4, 4)
-rotation = -1.04929
 scale = Vector2(0.819038, 0.819038)
 
 [node name="1" type="Line2D" parent="lines/quad_lines"]
@@ -313,7 +312,6 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="ads" type="Node2D" parent="."]
-visible = false
 y_sort_enabled = true
 
 [node name="ghoul" parent="ads" instance=ExtResource("12_tm6la")]
@@ -335,14 +333,13 @@ position = Vector2(1199, 398)
 position = Vector2(1185, 85)
 
 [node name="players" type="Node2D" parent="."]
-visible = false
 y_sort_enabled = true
 
 [node name="technomancer" parent="players" instance=ExtResource("14_wnef0")]
-position = Vector2(-927, -2055)
+position = Vector2(-865, -2197)
 
 [node name="steelthorn" parent="players" instance=ExtResource("18_6tv8i")]
-position = Vector2(-1182, 1427)
+position = Vector2(-1707, 1564)
 
 [node name="mariselle" parent="players" instance=ExtResource("18_cbawt")]
 position = Vector2(-579, 1538)
@@ -354,62 +351,70 @@ navigation_polygon = SubResource("NavigationPolygon_w65fp")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ut6ba")
 
-[node name="Big-wall---se" type="Sprite2D" parent="."]
+[node name="new objs" type="Node2D" parent="."]
+visible = false
+
+[node name="Big-wall---se" type="Sprite2D" parent="new objs"]
 position = Vector2(883, 1211.6)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("19_iw81e")
 
-[node name="Big-wall---sw" type="Sprite2D" parent="."]
+[node name="Big-wall---sw" type="Sprite2D" parent="new objs"]
+visible = false
 position = Vector2(-795, 1211.6)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("20_cvd12")
 
-[node name="Big-wall---ne" type="Sprite2D" parent="."]
+[node name="Big-wall---ne" type="Sprite2D" parent="new objs"]
 position = Vector2(830.8, -1226)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("21_01fr7")
 
-[node name="Big-wall---nw" type="Sprite2D" parent="."]
+[node name="Big-wall---nw" type="Sprite2D" parent="new objs"]
 position = Vector2(-820.2, -1231)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("22_cokya")
 
-[node name="Grass---nw2" type="Sprite2D" parent="."]
+[node name="Grass---nw2" type="Sprite2D" parent="new objs"]
+z_index = -1
 position = Vector2(-372, -1979)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("23_0xg7a")
 
-[node name="Grass---nw" type="Sprite2D" parent="."]
+[node name="Grass---nw" type="Sprite2D" parent="new objs"]
+z_index = -1
 position = Vector2(-1927, -1440)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("24_v3o4n")
 
-[node name="Grass---ne" type="Sprite2D" parent="."]
+[node name="Grass---ne" type="Sprite2D" parent="new objs"]
+z_index = -1
 position = Vector2(-2566, -2732)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("25_fbvdp")
 
-[node name="Grass---ne2" type="Sprite2D" parent="."]
+[node name="Grass---ne2" type="Sprite2D" parent="new objs"]
+z_index = -1
 position = Vector2(-1026, -3547)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("25_fbvdp")
 
-[node name="Wall---ne" type="Sprite2D" parent="."]
+[node name="Wall---ne" type="Sprite2D" parent="new objs"]
 position = Vector2(-3038, 1339)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("26_vpgu3")
 
-[node name="Wall---ne2" type="Sprite2D" parent="."]
+[node name="Wall---ne2" type="Sprite2D" parent="new objs"]
 position = Vector2(-1835, 752)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("26_vpgu3")
 
-[node name="Wall---nw" type="Sprite2D" parent="."]
+[node name="Wall---nw" type="Sprite2D" parent="new objs"]
 position = Vector2(-2808, -1290)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("27_scvo3")
 
-[node name="Wall---nw2" type="Sprite2D" parent="."]
+[node name="Wall---nw2" type="Sprite2D" parent="new objs"]
 position = Vector2(-1622, -613)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("27_scvo3")
