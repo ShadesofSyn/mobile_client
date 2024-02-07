@@ -38,7 +38,7 @@ func _is_point_inside_button_area(point:Vector2) -> bool:
 
 
 func set_btn_pressed(delta) -> void:
-	self.scale = lerp(self.scale,Vector2(0.9,0.9),delta*5)
+	self.scale = lerp(self.scale,Vector2(0.95,0.95),delta*5)
 	
 	
 func set_btn_normal(delta) -> void:

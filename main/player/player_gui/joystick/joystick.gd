@@ -100,29 +100,7 @@ func set_joystick_type():
 		modulate.a = 0.5
 	else:
 		_base.self_modulate.a = 0.0
-##		match new_index:
-##			1: # tech 
-#		set_as_button_mode()
-##			2: # tech ult and jug special
-##				set_as_joystick_mode()
-##			3: # jug ult and brawler ult
-##				match str(name).right(1):
-##					"1":
-##						set_as_button_mode()
-##					"2":
-##						set_as_joystick_mode()
-##			4: # sniper ult and nano ult
-##				set_as_joystick_mode()
-##			5: # rogue special and ult
-##				set_as_button_mode()
-#		match str(name).right(1):
-#			"1":
-#				$Base/Tip/icon.texture = load("res://assets/images/game/gui/buttons/icons/explosion-rays.png")
-#			"2":
-#				$Base/Tip/icon.texture = load("res://assets/images/game/gui/buttons/icons/electric.png")
-#			"3":
-#				$Base/Tip/icon.texture = load("res://assets/images/game/gui/buttons/icons/vortex.png")
-#	else:
+
 
 func set_as_attack_joystick():
 #	_tip.scale = Vector2(1.0,1.0)
@@ -145,14 +123,12 @@ var joy_btn_pressed: bool = false
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.pressed:
-			if _is_point_inside_joystick_area(event.position) and _touch_index == -1:
+			if _is_point_inside_button_area(event.position) and _touch_index == -1 and not movement_joystick and not cooldown_active:
 				if joystick_mode == Joystick_mode.DYNAMIC or (joystick_mode == Joystick_mode.FIXED and _is_point_inside_base(event.position)):
-					if joystick_mode == Joystick_mode.DYNAMIC:
-						_move_base(event.position)
-					_touch_index = event.index
-					_tip.modulate = pressed_color
-					_update_joystick(event.position)
-					get_viewport().set_input_as_handled()
+					joystick_pressed(event)
+			elif _is_point_inside_joystick_area(event.position) and _touch_index == -1 and movement_joystick:
+				if joystick_mode == Joystick_mode.DYNAMIC or (joystick_mode == Joystick_mode.FIXED and _is_point_inside_base(event.position)):
+					joystick_pressed(event)
 		elif event.index == _touch_index:
 			_reset()
 			get_viewport().set_input_as_handled()
@@ -160,6 +136,14 @@ func _input(event: InputEvent) -> void:
 		if event.index == _touch_index:
 			_update_joystick(event.position)
 			get_viewport().set_input_as_handled()
+
+func joystick_pressed(_event):
+	if joystick_mode == Joystick_mode.DYNAMIC:
+		_move_base(_event.position)
+	_touch_index = _event.index
+	_tip.modulate = pressed_color
+	_update_joystick(_event.position)
+	get_viewport().set_input_as_handled()
 
 func _move_base(new_position: Vector2) -> void:
 	_base.global_position = new_position - _base.pivot_offset * get_global_transform_with_canvas().get_scale()
@@ -171,6 +155,11 @@ func _move_tip(new_position: Vector2) -> void:
 func _is_point_inside_joystick_area(point: Vector2) -> bool:
 	var x: bool = point.x >= global_position.x and point.x <= global_position.x + (size.x * get_global_transform_with_canvas().get_scale().x)
 	var y: bool = point.y >= global_position.y and point.y <= global_position.y + (size.y * get_global_transform_with_canvas().get_scale().y)
+	return x and y
+	
+func _is_point_inside_button_area(point: Vector2) -> bool:
+	var x: bool = point.x >= _tip.global_position.x and point.x <= _tip.global_position.x + (_tip.size.x * get_global_transform_with_canvas().get_scale().x)
+	var y: bool = point.y >= _tip.global_position.y and point.y <= _tip.global_position.y + (_tip.size.y * get_global_transform_with_canvas().get_scale().y)
 	return x and y
 
 func _is_point_inside_base(point: Vector2) -> bool:
@@ -314,10 +303,10 @@ func _reset():
 func check_if_shoot_projectile():
 	if not movement_joystick:
 		if is_pressed and not cooldown_active:
-#			cooldown = true
-#			$cooldown.start()
-#			modulate.g = 0.0
-#			modulate.b = 0.0
+			cooldown_active = true
+			$cooldown_timer.start(10)
+			modulate.g = 0.0
+			modulate.b = 0.0
 			var char
 			match name.right(1):
 				"1":
@@ -328,7 +317,8 @@ func check_if_shoot_projectile():
 					char = Server.ally_node2
 			char.ultra_attack(output)
 
-func _on_cooldown_timeout():
+
+func _on_cooldown_timer_timeout():
 	cooldown_active = false
 	var tween = get_tree().create_tween()
 	tween.parallel().tween_property(self,"modulate:g",1.0,0.25)

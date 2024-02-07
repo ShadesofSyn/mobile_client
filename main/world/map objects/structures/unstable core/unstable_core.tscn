@@ -1,11 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://4yxwliy5qpqh"]
+[gd_scene load_steps=25 format=3 uid="uid://4yxwliy5qpqh"]
 
 [ext_resource type="Script" path="res://main/world/map objects/structures/unstable core/unstable_core.gd" id="1_dbljw"]
-[ext_resource type="Texture2D" uid="uid://c7afbotgi7w68" path="res://assets/tilesets/map objects/structures/unstable core/8.png" id="2_ajyde"]
 [ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="2_pgjid"]
+[ext_resource type="Texture2D" uid="uid://c7afbotgi7w68" path="res://assets/tilesets/map objects/structures/unstable core old/8.png" id="3_2pi6x"]
 [ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="3_6u086"]
 [ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="4_i6agm"]
 [ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="5_sr8e3"]
+[ext_resource type="Texture2D" uid="uid://dw3qxcnhesuct" path="res://assets/tilesets/map objects/structures/unstable core/Idle-8FPS/ucore-idle-01.png" id="7_cg1em"]
+[ext_resource type="Texture2D" uid="uid://dj2r6pt5dklao" path="res://assets/tilesets/map objects/structures/unstable core/Idle-8FPS/ucore-idle-02.png" id="8_2wvdn"]
+[ext_resource type="Texture2D" uid="uid://lgy3nf2j1cig" path="res://assets/tilesets/map objects/structures/unstable core/Idle-8FPS/ucore-idle-03.png" id="9_fvy8j"]
+[ext_resource type="Texture2D" uid="uid://mfemchgecmgo" path="res://assets/tilesets/map objects/structures/unstable core/Idle-8FPS/ucore-idle-04.png" id="10_024ga"]
+[ext_resource type="Texture2D" uid="uid://b4ivf38g25o3o" path="res://assets/tilesets/map objects/structures/unstable core/Idle-8FPS/ucore-idle-05.png" id="11_aewds"]
+[ext_resource type="Texture2D" uid="uid://4afyaep5ljqi" path="res://assets/tilesets/map objects/structures/unstable core/Idle-8FPS/ucore-idle-06.png" id="12_ash6v"]
+[ext_resource type="Texture2D" uid="uid://d2hta6aginpx" path="res://assets/tilesets/map objects/structures/unstable core/Idle-8FPS/ucore-idle-07.png" id="13_lfodl"]
+[ext_resource type="Texture2D" uid="uid://0nri0331gr4w" path="res://assets/tilesets/map objects/structures/unstable core/Idle-8FPS/ucore-idle-08.png" id="14_mtkx1"]
+[ext_resource type="Texture2D" uid="uid://dt1yupnhg0eys" path="res://assets/tilesets/map objects/structures/unstable core/Idle-8FPS/ucore-idle-09.png" id="15_if7mk"]
+[ext_resource type="Texture2D" uid="uid://sw1ycttg3cvq" path="res://assets/tilesets/map objects/structures/unstable core/Idle-8FPS/ucore-idle-10.png" id="16_fjw8c"]
+[ext_resource type="Texture2D" uid="uid://h4n33lwkikxd" path="res://assets/tilesets/map objects/structures/unstable core/Idle-8FPS/ucore-idle-11.png" id="17_wia2p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kipy4"]
 radius = 56.0
@@ -30,6 +41,47 @@ colors = PackedColorArray(0.780392, 0.94902, 0.905882, 1, 0.270588, 1, 0.764706,
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkfqo"]
 radius = 437.018
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_3g3vn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_cg1em")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2wvdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fvy8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_024ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_aewds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ash6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_lfodl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mtkx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_if7mk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_fjw8c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_wia2p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="unstable_core" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
@@ -45,10 +97,11 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_kipy4")
 
 [node name="base" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_p20r5")
 position = Vector2(0, 23.5)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_ajyde")
+texture = ExtResource("3_2pi6x")
 offset = Vector2(7, -74)
 
 [node name="hurtbox" parent="." instance=ExtResource("3_6u086")]
@@ -63,10 +116,10 @@ offset_top = -121.0
 offset_bottom = -73.0
 
 [node name="health_progress_bar" parent="hurtbox" index="2"]
-offset_left = -68.0
-offset_top = -233.0
-offset_right = 560.0
-offset_bottom = -125.0
+offset_left = -71.0
+offset_top = -319.0
+offset_right = 557.0
+offset_bottom = -211.0
 
 [node name="Label" parent="hurtbox" index="3"]
 offset_left = -79.0
@@ -112,5 +165,12 @@ hitbox_attack_type = "special"
 position = Vector2(0, -35)
 shape = SubResource("CircleShape2D_tkfqo")
 disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -133)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_3g3vn")
+autoplay = "default"
+frame_progress = 0.31221
 
 [editable path="hurtbox"]

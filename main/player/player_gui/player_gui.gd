@@ -36,25 +36,27 @@ func set_active_joysticks(new_index):
 func _physics_process(delta):
 	if not attack_joystick1.is_pressed and not attack_joystick2.is_pressed and not attack_joystick3.is_pressed:
 		remove_lobbed_projectile_line()
-	elif attack_joystick1.is_pressed:
+	elif attack_joystick1.is_pressed and Server.player_node.character_stats.character_name == "technomancer":
 		$aim_los.position = Vector2(960,540)
 		show_lobbed_projectile_line(delta,"1",132)
-	elif attack_joystick2.is_pressed:
-		$aim_los.position = Vector2(960,540) + (Server.ally_node1.position - Server.player_node.position)
-		show_straight_projectile_line()
-	elif attack_joystick3.is_pressed:
-		$aim_los.position = Vector2(960,540) + (Server.ally_node2.position - Server.player_node.position)
-		show_lobbed_projectile_line(delta,"3",132)
+	elif attack_joystick1.is_pressed and Server.player_node.character_stats.character_name == "valkyrie":
+		attack_joystick1.check_if_shoot_projectile()
+#	elif attack_joystick2.is_pressed:
+#		$aim_los.position = Vector2(960,540) + (Server.ally_node1.position - Server.player_node.position)
+#		show_straight_projectile_line()
+#	elif attack_joystick3.is_pressed:
+#		$aim_los.position = Vector2(960,540) + (Server.ally_node2.position - Server.player_node.position)
+#		show_lobbed_projectile_line(delta,"3",132)
 
 	if not attack_joystick1.posVector == Vector2.ZERO:
 		var angle = rad_to_deg(Vector2(1,0).angle_to(attack_joystick1.posVector))
 		$aim_los.rotation_degrees = angle
-	elif not attack_joystick2.posVector == Vector2.ZERO:
-		var angle = rad_to_deg(Vector2(1,0).angle_to(attack_joystick2.posVector))
-		$aim_los.rotation_degrees = angle
-	elif not attack_joystick3.posVector == Vector2.ZERO:
-		var angle = rad_to_deg(Vector2(1,0).angle_to(attack_joystick3.posVector))
-		$aim_los.rotation_degrees = angle
+#	elif not attack_joystick2.posVector == Vector2.ZERO:
+#		var angle = rad_to_deg(Vector2(1,0).angle_to(attack_joystick2.posVector))
+#		$aim_los.rotation_degrees = angle
+#	elif not attack_joystick3.posVector == Vector2.ZERO:
+#		var angle = rad_to_deg(Vector2(1,0).angle_to(attack_joystick3.posVector))
+#		$aim_los.rotation_degrees = angle
 
 
 func show_straight_projectile_line():
@@ -74,7 +76,6 @@ func show_lobbed_projectile_line(delta,joystick,radius_of_attack):
 	aim_vector.x *= 1.5
 	
 	aim_line.end_pt = lerp(aim_line.end_pt,(((aim_vector)*(get_node("action_buttons/attack_joystick"+str(joystick)).strength_coefficient*8) + spawn_pt)),delta*15)
-	#= (((aim_vector)*(get_node("action_buttons/attack_joystick"+str(joystick)).strength_coefficient*8) + spawn_pt))
 
 
 func remove_lobbed_projectile_line():

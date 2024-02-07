@@ -51,6 +51,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ofdaf")
 
 [node name="icon" type="Sprite2D" parent="VBoxContainer/first"]
+visible = false
 position = Vector2(77, 69)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("3_2jl3m")

@@ -168,6 +168,17 @@ var ad_data = {
 			"attackRange": 3
 		},
 	},
+	"bat": {
+		"class": "Unknown",
+		"description": "bat desc",
+		"basic": {
+			"health": 80,
+			"damage": 40,
+			"attackSpeed": 0.8,
+			"movementSpeed": 7,
+			"attackRange": 3
+		},
+	},
 }
 
 

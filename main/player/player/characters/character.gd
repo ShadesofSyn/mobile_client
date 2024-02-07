@@ -33,6 +33,16 @@ func use_special_ability() -> void:
 	match special_ability_selected:
 		"dash":
 			InstancedScenes.init_dash_effect(self)
+		"war cry":
+			InstancedScenes.init_dash_effect(self)
+		"amplify":
+			InstancedScenes.init_dash_effect(self)
+		"rejuvenate":
+			InstancedScenes.init_dash_effect(self)
+		"dispel":
+			InstancedScenes.init_dash_effect(self)
+		"suppress":
+			InstancedScenes.init_dash_effect(self)
 		
 	
 

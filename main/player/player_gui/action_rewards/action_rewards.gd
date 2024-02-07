@@ -39,11 +39,11 @@ func _on_second_gui_input(event):
 			Server.world.get_node("towers").call_deferred("add_child",turret)
 			current_tower = turret
 		else:
-			end_press = event.position
-			if start_press.distance_to(end_press) < 100:
-				current_tower.init(true)
-			else:
-				current_tower.init(false)
+#			end_press = event.position
+#			if start_press.distance_to(end_press) < 100:
+			current_tower.init(true)
+#			else:
+#				current_tower.init(false)
 
 func remove_object_from_gui(_name_of_object):
 	$VBoxContainer/first/icon.hide()

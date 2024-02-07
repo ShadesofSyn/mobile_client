@@ -36,12 +36,13 @@ func _physics_process(delta):
 
 
 func set_direction():
-	if Server.player_node.position.x > self.position.x:
-		sprite.position.x = 140
-		sprite.flip_h = false
-	else:
-		sprite.position.x = -140
-		sprite.flip_h = true
+	if Server.player_node:
+		if Server.player_node.position.x > self.position.x:
+			sprite.position.x = 140
+			sprite.flip_h = false
+		else:
+			sprite.position.x = -140
+			sprite.flip_h = true
 	
 
 func attack():

@@ -37,10 +37,12 @@ height = 160.0
 script = ExtResource("1_gqymn")
 
 [node name="indicator" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_0glua")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 collision_layer = 24
 collision_mask = 24
 
@@ -64,6 +66,7 @@ position = Vector2(-4, -114)
 texture = ExtResource("3_hyjfv")
 
 [node name="hurtbox" parent="." instance=ExtResource("5_g0tni")]
+visible = false
 
 [node name="CollisionShape2D" parent="hurtbox" index="0"]
 z_index = 1
@@ -91,6 +94,7 @@ offset_bottom = -153.0
 script = ExtResource("6_vi52o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -26)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gamr7")
@@ -112,6 +116,7 @@ position = Vector2(0, -150)
 position = Vector2(57, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
