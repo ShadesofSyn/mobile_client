@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1uycxje2xu70"]
+
+[ext_resource type="Texture2D" uid="uid://48vgah76g3el" path="res://assets/images/abilities/rejuvenate/rejuvenate-01.png" id="1_cskfy"]
+[ext_resource type="Texture2D" uid="uid://i8jd5n336kqo" path="res://assets/images/abilities/rejuvenate/rejuvenate-02.png" id="2_1k1xp"]
+[ext_resource type="Texture2D" uid="uid://bftcdy1766s31" path="res://assets/images/abilities/rejuvenate/rejuvenate-03.png" id="3_nnoou"]
+[ext_resource type="Texture2D" uid="uid://b5r3mgv451x3b" path="res://assets/images/abilities/rejuvenate/rejuvenate-04.png" id="4_773cu"]
+[ext_resource type="Texture2D" uid="uid://bhfms807t5f3v" path="res://assets/images/abilities/rejuvenate/rejuvenate-05.png" id="5_o18r8"]
+[ext_resource type="Texture2D" uid="uid://x62aaeoh57hy" path="res://assets/images/abilities/rejuvenate/rejuvenate-06.png" id="6_ib34p"]
+[ext_resource type="Texture2D" uid="uid://c3sasflsilhfb" path="res://assets/images/abilities/rejuvenate/rejuvenate-07.png" id="7_a51gt"]
+[ext_resource type="Script" path="res://main/player/effects/aggro/aggro_effect.gd" id="8_w8bvw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h0a18"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cskfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1k1xp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nnoou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_773cu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o18r8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ib34p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_a51gt")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="rejuvenate_effect" type="AnimatedSprite2D"]
+position = Vector2(2.08165e-12, -26)
+sprite_frames = SubResource("SpriteFrames_h0a18")
+script = ExtResource("8_w8bvw")

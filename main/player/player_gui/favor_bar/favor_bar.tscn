@@ -1,36 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://chqtdg4hsf5qu"]
+[gd_scene load_steps=6 format=3 uid="uid://chqtdg4hsf5qu"]
 
 [ext_resource type="Script" path="res://main/player/player_gui/favor_bar/favor_bar.gd" id="1_lisfw"]
-[ext_resource type="Texture2D" uid="uid://sdykix0y0dt6" path="res://assets/interface/favor/crown.png" id="1_u41vc"]
-[ext_resource type="Theme" uid="uid://dbalkluvqmaae" path="res://assets/resources/text/text theme bold.tres" id="2_ed8c0"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52l1m"]
-bg_color = Color(0.431373, 0.709804, 0.92549, 0.564706)
-corner_radius_top_left = 64
-corner_radius_top_right = 64
-corner_radius_bottom_right = 64
-corner_radius_bottom_left = 64
+[ext_resource type="Texture2D" uid="uid://rvtw0leafsay" path="res://assets/interface/favor/favor-center-icon.png" id="2_pu2gf"]
+[ext_resource type="Texture2D" uid="uid://dc1qi7l5sfpsl" path="res://assets/interface/favor/favor-progress-bar-main-bg.png" id="3_gj3kh"]
+[ext_resource type="Texture2D" uid="uid://by4atisee60kq" path="res://assets/interface/favor/favor-player-frame.png" id="4_jy26e"]
+[ext_resource type="Texture2D" uid="uid://c2xxfrrh414jh" path="res://assets/interface/favor/favor-progress-bar-bar-single.png" id="5_62js4"]
 
 [node name="favor_bar" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 642.0
+offset_bottom = 361.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_lisfw")
-
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -365.0
-offset_top = 35.0
-offset_right = 365.0
-offset_bottom = 101.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_52l1m")
 
 [node name="crown" type="TextureRect" parent="."]
 modulate = Color(2.00392, 2.00392, 1, 1)
@@ -38,87 +24,68 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -51.9999
-offset_top = 15.0
-offset_right = 460.0
-offset_bottom = 527.0
+offset_left = -83.0
+offset_top = 28.0
+offset_right = 83.0
+offset_bottom = 194.0
 grow_horizontal = 2
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_u41vc")
+pivot_offset = Vector2(83, 2.08165e-12)
+texture = ExtResource("2_pu2gf")
 
 [node name="left_team_rect" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 600.0
+offset_left = 320.0
 offset_top = 28.0
-offset_right = 920.0
+offset_right = 640.0
 offset_bottom = 103.0
 
-[node name="line" type="Line2D" parent="left_team_rect"]
-points = PackedVector2Array(20, 40, 280, 40)
-default_color = Color(0.192157, 0.211765, 0.643137, 1)
-
-[node name="icon" type="Control" parent="left_team_rect"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 263.0
-offset_right = 263.0
-
-[node name="diamond" type="ColorRect" parent="left_team_rect/icon"]
+[node name="bar_outline" type="TextureRect" parent="left_team_rect"]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 12.0
-offset_right = 68.0
-offset_bottom = 52.0
-rotation = 0.785398
-color = Color(0.141176, 0.290196, 0.690196, 1)
+offset_left = 396.0
+offset_top = 35.0
+offset_right = 876.0
+offset_bottom = 95.0
+texture = ExtResource("3_gj3kh")
 
-[node name="score_label" type="Label" parent="left_team_rect/icon"]
-texture_filter = 1
+[node name="frame" type="TextureRect" parent="left_team_rect"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 22.0
-offset_right = 121.0
-offset_bottom = 110.0
-scale = Vector2(0.4, 0.4)
-theme = ExtResource("2_ed8c0")
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = 169.0
+offset_top = -4.0
+offset_right = 463.0
+offset_bottom = 176.0
+texture = ExtResource("4_jy26e")
+
+[node name="progress_bar" type="TextureProgressBar" parent="left_team_rect"]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 50.0
+offset_right = 618.0
+offset_bottom = 90.0
+max_value = 1000.0
+value = 1000.0
+texture_progress = ExtResource("5_62js4")
 
 [node name="right_team_rect" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 1000.0
+offset_left = 320.0
 offset_top = 28.0
-offset_right = 1320.0
-offset_bottom = 103.0
+offset_right = 320.0
+offset_bottom = 28.0
 
-[node name="line" type="Line2D" parent="right_team_rect"]
-position = Vector2(21, 0)
-points = PackedVector2Array(280, 40, 20, 40)
-default_color = Color(0.67451, 0.0901961, 0.0745098, 1)
-
-[node name="icon" type="Control" parent="right_team_rect"]
-anchors_preset = 0
-pivot_offset = Vector2(60, 2.08165e-12)
-
-[node name="diamond" type="ColorRect" parent="right_team_rect/icon"]
+[node name="frame" type="TextureRect" parent="right_team_rect"]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 12.0
-offset_right = 68.0
-offset_bottom = 52.0
-rotation = 0.785398
-color = Color(0.827451, 0, 0, 1)
+offset_left = 1458.0
+offset_top = -4.0
+offset_right = 1752.0
+offset_bottom = 176.0
+texture = ExtResource("4_jy26e")
+flip_h = true
 
-[node name="score_label" type="Label" parent="right_team_rect/icon"]
-texture_filter = 1
+[node name="bar_outline" type="TextureRect" parent="right_team_rect"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 22.0
-offset_right = 114.0
-offset_bottom = 115.0
-scale = Vector2(0.4, 0.4)
-theme = ExtResource("2_ed8c0")
-text = "99	"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = 1044.0
+offset_top = 40.0
+offset_right = 1524.0
+offset_bottom = 100.0
+texture = ExtResource("3_gj3kh")
+flip_h = true

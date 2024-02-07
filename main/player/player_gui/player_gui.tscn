@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs6ncy56q2n34"]
+[gd_scene load_steps=10 format=3 uid="uid://bs6ncy56q2n34"]
 
 [ext_resource type="Script" path="res://main/player/player_gui/player_gui.gd" id="1_2tmwi"]
 [ext_resource type="PackedScene" uid="uid://b1t7d2t2vf113" path="res://main/player/player_gui/joystick/joystick.tscn" id="2_o2cux"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://chqtdg4hsf5qu" path="res://main/player/player_gui/favor_bar/favor_bar.tscn" id="5_w31u7"]
 [ext_resource type="PackedScene" uid="uid://blbtdvqbdruni" path="res://main/player/player_gui/action_rewards/action_rewards.tscn" id="6_bsrmv"]
 [ext_resource type="PackedScene" uid="uid://b4ojpxo2gkniw" path="res://main/player/player_gui/active_team_boosts/active_team_boosts.tscn" id="7_vgens"]
+[ext_resource type="PackedScene" uid="uid://bigcuaiqhmhiq" path="res://main/player/player_gui/lobbed_projectile_line/lobbed_projectile_line.tscn" id="8_uwc6v"]
+[ext_resource type="PackedScene" uid="uid://dcc5nrwid03p8" path="res://main/player/player_gui/straight_projectile_line/straight_projectile_line.tscn" id="9_gj1yp"]
 
 [node name="player_gui" type="CanvasLayer"]
 script = ExtResource("1_2tmwi")
@@ -28,3 +30,14 @@ offset_bottom = 144.0
 [node name="action_rewards" parent="." instance=ExtResource("6_bsrmv")]
 
 [node name="active_team_boosts" parent="." instance=ExtResource("7_vgens")]
+
+[node name="lobbed_projectile_line" parent="." instance=ExtResource("8_uwc6v")]
+
+[node name="aim_los" type="Node2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="start_pt" type="Node2D" parent="aim_los"]
+position = Vector2(32, 2.08165e-12)
+
+[node name="straight_projectile_line" parent="aim_los/start_pt" instance=ExtResource("9_gj1yp")]
+visible = false

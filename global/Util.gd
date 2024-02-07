@@ -75,22 +75,58 @@ func return_abbreviated_character_name(_char_name):
 
 ### Damage inflicted
 func return_health_change(character,type) -> int:
-	if character == "valkyrie" and type == "ultimate":
-		return -60
-	elif character == "ghoul":
-		return -30
+#	if character == "valkyrie" and type == "ultimate":
+#		return -60
+	if character == "ghoul" or character == "ghoul2":
+		return -Constants.ad_data[character][type]["damage"]
+	elif character == "tower" or character == "unstable core":
+		return -Constants.structure_data[character][type]["damage"]
+	elif character == "tree" or character == "golem":
+		return -Constants.beast_data[character][type]["damage"]
 	return -Constants.character_data[character][type]["damage"]
 
 
 func destructable_projectile(character,type) -> bool:
-	if type == "ultimate" or character == "magmaul" or character == "valkyrie":
+	if type == "ultra" or character == "magmaul" or character == "valkyrie" or character == "ghoul" or character == "tree":
 		return false
 	return true
 
 
 
 ### Detect enemy nodes
+func get_nearest_aggro_target(_detect_enemy_node): 
+	var enemy_node
+	var max_distance_to_check = 100000.0
+	var _pos = _detect_enemy_node.global_position
+	var _enemy_nodes = _detect_enemy_node.get_overlapping_bodies()
+	if _enemy_nodes.size() == 0:
+		return null
+	else:
+		for node in _enemy_nodes:
+			var distance_to_enemy = _pos.distance_to(node.global_position)
+			if distance_to_enemy < max_distance_to_check and node.character_stats.aggro_mode:
+				max_distance_to_check = distance_to_enemy
+				enemy_node = node
+		return enemy_node
+
 func get_nearest_target(_detect_enemy_node): 
+	var enemy_node
+	var max_distance_to_check = 100000.0
+	var _pos = _detect_enemy_node.global_position
+	var _enemy_nodes = _detect_enemy_node.get_overlapping_bodies()
+	if _enemy_nodes.size() == 0:
+		return null
+	else:
+		for node in _enemy_nodes:
+			var distance_to_enemy = _pos.distance_to(node.global_position)
+			if distance_to_enemy < max_distance_to_check:
+				max_distance_to_check = distance_to_enemy
+				enemy_node = node
+		return enemy_node
+		
+		
+func get_nearest_targets(_detect_enemy_node): 
+	var targets
 	var enemy_node
 	var max_distance_to_check = 100000.0
 	var _pos = _detect_enemy_node.global_position
@@ -121,7 +157,7 @@ func get_lowest_health_target(_detect_enemy_node):
 		return enemy_node
 
 func return_random_idle_position(_spawn_pos) -> Vector2:
-	var random_vec = Vector2(randf_range(100,300),randf_range(100,300))
+	var random_vec = Vector2(randf_range(100,400),randf_range(100,400))
 	if chance(50):
 		random_vec.x *= -1
 	if chance(50):
@@ -144,3 +180,27 @@ func remove_valid_tiles(location,dimensions) -> void:
 	for x in range(dimensions.x):
 		for y in range(dimensions.y):
 			Server.world.valid_tiles.erase_cell(0,location+Vector2i(x-1,-y))
+			
+			
+			
+### Set character attributes
+
+func is_character_ad(_char_name) -> bool:
+	if Constants.ad_data.keys().has(_char_name):
+		return true
+	return false
+	
+func is_character_beast(_char_name) -> bool:
+	if Constants.beast_data.keys().has(_char_name):
+		return true
+	return false
+	
+func is_character_structure(_char_name) -> bool:
+	if Constants.structure_data.keys().has(_char_name):
+		return true
+	return false
+	
+func is_character_ally(_char_name) -> bool:
+	if _char_name == "steelthorn" or _char_name == "mariselle":
+		return true
+	return false

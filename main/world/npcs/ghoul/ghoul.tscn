@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dvv48njinvfud"]
+[gd_scene load_steps=34 format=3 uid="uid://dvv48njinvfud"]
 
 [ext_resource type="Script" path="res://main/world/npcs/ghoul/ghoul.gd" id="1_j5fy0"]
 [ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="2_kecwx"]
@@ -27,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://c5c60l7mb0aso" path="res://assets/characters/ads/ghoul/walk/19.png" id="23_ve5ub"]
 [ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="24_gc0ry"]
 [ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="25_lc481"]
-[ext_resource type="Theme" uid="uid://dbalkluvqmaae" path="res://assets/resources/text/text theme bold.tres" id="28_lp3cj"]
 [ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="29_gwxwy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjpak"]
@@ -129,75 +128,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h07ia"]
-radius = 101.0
-
-[sub_resource type="Animation" id="Animation_ct4u6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(64, -120)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_e4fj0"]
-resource_name = "animate"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(64, -120), Vector2(64, -130)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7pe85"]
-_data = {
-"RESET": SubResource("Animation_ct4u6"),
-"animate": SubResource("Animation_e4fj0")
-}
+radius = 181.011
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8iexr"]
-radius = 94.5304
+radius = 69.1809
 
 [node name="ghoul" type="CharacterBody2D"]
-collision_layer = 0
-collision_mask = 8
+collision_layer = 16
+collision_mask = 24
 script = ExtResource("1_j5fy0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -211,15 +149,12 @@ material = SubResource("ShaderMaterial_i5uu6")
 position = Vector2(23, -37)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_kw1qb")
-animation = &"attack"
-autoplay = "walk"
-frame = 5
-frame_progress = 1.0
+animation = &"death"
 
 [node name="hurtbox" parent="." instance=ExtResource("24_gc0ry")]
 
 [node name="CollisionShape2D" parent="hurtbox" index="0"]
-position = Vector2(0, 16)
+position = Vector2(0, 9)
 
 [node name="health_progress_bar" parent="hurtbox" index="2"]
 offset_top = -83.0
@@ -230,50 +165,32 @@ offset_top = -95.0
 offset_bottom = -46.0
 
 [node name="detect_enemy" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("25_lc481")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_h07ia")
 
 [node name="ad_navigation_agent" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 
 [node name="Timer" type="Timer" parent="ad_navigation_agent"]
-wait_time = 0.15
-autostart = true
-
-[node name="agro_label" type="Label" parent="."]
-modulate = Color(1, 0, 0, 0)
-offset_left = 64.0
-offset_top = -120.0
-offset_right = 104.0
-offset_bottom = -53.0
-theme = ExtResource("28_lp3cj")
-theme_override_font_sizes/font_size = 50
-text = "!!"
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="agro_label"]
-libraries = {
-"": SubResource("AnimationLibrary_7pe85")
-}
+wait_time = 5.0
 
 [node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("29_gwxwy")
 hitbox_character_name = "ghoul"
 hitbox_attack_type = "basic"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_8iexr")
 disabled = true
 
-[node name="Timer2" type="Timer" parent="."]
-autostart = true
-
 [connection signal="timeout" from="ad_navigation_agent/Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
 
 [editable path="hurtbox"]

@@ -9,8 +9,6 @@ func start(_length):
 
 func _physics_process(delta):
 	if not $Timer.time_left == 0.0:
-		show()
 		$TextureProgressBar.value = $Timer.time_left*length
 		$Label.text = str(snapped($Timer.time_left,0.1))
 		return
-	hide()

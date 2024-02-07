@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1t7d2t2vf113"]
 
 [ext_resource type="Script" path="res://main/player/player_gui/joystick/joystick.gd" id="1_tegro"]
-[ext_resource type="Texture2D" uid="uid://bpajm44gxh5l7" path="res://assets/interface/joystick/AIR_joystick_bg600.png" id="2_78rgx"]
-[ext_resource type="Texture2D" uid="uid://bd7427e4l77ra" path="res://assets/interface/joystick/AIR_joystick_stick320.png" id="3_4fq7f"]
+[ext_resource type="Texture2D" uid="uid://c5vdoes58sxas" path="res://assets/interface/joystick/Joystick-background.png" id="2_und23"]
+[ext_resource type="Texture2D" uid="uid://dy7i510glw4gi" path="res://assets/interface/joystick/Joystick-button.png" id="3_6jm2p"]
 
 [node name="joystick" type="Control"]
 layout_mode = 3
@@ -26,7 +26,7 @@ offset_right = 1178.0
 offset_bottom = 1300.0
 pivot_offset = Vector2(300, 300)
 mouse_filter = 2
-texture = ExtResource("2_78rgx")
+texture = ExtResource("2_und23")
 stretch_mode = 5
 
 [node name="tip" type="TextureRect" parent="base"]
@@ -44,4 +44,8 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 160)
 mouse_filter = 2
-texture = ExtResource("3_4fq7f")
+texture = ExtResource("3_6jm2p")
+
+[node name="cooldown_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="cooldown_timer" to="." method="_on_cooldown_timer_timeout"]

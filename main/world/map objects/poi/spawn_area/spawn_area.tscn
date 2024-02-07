@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjg71fas37wyh"]
+
+[ext_resource type="Script" path="res://main/world/map objects/poi/spawn_area/spawn_area.gd" id="1_fr6jk"]
+
+[node name="spawn_area" type="Node2D"]
+z_index = -1
+script = ExtResource("1_fr6jk")

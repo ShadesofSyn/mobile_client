@@ -1,20 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://crqf0vpiv4af0"]
+[gd_scene load_steps=15 format=3 uid="uid://crqf0vpiv4af0"]
 
-[ext_resource type="Texture2D" uid="uid://bix47772xyi41" path="res://assets/interface/buttons/attack button.png" id="1_me5m3"]
 [ext_resource type="Script" path="res://main/player/player_gui/action_buttons/action_buttons.gd" id="1_ny5gg"]
+[ext_resource type="Texture2D" uid="uid://bork1j4s72kpd" path="res://assets/interface/buttons/btn-attack.png" id="2_mmuaw"]
 [ext_resource type="Script" path="res://main/player/player_gui/action_buttons/basic_attack.gd" id="3_stowi"]
-[ext_resource type="Texture2D" uid="uid://d0yhx0dceu8r6" path="res://assets/interface/buttons/special button.png" id="4_di6kh"]
+[ext_resource type="Texture2D" uid="uid://bi0te76sgmcny" path="res://assets/interface/buttons/btn-special.png" id="4_eyy86"]
 [ext_resource type="Script" path="res://main/player/player_gui/action_buttons/special_ability.gd" id="5_vf5rb"]
-[ext_resource type="Texture2D" uid="uid://cpjkd5crry2li" path="res://assets/interface/buttons/aura.png" id="5_wugt2"]
 [ext_resource type="Texture2D" uid="uid://ogvxr3asi518" path="res://assets/interface/buttons/circle72.png" id="6_eqkrv"]
 [ext_resource type="Theme" uid="uid://dbalkluvqmaae" path="res://assets/resources/text/text theme bold.tres" id="6_xb8tf"]
 [ext_resource type="Script" path="res://main/player/player_gui/action_buttons/cooldown.gd" id="7_x0136"]
-[ext_resource type="Texture2D" uid="uid://d4l5mqk1w1y4a" path="res://assets/interface/buttons/riposte.png" id="10_0dxil"]
-[ext_resource type="Script" path="res://main/player/player_gui/action_buttons/ultra_attack.gd" id="10_5btfc"]
-[ext_resource type="Texture2D" uid="uid://dfa7h1e1jnrx3" path="res://assets/interface/buttons/werewolf.png" id="12_cmdq8"]
-[ext_resource type="Texture2D" uid="uid://2n2pccugpoyb" path="res://assets/interface/buttons/footsteps.png" id="12_epsuq"]
-[ext_resource type="Texture2D" uid="uid://bw6befen2ip84" path="res://assets/interface/buttons/bully-minion.png" id="13_33oh7"]
+[ext_resource type="Texture2D" uid="uid://fh3gof1yeaas" path="res://assets/interface/buttons/btn-team-lock.png" id="9_q4a06"]
+[ext_resource type="Texture2D" uid="uid://dfjp8blw08q55" path="res://assets/interface/buttons/btn ultra 2.png" id="12_8s0rk"]
+[ext_resource type="Texture2D" uid="uid://dpxbgxn0ty15g" path="res://assets/interface/buttons/btn-ultra-1.png" id="13_d20o5"]
+[ext_resource type="Texture2D" uid="uid://cei8q8jy7hc4o" path="res://assets/interface/buttons/btn ultra 3.png" id="14_2p6pp"]
 [ext_resource type="Script" path="res://main/player/player_gui/action_buttons/lockstep.gd" id="14_qg5qp"]
+[ext_resource type="PackedScene" uid="uid://b1t7d2t2vf113" path="res://main/player/player_gui/joystick/joystick.tscn" id="16_jtkm5"]
 
 [node name="action_buttons" type="Control"]
 layout_mode = 3
@@ -40,175 +39,10 @@ offset_right = -181.0
 offset_bottom = -167.0
 grow_horizontal = 0
 grow_vertical = 0
-pivot_offset = Vector2(111, 111)
-texture = ExtResource("1_me5m3")
+pivot_offset = Vector2(120, 120)
+texture = ExtResource("2_mmuaw")
 flip_h = true
 script = ExtResource("3_stowi")
-
-[node name="ultra_attack1" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 372.0
-offset_top = 370.0
-offset_right = 522.0
-offset_bottom = 520.0
-pivot_offset = Vector2(75, 75)
-texture = ExtResource("4_di6kh")
-script = ExtResource("10_5btfc")
-
-[node name="icon" type="TextureRect" parent="ultra_attack1"]
-layout_mode = 0
-offset_left = -183.0
-offset_top = -186.0
-offset_right = 329.0
-offset_bottom = 326.0
-scale = Vector2(0.2, 0.2)
-pivot_offset = Vector2(256, 256)
-texture = ExtResource("10_0dxil")
-
-[node name="cooldown" type="Control" parent="ultra_attack1"]
-anchors_preset = 0
-offset_right = 150.0
-offset_bottom = 150.0
-script = ExtResource("7_x0136")
-
-[node name="Timer" type="Timer" parent="ultra_attack1/cooldown"]
-one_shot = true
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="ultra_attack1/cooldown"]
-modulate = Color(0.262745, 0.262745, 0.262745, 0.823529)
-layout_mode = 0
-offset_right = 151.0
-offset_bottom = 151.0
-value = 100.0
-fill_mode = 4
-nine_patch_stretch = true
-texture_progress = ExtResource("6_eqkrv")
-
-[node name="Label" type="Label" parent="ultra_attack1/cooldown"]
-modulate = Color(0.956863, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_xb8tf")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 48
-text = "10.0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ultra_attack2" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 392.0
-offset_top = 202.0
-offset_right = 542.0
-offset_bottom = 352.0
-pivot_offset = Vector2(75, 75)
-texture = ExtResource("4_di6kh")
-script = ExtResource("10_5btfc")
-
-[node name="icon" type="TextureRect" parent="ultra_attack2"]
-layout_mode = 0
-offset_left = -175.0
-offset_top = -182.0
-offset_right = 337.0
-offset_bottom = 330.0
-scale = Vector2(0.18, 0.18)
-pivot_offset = Vector2(256, 256)
-texture = ExtResource("12_cmdq8")
-
-[node name="cooldown" type="Control" parent="ultra_attack2"]
-anchors_preset = 0
-offset_right = 150.0
-offset_bottom = 150.0
-script = ExtResource("7_x0136")
-
-[node name="Timer" type="Timer" parent="ultra_attack2/cooldown"]
-one_shot = true
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="ultra_attack2/cooldown"]
-modulate = Color(0.262745, 0.262745, 0.262745, 0.823529)
-layout_mode = 0
-offset_right = 151.0
-offset_bottom = 151.0
-value = 100.0
-fill_mode = 4
-nine_patch_stretch = true
-texture_progress = ExtResource("6_eqkrv")
-
-[node name="Label" type="Label" parent="ultra_attack2/cooldown"]
-modulate = Color(0.956863, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_xb8tf")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 48
-text = "10.0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ultra_attack3" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 536.0
-offset_top = 100.0
-offset_right = 686.0
-offset_bottom = 250.0
-pivot_offset = Vector2(75, 75)
-texture = ExtResource("4_di6kh")
-script = ExtResource("10_5btfc")
-
-[node name="icon" type="TextureRect" parent="ultra_attack3"]
-layout_mode = 0
-offset_left = -178.0
-offset_top = -184.0
-offset_right = 334.0
-offset_bottom = 328.0
-scale = Vector2(0.18, 0.18)
-pivot_offset = Vector2(256, 256)
-texture = ExtResource("13_33oh7")
-
-[node name="cooldown" type="Control" parent="ultra_attack3"]
-anchors_preset = 0
-offset_right = 150.0
-offset_bottom = 150.0
-script = ExtResource("7_x0136")
-
-[node name="Timer" type="Timer" parent="ultra_attack3/cooldown"]
-one_shot = true
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="ultra_attack3/cooldown"]
-modulate = Color(0.262745, 0.262745, 0.262745, 0.823529)
-layout_mode = 0
-offset_right = 151.0
-offset_bottom = 151.0
-value = 100.0
-fill_mode = 4
-nine_patch_stretch = true
-texture_progress = ExtResource("6_eqkrv")
-
-[node name="Label" type="Label" parent="ultra_attack3/cooldown"]
-modulate = Color(0.956863, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_xb8tf")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 48
-text = "10.0"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="special_ability" type="TextureRect" parent="."]
 layout_mode = 0
@@ -218,20 +52,11 @@ offset_right = 723.25
 offset_bottom = 624.25
 scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(75, 75)
-texture = ExtResource("4_di6kh")
+texture = ExtResource("4_eyy86")
 script = ExtResource("5_vf5rb")
 
-[node name="icon" type="TextureRect" parent="special_ability"]
-layout_mode = 0
-offset_left = -181.0
-offset_top = -185.0
-offset_right = 331.0
-offset_bottom = 327.0
-scale = Vector2(0.2, 0.2)
-pivot_offset = Vector2(256, 256)
-texture = ExtResource("5_wugt2")
-
 [node name="cooldown" type="Control" parent="special_ability"]
+visible = false
 anchors_preset = 0
 offset_right = 150.0
 offset_bottom = 150.0
@@ -274,15 +99,63 @@ offset_right = 902.0
 offset_bottom = 432.0
 scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(75, 75)
-texture = ExtResource("4_di6kh")
+texture = ExtResource("9_q4a06")
 script = ExtResource("14_qg5qp")
 
-[node name="icon" type="TextureRect" parent="lockstep"]
-layout_mode = 0
-offset_left = -183.0
-offset_top = -186.0
-offset_right = 329.0
-offset_bottom = 326.0
-scale = Vector2(0.2, 0.2)
-pivot_offset = Vector2(256, 256)
-texture = ExtResource("12_epsuq")
+[node name="attack_joystick1" parent="." instance=ExtResource("16_jtkm5")]
+layout_mode = 1
+offset_left = 320.0
+offset_top = 284.0
+offset_right = 29.0
+offset_bottom = 227.0
+joystick_mode = 0
+
+[node name="base" parent="attack_joystick1" index="0"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 2.5
+offset_top = -2.5
+offset_right = 602.5
+offset_bottom = 597.5
+
+[node name="tip" parent="attack_joystick1/base" index="0"]
+texture = ExtResource("12_8s0rk")
+
+[node name="attack_joystick2" parent="." instance=ExtResource("16_jtkm5")]
+layout_mode = 1
+offset_left = 355.0
+offset_top = 110.0
+offset_right = 17.0
+offset_bottom = 60.0
+joystick_mode = 0
+
+[node name="base" parent="attack_joystick2" index="0"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 2.5
+offset_top = -2.5
+offset_right = 602.5
+offset_bottom = 597.5
+
+[node name="tip" parent="attack_joystick2/base" index="0"]
+texture = ExtResource("13_d20o5")
+
+[node name="attack_joystick3" parent="." instance=ExtResource("16_jtkm5")]
+layout_mode = 1
+offset_left = 522.0
+offset_top = 36.0001
+offset_right = 231.0
+offset_bottom = -21.0
+joystick_mode = 0
+
+[node name="base" parent="attack_joystick3" index="0"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 2.5
+offset_top = -2.5
+offset_right = 602.5
+offset_bottom = 597.5
+
+[node name="tip" parent="attack_joystick3/base" index="0"]
+texture = ExtResource("14_2p6pp")
+
+[editable path="attack_joystick1"]
+[editable path="attack_joystick2"]
+[editable path="attack_joystick3"]

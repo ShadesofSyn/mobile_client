@@ -5,7 +5,8 @@ const ATTACK_SPEED_RESTRUCTION = 0.8
 var movement_type = Constants.ally_movement_state.NORMAL
 
 func _physics_process(delta):
-	if get_parent().character_stats.STATE == Constants.player_state.DEATH:
+	if get_parent().character_stats.STATE == Constants.player_state.DEATH or get_parent().character_stats.stunned:
+		get_parent().velocity = Vector2.ZERO
 		return
 
 	if get_parent().character_stats.TYPE == Constants.character_type.ALLY:

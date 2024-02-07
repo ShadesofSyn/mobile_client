@@ -43,6 +43,7 @@ texture_under = ExtResource("2_ux8gw")
 texture_progress = ExtResource("3_3aod0")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 modulate = Color(1, 0.286275, 0.380392, 1)
 texture_filter = 1
 offset_left = -80.0

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://main/player/player_gui/action_rewards/action_rewards.gd" id="1_fgu1b"]
 [ext_resource type="Theme" uid="uid://dbalkluvqmaae" path="res://assets/resources/text/text theme bold.tres" id="2_4xuep"]
 [ext_resource type="Texture2D" uid="uid://ciycnoyhogwhr" path="res://assets/tilesets/map objects/structures/tower/structure.png" id="3_2jl3m"]
-[ext_resource type="Texture2D" uid="uid://546h4x1rtc8n" path="res://assets/tilesets/map objects/structures/support/8.png" id="4_y4sjx"]
+[ext_resource type="Texture2D" uid="uid://dmf5h6n758gc3" path="res://assets/tilesets/map objects/structures/bio forge/14.png" id="4_f8o0t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofdaf"]
 bg_color = Color(0.337255, 0.639216, 0.796078, 0.462745)
@@ -51,6 +51,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ofdaf")
 
 [node name="icon" type="Sprite2D" parent="VBoxContainer/first"]
+visible = false
 position = Vector2(77, 69)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("3_2jl3m")
@@ -81,13 +82,35 @@ custom_minimum_size = Vector2(64, 140)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ofdaf")
 
-[node name="8" type="Sprite2D" parent="VBoxContainer/second"]
+[node name="icon" type="Sprite2D" parent="VBoxContainer/second"]
 visible = false
-position = Vector2(78, 71)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_y4sjx")
+position = Vector2(75, 74)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("4_f8o0t")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/second/icon"]
+offset_left = -109.091
+offset_top = 38.1818
+offset_right = -69.0911
+offset_bottom = 78.1818
+scale = Vector2(1.5, 1.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_hs50x")
+
+[node name="Label" type="Label" parent="VBoxContainer/second/icon/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_top = -3.0
+offset_right = -14.0
+offset_bottom = 46.0
+grow_horizontal = 0
+theme = ExtResource("2_4xuep")
+text = "1"
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1511.0
 offset_top = 13.0
 offset_right = 1922.0

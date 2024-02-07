@@ -1,0 +1,205 @@
+[gd_scene load_steps=34 format=3 uid="uid://bwl72qraf05oq"]
+
+[ext_resource type="Script" path="res://main/world/npcs/ghoul2/ghoul_2.gd" id="1_5402c"]
+[ext_resource type="Script" path="res://main/player/player/scripts/character_stats.gd" id="1_bc4kn"]
+[ext_resource type="Shader" path="res://assets/resources/shader/flash.gdshader" id="2_1dtva"]
+[ext_resource type="Texture2D" uid="uid://ccinc1shyp7h3" path="res://assets/characters/ads/ghoul2/walk/2_enemies_1_RUN_000.png" id="3_1vjjo"]
+[ext_resource type="Texture2D" uid="uid://vkvaortb6j4" path="res://assets/characters/ads/ghoul2/attack/2_enemies_1_ATTACK_000.png" id="3_qbs87"]
+[ext_resource type="Texture2D" uid="uid://cwvju4550jjj5" path="res://assets/characters/ads/ghoul2/attack/2_enemies_1_ATTACK_002.png" id="4_dojdm"]
+[ext_resource type="Texture2D" uid="uid://cb77oopa5nalq" path="res://assets/characters/ads/ghoul2/walk/2_enemies_1_RUN_001.png" id="4_waweu"]
+[ext_resource type="Texture2D" uid="uid://bjje86wq10o1t" path="res://assets/characters/ads/ghoul2/attack/2_enemies_1_ATTACK_004.png" id="5_8yuuc"]
+[ext_resource type="Texture2D" uid="uid://b06rg1l2vg5o2" path="res://assets/characters/ads/ghoul2/walk/2_enemies_1_RUN_002.png" id="5_ya85t"]
+[ext_resource type="Texture2D" uid="uid://qs2yg0l2jjxa" path="res://assets/characters/ads/ghoul2/walk/2_enemies_1_RUN_003.png" id="6_h3wbq"]
+[ext_resource type="Texture2D" uid="uid://dwk2mf5w12o60" path="res://assets/characters/ads/ghoul2/attack/2_enemies_1_ATTACK_006.png" id="6_nwvbf"]
+[ext_resource type="Texture2D" uid="uid://b8d66wjji48xy" path="res://assets/characters/ads/ghoul2/walk/2_enemies_1_RUN_004.png" id="7_fqa15"]
+[ext_resource type="Texture2D" uid="uid://coylf3g384ofr" path="res://assets/characters/ads/ghoul2/attack/2_enemies_1_ATTACK_008.png" id="7_pw2a6"]
+[ext_resource type="Texture2D" uid="uid://b04hesj32jr83" path="res://assets/characters/ads/ghoul2/attack/2_enemies_1_ATTACK_009.png" id="8_jvnyt"]
+[ext_resource type="Texture2D" uid="uid://byv3j2a27nxsd" path="res://assets/characters/ads/ghoul2/walk/2_enemies_1_RUN_005.png" id="8_nq2l7"]
+[ext_resource type="Texture2D" uid="uid://ce5are1sqkxqw" path="res://assets/characters/ads/ghoul2/walk/2_enemies_1_RUN_006.png" id="9_1flgb"]
+[ext_resource type="Texture2D" uid="uid://opdb3q68px8" path="res://assets/characters/ads/ghoul2/death/2_enemies_1_DIE_000.png" id="9_e8ry1"]
+[ext_resource type="Texture2D" uid="uid://cc20hnwjlsrc3" path="res://assets/characters/ads/ghoul2/walk/2_enemies_1_RUN_007.png" id="10_2x66b"]
+[ext_resource type="Texture2D" uid="uid://cim0hl3eiqf2q" path="res://assets/characters/ads/ghoul2/death/2_enemies_1_DIE_002.png" id="10_x2rll"]
+[ext_resource type="Texture2D" uid="uid://ddjkcjdm7ph2u" path="res://assets/characters/ads/ghoul2/walk/2_enemies_1_RUN_008.png" id="11_5mwmc"]
+[ext_resource type="Texture2D" uid="uid://dsb1y3q8er8no" path="res://assets/characters/ads/ghoul2/death/2_enemies_1_DIE_004.png" id="11_6bxoy"]
+[ext_resource type="Texture2D" uid="uid://viq4uvl4ehn7" path="res://assets/characters/ads/ghoul2/walk/2_enemies_1_RUN_009.png" id="12_0j85p"]
+[ext_resource type="Texture2D" uid="uid://bqevcpu4i6q5o" path="res://assets/characters/ads/ghoul2/death/2_enemies_1_DIE_006.png" id="12_aoedb"]
+[ext_resource type="Texture2D" uid="uid://bt0tsmxbx26gt" path="res://assets/characters/ads/ghoul2/death/2_enemies_1_DIE_008.png" id="13_57aah"]
+[ext_resource type="Texture2D" uid="uid://bt4xynw4bg8pk" path="res://assets/characters/ads/ghoul2/death/2_enemies_1_DIE_009.png" id="14_61uxp"]
+[ext_resource type="PackedScene" uid="uid://cfqaj6lx1m8av" path="res://main/player/player/scripts/hurtbox/hurtbox.tscn" id="25_bvu6j"]
+[ext_resource type="Script" path="res://main/player/player/scripts/detect_enemy_or_ally.gd" id="26_nijaf"]
+[ext_resource type="Script" path="res://main/player/player/scripts/hitbox/hitbox.gd" id="28_58njw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdead"]
+radius = 20.0998
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ux3mg"]
+resource_local_to_scene = true
+shader = ExtResource("2_1dtva")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x63k0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qbs87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dojdm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8yuuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nwvbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pw2a6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jvnyt")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_e8ry1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_x2rll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6bxoy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_aoedb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_57aah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_61uxp")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_h3wbq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1vjjo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_waweu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ya85t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_h3wbq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fqa15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nq2l7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1flgb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2x66b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5mwmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0j85p")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1c6xd"]
+radius = 195.892
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wwu0b"]
+radius = 90.8055
+
+[node name="ghoul2" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_5402c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.2, 0)
+shape = SubResource("CircleShape2D_wdead")
+
+[node name="character_stats" type="Node" parent="."]
+script = ExtResource("1_bc4kn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_ux3mg")
+position = Vector2(25.2, -37)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_x63k0")
+animation = &"idle"
+autoplay = "walk"
+
+[node name="hurtbox" parent="." instance=ExtResource("25_bvu6j")]
+position = Vector2(2.2, -28)
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(-2.2, -4)
+
+[node name="health_progress_bar" parent="hurtbox" index="2"]
+offset_top = -117.0
+offset_bottom = -8.9999
+
+[node name="Label" parent="hurtbox" index="3"]
+offset_top = -129.0
+offset_bottom = -80.0
+
+[node name="detect_enemy" type="Area2D" parent="."]
+position = Vector2(2.2, 0)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("26_nijaf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_enemy"]
+position = Vector2(0, -15)
+rotation = 0.00112223
+shape = SubResource("CircleShape2D_1c6xd")
+
+[node name="ad_navigation_agent" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="Timer" type="Timer" parent="ad_navigation_agent"]
+wait_time = 5.0
+
+[node name="hitbox" type="Area2D" parent="."]
+position = Vector2(2.2, 0)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("28_58njw")
+hitbox_character_name = "ghoul2"
+hitbox_attack_type = "basic"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_wwu0b")
+disabled = true
+
+[connection signal="timeout" from="ad_navigation_agent/Timer" to="." method="_on_timer_timeout"]
+
+[editable path="hurtbox"]

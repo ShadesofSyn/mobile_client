@@ -1,0 +1,48 @@
+[gd_scene load_steps=11 format=3 uid="uid://c4wxxv2i8g3sb"]
+
+[ext_resource type="Texture2D" uid="uid://bl0ar311qk1nv" path="res://assets/images/abilities/amplify/amplify-back-01.png" id="1_mgphv"]
+[ext_resource type="Texture2D" uid="uid://1yygxtvd4tjd" path="res://assets/images/abilities/amplify/amplify-back-02.png" id="2_17xh6"]
+[ext_resource type="Texture2D" uid="uid://bd7hwiw2sq572" path="res://assets/images/abilities/amplify/amplify-back-03.png" id="3_cm60n"]
+[ext_resource type="Texture2D" uid="uid://bohotulkhmxtx" path="res://assets/images/abilities/amplify/amplify-back-04.png" id="4_l7p4e"]
+[ext_resource type="Texture2D" uid="uid://ctywk0okku71b" path="res://assets/images/abilities/amplify/amplify-front-01.png" id="5_11a4l"]
+[ext_resource type="Texture2D" uid="uid://c77g5cv6cweug" path="res://assets/images/abilities/amplify/amplify-front-02.png" id="6_fbk88"]
+[ext_resource type="Texture2D" uid="uid://c2m802kuxtq3u" path="res://assets/images/abilities/amplify/amplify-front-03.png" id="7_rr054"]
+[ext_resource type="Texture2D" uid="uid://dswb0w1yy02bb" path="res://assets/images/abilities/amplify/amplify-front-04.png" id="8_brn2y"]
+[ext_resource type="Script" path="res://main/player/effects/aggro/aggro_effect.gd" id="9_fjohk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3xu2h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mgphv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_17xh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cm60n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l7p4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_11a4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fbk88")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rr054")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_brn2y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="amplify_effect" type="AnimatedSprite2D"]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_3xu2h")
+script = ExtResource("9_fjohk")

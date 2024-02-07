@@ -17,7 +17,6 @@ extends Control
 enum Joystick_mode {
 	FIXED, ## The joystick doesn't move.
 	DYNAMIC, ## Every time the joystick area is pressed, the joystick position is set on the touched position.
-	BUTTON
 }
 
 ## If the joystick stays in the same position or appears on the touched position when touch is started
@@ -27,8 +26,6 @@ enum Joystick_mode {
 ## If the joystick tip should slide to touch position
 @export var slide_joystick_mode: bool = false
 @export var max_speed: float = 1.5
-
-@export var is_attack_joystick: bool = false
 
 
 enum Visibility_mode {
@@ -52,10 +49,7 @@ enum Visibility_mode {
 ## If the joystick is receiving inputs.
 var is_pressed := false
 
-# The joystick output.
 var output := Vector2.ZERO
-
-# PRIVATE VARIABLES
 
 var _touch_index : int = -1
 
@@ -77,14 +71,17 @@ var tween
 
 var start_pos: Vector2
 
-# FUNCTIONS
+var movement_joystick: bool = false
+var cooldown_active: bool = false
+
 
 func _ready() -> void:
 #	start_pos = $CharacterBody2D.position
-	modulate.a = 0.5
 	if not DisplayServer.is_touchscreen_available() and visibility_mode == Visibility_mode.TOUCHSCREEN_ONLY:
 		hide()
 	_reset()
+	set_joystick_type()
+	
 #	$Base/Tip/icon.hide()
 #	set_joystick_type(1)
 #	if name.right(1) == "1":
@@ -96,34 +93,14 @@ func _ready() -> void:
 #	_reset()
 
 
-func set_joystick_type(new_index):
+func set_joystick_type():
 	await get_tree().process_frame
-	if name != "movement_joystick":
-		
-#		match new_index:
-#			1: # tech 
-		set_as_button_mode()
-#			2: # tech ult and jug special
-#				set_as_joystick_mode()
-#			3: # jug ult and brawler ult
-#				match str(name).right(1):
-#					"1":
-#						set_as_button_mode()
-#					"2":
-#						set_as_joystick_mode()
-#			4: # sniper ult and nano ult
-#				set_as_joystick_mode()
-#			5: # rogue special and ult
-#				set_as_button_mode()
-		match str(name).right(1):
-			"1":
-				$Base/Tip/icon.texture = load("res://assets/images/game/gui/buttons/icons/explosion-rays.png")
-			"2":
-				$Base/Tip/icon.texture = load("res://assets/images/game/gui/buttons/icons/electric.png")
-			"3":
-				$Base/Tip/icon.texture = load("res://assets/images/game/gui/buttons/icons/vortex.png")
+	if name == "movement_joystick":
+		movement_joystick = true
+		modulate.a = 0.5
 	else:
-		$Base/Tip/icon.hide()
+		_base.self_modulate.a = 0.0
+
 
 func set_as_attack_joystick():
 #	_tip.scale = Vector2(1.0,1.0)
@@ -132,11 +109,11 @@ func set_as_attack_joystick():
 	_base.self_modulate.a = 0.0
 	_tip.self_modulate.a = 1.0
 
-func set_as_button_mode():
-	_tip.scale = Vector2(1.9,1.9)
-	joystick_mode = Joystick_mode.BUTTON
-	modulate.a = 1.0
-	_base.self_modulate.a = 0.0
+#func set_as_button_mode():
+#	_tip.scale = Vector2(1.9,1.9)
+#	joystick_mode = Joystick_mode.BUTTON
+#	modulate.a = 1.0
+#	_base.self_modulate.a = 0.0
 
 
 
@@ -144,21 +121,14 @@ var joy_btn_pressed: bool = false
 
 
 func _input(event: InputEvent) -> void:
-#	if cooldown or _base.self_modulate.a == 0.0:
-#		return
-
 	if event is InputEventScreenTouch:
 		if event.pressed:
-			if joystick_mode == Joystick_mode.BUTTON and _is_point_inside_base(event.position):
-				Server.player_node.init_special_joystick_attack(name,output)
-			elif _is_point_inside_joystick_area(event.position) and _touch_index == -1:
+			if _is_point_inside_button_area(event.position) and _touch_index == -1 and not movement_joystick and not cooldown_active:
 				if joystick_mode == Joystick_mode.DYNAMIC or (joystick_mode == Joystick_mode.FIXED and _is_point_inside_base(event.position)):
-					if joystick_mode == Joystick_mode.DYNAMIC:
-						_move_base(event.position)
-					_touch_index = event.index
-					_tip.modulate = pressed_color
-					_update_joystick(event.position)
-					get_viewport().set_input_as_handled()
+					joystick_pressed(event)
+			elif _is_point_inside_joystick_area(event.position) and _touch_index == -1 and movement_joystick:
+				if joystick_mode == Joystick_mode.DYNAMIC or (joystick_mode == Joystick_mode.FIXED and _is_point_inside_base(event.position)):
+					joystick_pressed(event)
 		elif event.index == _touch_index:
 			_reset()
 			get_viewport().set_input_as_handled()
@@ -166,7 +136,14 @@ func _input(event: InputEvent) -> void:
 		if event.index == _touch_index:
 			_update_joystick(event.position)
 			get_viewport().set_input_as_handled()
-#	strength_coefficient = _tip.position.distance_to(_tip_default_position) / 100.0
+
+func joystick_pressed(_event):
+	if joystick_mode == Joystick_mode.DYNAMIC:
+		_move_base(_event.position)
+	_touch_index = _event.index
+	_tip.modulate = pressed_color
+	_update_joystick(_event.position)
+	get_viewport().set_input_as_handled()
 
 func _move_base(new_position: Vector2) -> void:
 	_base.global_position = new_position - _base.pivot_offset * get_global_transform_with_canvas().get_scale()
@@ -178,6 +155,11 @@ func _move_tip(new_position: Vector2) -> void:
 func _is_point_inside_joystick_area(point: Vector2) -> bool:
 	var x: bool = point.x >= global_position.x and point.x <= global_position.x + (size.x * get_global_transform_with_canvas().get_scale().x)
 	var y: bool = point.y >= global_position.y and point.y <= global_position.y + (size.y * get_global_transform_with_canvas().get_scale().y)
+	return x and y
+	
+func _is_point_inside_button_area(point: Vector2) -> bool:
+	var x: bool = point.x >= _tip.global_position.x and point.x <= _tip.global_position.x + (_tip.size.x * get_global_transform_with_canvas().get_scale().x)
+	var y: bool = point.y >= _tip.global_position.y and point.y <= _tip.global_position.y + (_tip.size.y * get_global_transform_with_canvas().get_scale().y)
 	return x and y
 
 func _is_point_inside_base(point: Vector2) -> bool:
@@ -241,6 +223,7 @@ func _physics_process(delta):
 			if vector.length() >= clampzone_size+60:
 				slide_joystick(delta,vector,screen_touch_position)
 	else:
+		return
 		if $cooldown.time_left == 0.0:
 			$Base/Tip/time_remaing.hide()
 			$Base/Tip/icon.show()
@@ -313,24 +296,30 @@ func _reset():
 			tween.kill() 
 		tween = get_tree().create_tween()
 		tween.parallel().tween_property(_tip,"self_modulate:a",0.15,0.2)
-		tween.parallel().tween_property(_base,"self_modulate:a",0.15,0.4)
-	
+		if movement_joystick:
+			tween.parallel().tween_property(_base,"self_modulate:a",0.15,0.4)
 
-	
-var cooldown: bool = false
 
 func check_if_shoot_projectile():
-	if is_attack_joystick:
-		if is_pressed and not cooldown:
-			cooldown = true
-			$cooldown.start()
+	if not movement_joystick:
+		if is_pressed and not cooldown_active:
+			cooldown_active = true
+			$cooldown_timer.start(10)
 			modulate.g = 0.0
 			modulate.b = 0.0
-			Server.player_node.init_special_joystick_attack(name,output)
+			var char
+			match name.right(1):
+				"1":
+					char = Server.player_node
+				"2":
+					char = Server.ally_node1
+				"3":
+					char = Server.ally_node2
+			char.ultra_attack(output)
 
 
-func _on_cooldown_timeout():
-	cooldown = false
+func _on_cooldown_timer_timeout():
+	cooldown_active = false
 	var tween = get_tree().create_tween()
 	tween.parallel().tween_property(self,"modulate:g",1.0,0.25)
 	tween.parallel().tween_property(self,"modulate:b",1.0,0.25)

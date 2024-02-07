@@ -12,7 +12,7 @@ func _physics_process(delta):
 func set_los(delta) -> void:
 	var nearest_target = Util.get_nearest_target(get_node("../detect_enemy"))
 	if nearest_target:
-		get_node("../CollisionShape2D").look_at(nearest_target.global_position)
+		get_node("../CollisionShape2D").look_at(nearest_target.hurtbox.global_position)
 #		rotation_degrees = lerp(self.rotation_degrees,get_node("../CollisionShape2D").rotation_degrees,delta*20)
 		rotation_degrees = get_node("../CollisionShape2D").rotation_degrees
 	else:

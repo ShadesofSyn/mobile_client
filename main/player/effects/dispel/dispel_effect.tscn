@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=3 uid="uid://lykj2ycgefev"]
+
+[ext_resource type="Texture2D" uid="uid://cqxutqhum0p7q" path="res://assets/images/abilities/dispel/dispel-01.png" id="1_dmiau"]
+[ext_resource type="Texture2D" uid="uid://clvh7onj2bjmv" path="res://assets/images/abilities/dispel/dispel-02.png" id="2_2ybf0"]
+[ext_resource type="Texture2D" uid="uid://cilq7jn1h70e0" path="res://assets/images/abilities/dispel/dispel-03.png" id="3_0nwom"]
+[ext_resource type="Texture2D" uid="uid://dbm43r0iw6k0v" path="res://assets/images/abilities/dispel/dispel-04.png" id="4_qg2ev"]
+[ext_resource type="Texture2D" uid="uid://e0iqgnxn1kit" path="res://assets/images/abilities/dispel/dispel-05.png" id="5_a77t4"]
+[ext_resource type="Texture2D" uid="uid://bjthbilo1fpe" path="res://assets/images/abilities/dispel/dispel-06.png" id="6_byq3i"]
+[ext_resource type="Texture2D" uid="uid://dodc2ltvdohgo" path="res://assets/images/abilities/dispel/dispel-07.png" id="7_egwjv"]
+[ext_resource type="Script" path="res://main/player/effects/aggro/aggro_effect.gd" id="8_yqkoe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pxsly"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dmiau")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2ybf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0nwom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qg2ev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a77t4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_byq3i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_egwjv")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="dispel_effect" type="AnimatedSprite2D"]
+position = Vector2(2.08165e-12, -26)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_pxsly")
+script = ExtResource("8_yqkoe")
